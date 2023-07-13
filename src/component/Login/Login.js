@@ -14,7 +14,7 @@ function Login() {
 
     const [transaction, setTransaction] = useState([]);
 
-    const { role, setRole, setIslogin } = useContext(DataContext);
+    const { role, setRole,islogin, setIslogin } = useContext(DataContext);
 
     useEffect(() => {
 
@@ -41,11 +41,12 @@ function Login() {
 
                 setIslogin(true)
 
+
                 console.log(detail.role)
 
                 setRole(detail.role)
 
-                navigate('/home')
+                // navigate('/home')
 
                 //add
 
