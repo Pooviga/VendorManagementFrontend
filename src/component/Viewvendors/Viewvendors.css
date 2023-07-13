@@ -14,6 +14,7 @@ label {
 .topics {
     display: flex;
     gap: 60%;
+    justify-content: space-between;
 }
 
 input[type="text"],
@@ -56,6 +57,8 @@ input[type="submit"] {
 .rh2 {
     width: auto;
 }
+
+
 
 .back_button {
     width: 100px;
@@ -105,6 +108,8 @@ td {
 th {
     background-color: #091644;
     color: white;
+    font-weight: normal;
+
 }
 
 #active {
@@ -115,4 +120,15 @@ th {
 #productDetails {
     border-radius: 5px;
     border: 1px solid #777676;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.table_overflow {
+    overflow-x: auto;
 }
