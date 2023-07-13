@@ -18,12 +18,15 @@ function App() {
 
 
     <div className="App"><DataProvider>
-      {/* {islogin ? <Navbar /> : <Login />} */}
-
+      {true ? <Navbar /> : <Login />}
+      <div className='content-main'>
+      {/* <Addvendors/>
+      <Viewvendors/> */}
+      </div>
 
       <Routes>
-        <Route exact path="/" element={<Login />}></Route>
-        <Route path="/home" element={<Navbar />}></Route>
+        {/* <Route exact path="/" element={<Login />}></Route> */}
+        {/* <Route path="/home" element={<Navbar />}></Route> */}
         <Route path='/viewvendors' element={<Viewvendors />} />
         <Route path='/addvendor' element={<Addvendors />} />
       </Routes>

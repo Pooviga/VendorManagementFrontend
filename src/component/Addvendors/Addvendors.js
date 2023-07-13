@@ -4,7 +4,7 @@ import '../Addvendors/addvendors.css'
 function Addvendors() {
     return (
         <div>
-            <h1>Vendor Management</h1>
+           
 
 
 
