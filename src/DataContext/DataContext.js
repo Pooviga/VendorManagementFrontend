@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import React, { useState, createContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -22,6 +23,7 @@ export const DataProvider = ({ children }) => {
     const [weight, setWeight] = useState(0);
 
     const [role, setRole] = useState(null);
+    const navigate = useNavigate()
 
 
 
@@ -88,7 +90,8 @@ export const DataProvider = ({ children }) => {
 
             postTransaction,
 
-            role, setRole
+            role, setRole,
+            navigate
 
 
 

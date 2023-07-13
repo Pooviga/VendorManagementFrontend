@@ -1,9 +1,17 @@
 import React from 'react'
+import { FaAlignRight } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
+import '../Viewvendors/Viewvendors.css'
 
 function Viewvendors() {
+    const navigate = useNavigate("/")
     return (
-        <div>
-            <h2>Registered Vendors</h2>
+        <div class="viewvendorswholediv">
+            <div className="topics">
+                <h2 className="rh2">Registered Vendors</h2>
+                <button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>
+            </div>
+
             <table id="vendorTable">
                 <tr>
                     <th>Vendor Name</th>
