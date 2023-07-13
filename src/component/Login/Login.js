@@ -13,6 +13,8 @@ function Login() {
 
     const [transaction, setTransaction] = useState([]);
 
+    const [stat, setStat] = useState(true)
+
     const { role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
 
     useEffect(() => {
@@ -49,11 +51,6 @@ function Login() {
                 navigate("/dashboard")
 
                 //add
-
-
-
-
-
             }
 
         })
@@ -61,25 +58,75 @@ function Login() {
 
 
     }
+    function registerHandler(params) {
+
+    }
 
     return (
         <div>
             <div className="main">
                 <div className="sub-main">
-                    <div>
-                        <div>
-                            <h1>Login Page</h1>
-                            <div >
-                                <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
-                            </div>
-                            <div className="second-input">
-                                <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
-                            </div>
-                            <div >
-                                <button className="login-button" onClick={() => loginHandler()}>Login</button>
-                            </div>
+                    {stat ? <div>
+                        <h1>Login Page</h1>
+                        <div >
+                            <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
                         </div>
+                        <div className="second-input">
+                            <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                        </div>
+                        <div >
+                            <button className="login-button" onClick={() => loginHandler()}>Login</button>
+                        </div>
+                        <div >
+                            <button className="sign-button" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "SignIn"}</button>
+                        </div>
+
                     </div>
+                        :
+                        <div>
+                            <h1>Register Page</h1>
+                            <div class="sidediv">
+                                <div className="second-input">
+                                    <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                </div>
+                                <div className="second-input">
+                                    <input type="text" placeholder="Email" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                </div>
+
+                            </div>
+                            <div class="sidediv">
+                                <div className="second-input">
+                                    <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                                </div>
+                                <div className="second-input">
+                                    <input type="password" placeholder="Confirm Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                                </div>
+                            </div>
+                            <div class="sidediv">
+                                <div className="second-input">
+                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                </div>
+                                <div className="second-input">
+                                    <select className="name" placeholder="Role" name="role">
+                                        <option className="role-option" value="approver">Approver</option>
+                                        <option className="role-option" value="user">User</option>
+                                    </select>
+                                </div></div>
+                            <div class="sidediv">
+                                <div >
+                                    <button className="login-button" onClick={() => registerHandler()}>SignUp</button>
+                                </div>
+                                <div >
+                                    <button className="sign-button" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "LogIn"}</button>
+                                </div></div>
+
+
+
+                        </div>
+                    }
+
+
+
                 </div>
             </div>
         </div>

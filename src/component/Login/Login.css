@@ -11,9 +11,16 @@
     padding-bottom: 90px;
     height: 100vh;
     width: 100vw;
+    /* background: rgb(2,0,36); */
+    /* background: radial-gradient(circle, rgba(9, 22, 68, 1) 13%, rgba(9, 22, 68, 1) 39%, rgba(59, 108, 207, 1) 100%); */
 
-    background-color: #e1e3eb;
+    background-color: #091644;
 
+
+}
+
+input::placeholder {
+    font: 14px;
 }
 
 .sub-main {
@@ -22,13 +29,14 @@
 
     justify-content: center;
 
-    height: 350px;
+    height: max-content;
 
-    width: 400px;
-
-    box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
+    width: max-content;
 
     padding-top: 30px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     border-radius: 10px;
 
@@ -74,14 +82,24 @@ input {
     height: 50px;
     border-radius: 5px;
     border: 1px solid #777676;
-
     outline: none;
 
 
 
 }
 
+.sidediv {
+    display: flex;
+    gap: 20px;
+}
 
+select {
+    border-radius: 5px;
+    border: 1px solid #777676;
+    outline: none;
+    padding-left: 70px;
+
+}
 
 .email {
 
@@ -101,15 +119,16 @@ input {
 
     padding-left: 70px;
 
-    font-size: 20px;
 
 }
 
 .second-input {
 
     padding-top: 20px;
+    width: 300px;
 
 }
+
 
 
 
@@ -135,8 +154,9 @@ input {
 
 } */
 
-button:hover {
+.login-button:hover {
     background-color: #3B6CCF;
+    color: white;
 }
 
 .login-button {
@@ -161,6 +181,38 @@ button:hover {
 
 }
 
+
+.sign-button {
+    width: 300px;
+
+    height: 50px;
+
+    font-family: 'Poppins', sans-serif;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    margin-top: 20px;
+
+    border: 2px solid;
+    background-color: white;
+}
+
+.sign-button:hover {
+    background-color: #3B6CCF;
+    color: white;
+}
+
+.role-option {
+    background-color: white;
+    color: #091644;
+}
+
+.role-option:hover {
+    background-color: #091644;
+    color: white;
+}
 
 .link {
 
