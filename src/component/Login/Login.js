@@ -1,12 +1,11 @@
 import { React, useContext, useEffect, useState } from 'react'
-import "./Login.css"
+import "../Login/Login.css"
 import DataContext from '../../DataContext/DataContext'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
 function Login() {
-    const navigate = useNavigate();
+
 
     const [username, setUsername] = useState("");
 
@@ -14,7 +13,7 @@ function Login() {
 
     const [transaction, setTransaction] = useState([]);
 
-    const { role, setRole,islogin, setIslogin } = useContext(DataContext);
+    const { role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
 
     useEffect(() => {
 
@@ -42,11 +41,12 @@ function Login() {
                 setIslogin(true)
 
 
+
                 console.log(detail.role)
 
                 setRole(detail.role)
 
-                // navigate('/home')
+                navigate("/dashboard")
 
                 //add
 
@@ -75,8 +75,8 @@ function Login() {
                             <div className="second-input">
                                 <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
                             </div>
-                            <div className="login-button">
-                                <button onClick={() => loginHandler()}>Login</button>
+                            <div >
+                                <button className="login-button" onClick={() => loginHandler()}>Login</button>
                             </div>
                         </div>
                     </div>

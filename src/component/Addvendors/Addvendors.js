@@ -1,16 +1,50 @@
-import React from 'react'
+import { React, useContext, useState } from 'react'
 import '../Addvendors/addvendors.css'
+import DataContext from '../../DataContext/DataContext'
+import AddProduct from '../AddProduct/AddProduct'
 
 function Addvendors() {
+    const { navigate } = useContext(DataContext)
+    // const [inputFields, setInputFields] = useState([{
+    //     fullName: '',
+    //     emailAddress: '',
+    //     salary: ''
+    // }]);
+
+    // const addInputField = () => {
+    //     setInputFields([...inputFields, {
+    //         fullName: '',
+    //         emailAddress: '',
+    //         salary: ''
+    //     }])
+
+    // }
+    // const removeInputFields = (index) => {
+    //     const rows = [...inputFields];
+    //     rows.splice(index, 1);
+    //     setInputFields(rows);
+    // }
+    // const handleChange = (index, evnt) => {
+
+    //     const { name, value } = evnt.target;
+    //     const list = [...inputFields];
+    //     list[index][name] = value;
+    //     setInputFields(list);
+
     return (
         <div>
-           
+
 
 
 
             {/* Form for adding or updating a vendor */}
             <form id="vendorForm">
-                <h1>Add Vendor</h1>
+                <div className="top">
+                    <h1>ADD VENDOR</h1>
+                    <button className="back_button" onClick={() => navigate('/viewvendors')}>Back</button>
+
+                </div>
+
                 <input type="hidden" id="vendorId"></input>
 
 
@@ -89,15 +123,15 @@ function Addvendors() {
 
 
                 <label for="productDetails">Product Details:</label>
-                <textarea id="productDetails" name="productDetails" rows="4" required></textarea>
+                <AddProduct />
 
+                <button className="addvendors">Add Vendors</button>
 
-
-                <input type="submit" value="Add Vendor"></input>
             </form>
         </div >
 
     )
 }
+
 
 export default Addvendors

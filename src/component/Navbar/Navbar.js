@@ -35,7 +35,7 @@ function Navbar() {
                         {role == 'admin' ?
                             <div>
                                 <li className='nav-text'>
-                                    <Link to='/'><span>{role}</span></Link>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
                                 </li>
                                 <li className='nav-text'>
                                     <Link to='/viewvendors'><span>View Vendors</span></Link>
