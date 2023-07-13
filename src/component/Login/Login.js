@@ -14,7 +14,7 @@ function Login() {
 
     const [transaction, setTransaction] = useState([]);
 
-    const { role, setRole } = useContext(DataContext);
+    const { role, setRole, setIslogin } = useContext(DataContext);
 
     useEffect(() => {
 
@@ -39,13 +39,15 @@ function Login() {
 
             if (((detail.username) == username) && (detail.password) == password) {
 
-                navigate('/home')
+                setIslogin(true)
 
                 console.log(detail.role)
 
                 setRole(detail.role)
 
+                navigate('/home')
 
+                //add
 
 
 
@@ -62,73 +64,23 @@ function Login() {
     return (
         <div>
             <div className="main">
-
                 <div className="sub-main">
-
                     <div>
-
-                        <div className="imgs">
-
-                            <div className="container-image">
-
-                                {/* <img src={profile} alt="profile" className="profile" /> */}
-
-
-
-                            </div>
-
-
-
-
-
-                        </div>
-
                         <div>
-
                             <h1>Login Page</h1>
-
-                            <div>
-
-                                {/* <img src={email} alt="email" className="email" /> */}
-
-                                <input type="text" placeholder="user name" className="name" onChange={(e) => { setUsername(e.target.value) }} />
-
+                            <div >
+                                <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
                             </div>
-
                             <div className="second-input">
-
-                                {/* <img src={pass} alt="pass" className="email" /> */}
-
-                                <input type="password" placeholder="password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
-
+                                <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
                             </div>
-
                             <div className="login-button">
-
                                 <button onClick={() => loginHandler()}>Login</button>
-
                             </div>
-
-
-
-
-
-
-
-
-
                         </div>
-
                     </div>
-
-
-
-
-
                 </div>
-
             </div>
-
         </div>
     )
 }

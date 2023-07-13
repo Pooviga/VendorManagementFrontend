@@ -15,13 +15,14 @@ export const DataProvider = ({ children }) => {
 
     const [destination, setDestination] = useState(0);
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [islogin, setIslogin] = useState(false);
 
     const [person, setPerson] = useState(0);
 
     const [weight, setWeight] = useState(0);
 
     const [role, setRole] = useState(null);
+
 
 
 
@@ -79,7 +80,7 @@ export const DataProvider = ({ children }) => {
 
             destination, setDestination,
 
-            isOpen, setIsOpen,
+            islogin, setIslogin,
 
             person, setPerson,
 

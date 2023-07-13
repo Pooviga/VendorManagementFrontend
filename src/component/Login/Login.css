@@ -9,6 +9,8 @@
     padding-top: 90px;
 
     padding-bottom: 90px;
+    height: 100vh;
+    width: 100vw;
 
     background-color: #e1e3eb;
 
@@ -20,7 +22,7 @@
 
     justify-content: center;
 
-    height: 550px;
+    height: 350px;
 
     width: 400px;
 
@@ -28,7 +30,7 @@
 
     padding-top: 30px;
 
-    border-radius: 60px;
+    border-radius: 10px;
 
     background-color: white;
 
@@ -62,33 +64,20 @@
 
 }
 
-.profile {
-
-    height: 100px;
-
-    width: 100px;
-
-    border-radius: 130px;
-
-}
 
 
 
 input {
 
-    width: 300px;
-
+    width: 228px;
+    font-family: "Poppins";
     height: 50px;
-
-    border-radius: 60px;
-
-    box-shadow: inset 0px 0px 25px 0px #888;
-
-    border: none;
+    border-radius: 5px;
+    border: 1px solid #777676;
 
     outline: none;
 
-    background-color: #fff;
+
 
 }
 
@@ -126,28 +115,36 @@ input {
 
 button {
 
-    width: 380px;
+    width: auto;
 
     height: 50px;
 
-    border-radius: 60px;
+    font-family: 'Poppins', sans-serif;
 
-    background-color: #b103fc;
+    border-radius: 5px;
+
+    background-color: #091644;
 
     color: white;
 
-    font-size: 25px;
+    font-size: 16px;
+
+    margin-top: 20px;
 
     border: none;
 
 }
 
-.login-button {
-
-    padding-top: 25px;
-
+button:hover {
+    background-color: #3B6CCF;
 }
 
+.login-button {
+    width: 300px;
+    height: 50px;
+
+
+}
 
 
 .link {

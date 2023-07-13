@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
+import DataContext from '../../DataContext/DataContext';
+import Addvendors from '../Addvendors/Addvendors';
+import Viewvendors from '../Viewvendors/Viewvendors';
 
 function Navbar() {
+    const { role } = useContext(DataContext)
+
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
@@ -26,19 +31,46 @@ function Navbar() {
                                 <AiIcons.AiOutlineClose />
                             </Link>
                         </li>
-                        {SidebarData.map((item, index) => {
-                            return (
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
+
+                        {role == 'admin' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/'><span>{role}</span></Link>
                                 </li>
-                            );
-                        })}
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/addvendor' ><span>Add Vendor</span></Link>
+                                </li>
+                            </div> : <></>}
+
+
+                        {role == 'approver' ?
+                            <li className='nav-text'>
+                                <Link to='/'><span>{role}</span></Link>
+                            </li> : <></>}
+
+
+                        {role == 'user' ?
+                            <li className='nav-text'>
+                                <Link to='/'><span>{role}</span></Link>
+                            </li> : <></>}
+
+
+                        {role == 'guest' ?
+                            <li className='nav-text'>
+                                <Link to='/'><span>{role}</span></Link>
+                            </li> : <></>}
+
                     </ul>
                 </nav>
             </IconContext.Provider>
+            <div>
+                <Routes>
+
+                </Routes>
+            </div>
         </div>
     );
 }

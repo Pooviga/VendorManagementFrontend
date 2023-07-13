@@ -5,17 +5,27 @@ import './App.css';
 // import { BrowserRouter } from 'react-router-dom'
 import Login from './component/Login/Login';
 import Navbar from './component/Navbar/Navbar';
-import { DataProvider } from './DataContext/DataContext';
+import DataContext, { DataProvider } from './DataContext/DataContext';
+import Viewvendors from './component/Viewvendors/Viewvendors';
+import Addvendors from './component/Addvendors/Addvendors';
+import { useContext } from 'react';
+
 
 function App() {
+
+  const { islogin, setIslogin } = useContext(DataContext);
   return (
+
+
     <div className="App"><DataProvider>
-      {/* <Navbar /> */}
-      {/* <Login /> */}
+      {/* {islogin ? <Navbar /> : <Login />} */}
+
+
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
-        <Route exact path="/home" element={<Navbar />}></Route>
-
+        <Route path="/home" element={<Navbar />}></Route>
+        <Route path='/viewvendors' element={<Viewvendors />} />
+        <Route path='/addvendor' element={<Addvendors />} />
       </Routes>
     </DataProvider>
     </div>
