@@ -5,6 +5,8 @@ import '../Viewvendors/Viewvendors.css'
 import Addvendors from '../Addvendors/Addvendors'
 import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup'
+import { useEffect, useState } from "react"
+
 
 function Viewvendors() {
     const navigate = useNavigate("/")
@@ -37,7 +39,7 @@ function Viewvendors() {
                 </Popup>
                 {/* <button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button> */}
             </div>
-            <div class="table_overflow">
+            {/* <div class="table_overflow">
                 <table id="vendorTable">
                     <tr>
                         <th>Vendor Name</th>
@@ -47,7 +49,7 @@ function Viewvendors() {
                         <th>Action</th>
                     </tr>
                 </table>
-            </div>
+            </div> */}
 
         </div>
     )
