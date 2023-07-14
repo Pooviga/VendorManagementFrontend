@@ -2,14 +2,17 @@
 	background-color: #091644;
 	height: 50px;
 	display: flex;
-	justify-content: start;
+	width: 100%;
+	justify-content: space-between;
 	align-items: center;
+
 }
 
 .menu-bars {
 	margin-left: 2rem;
 	font-size: 2rem;
 	background: none;
+	place-content: center;
 }
 
 .nav-menu {
@@ -52,6 +55,12 @@
 
 .nav-text a:hover {
 	background-color: #3B6CCF;
+}
+
+.heading {
+	text-align: center;
+	color: white;
+	margin-right: 10px;
 }
 
 .nav-menu-items {

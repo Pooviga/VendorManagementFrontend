@@ -1,22 +1,12 @@
 .main {
-
     text-align: center;
-
     justify-content: center;
-
     display: flex;
-
-    padding-top: 90px;
-
-    padding-bottom: 90px;
     height: 100vh;
-    width: 100vw;
-    /* background: rgb(2,0,36); */
-    /* background: radial-gradient(circle, rgba(9, 22, 68, 1) 13%, rgba(9, 22, 68, 1) 39%, rgba(59, 108, 207, 1) 100%); */
-
+    overflow: hidden;
+    width: 100%;
     background-color: #091644;
-
-
+    align-items: center;
 }
 
 input::placeholder {
@@ -41,6 +31,7 @@ input::placeholder {
     border-radius: 10px;
 
     background-color: white;
+    /* overflow-y: scroll; */
 
 }
 
@@ -86,6 +77,11 @@ input {
 
 
 
+}
+
+.over {
+    overflow-y: scroll;
+    height: 300px;
 }
 
 .sidediv {
@@ -157,6 +153,7 @@ select {
 .login-button:hover {
     background-color: #3B6CCF;
     color: white;
+    cursor: pointer;
 }
 
 .login-button {
@@ -181,6 +178,55 @@ select {
 
 }
 
+.login-button_signup {
+    width: 100%;
+
+    height: 50px;
+
+    font-family: 'Poppins', sans-serif;
+
+    border-radius: 5px;
+
+    background-color: #091644;
+
+    color: white;
+
+    font-size: 16px;
+
+    margin-top: 20px;
+
+    border: none;
+}
+
+.login-button_signup:hover {
+    background-color: #3B6CCF;
+    color: white;
+    cursor: pointer;
+}
+
+.sign-button_signup {
+    width: 100%;
+
+    height: 50px;
+
+    font-family: 'Poppins', sans-serif;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    margin-top: 20px;
+
+    border: 2px solid;
+    background-color: white;
+}
+
+.sign-button_signup:hover {
+    background-color: #3B6CCF;
+    color: white;
+    cursor: pointer;
+}
+
 
 .sign-button {
     width: 300px;
@@ -202,6 +248,7 @@ select {
 .sign-button:hover {
     background-color: #3B6CCF;
     color: white;
+    cursor: pointer;
 }
 
 .role-option {

@@ -10,6 +10,9 @@ import Viewvendors from './component/Viewvendors/Viewvendors';
 import { useContext } from 'react';
 import Dashboard from './component/Dashboard/Dashboard';
 import Addvendors from './component/Addvendors/Addvendors';
+import Home from './component/Home/Home';
+import PurchaseOrder from './component/ViewPurchaseOrder/ViewPurchaseOrder'
+// import PurchaseOrder from './component/PurchaseOrder/PurchaseOrder';
 
 
 function App() {
@@ -19,13 +22,15 @@ function App() {
     <DataProvider>
 
       <div className="App">
-        <Navbar />
-        {/* <Addvendors /> */}
+        <Home />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<></>} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addvendor" element={<Addvendors />} />
           <Route path="/viewvendors" element={<Viewvendors />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/purchaseorders" element={<PurchaseOrder />} />
+          {/* <Route path="/purchaseorder" element={<PurchaseOrder />} /> */}
+
         </Routes>
       </div>
     </DataProvider>

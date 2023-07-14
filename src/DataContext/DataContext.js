@@ -16,7 +16,7 @@ export const DataProvider = ({ children }) => {
 
     const [destination, setDestination] = useState(0);
 
-    const [islogin, setIslogin] = useState(true);
+    const [islogin, setIslogin] = useState(false);
 
     const [person, setPerson] = useState(0);
 
@@ -42,28 +42,28 @@ export const DataProvider = ({ children }) => {
 
 
 
-    function postTransaction() {
+    function postVendor(dataSet) {
 
 
 
 
-        axios.post('https://localhost:7005/api/Transaction', {
+        console.log("console:::", dataSet);
 
-            currentFloor: current,
+        const requestOptions = {
 
-            destinationFloor: destination,
+            method: 'POST',
 
-            personCount: person,
+            headers: { 'Content-Type': 'application/json' },
 
-            personWeight: person * 60
+            body: JSON.stringify(dataSet)
 
-        }).then((response) => {
+        };
 
-            console.log(response.data);
+        fetch('https://localhost:7017/api/VendorDetails', requestOptions)
 
-        });
+            .then(response => response.json())
 
-
+            .then(data => console.log(data));
 
 
 
@@ -88,7 +88,7 @@ export const DataProvider = ({ children }) => {
 
             weight, setWeight,
 
-            postTransaction,
+            postVendor,
 
             role, setRole,
             navigate

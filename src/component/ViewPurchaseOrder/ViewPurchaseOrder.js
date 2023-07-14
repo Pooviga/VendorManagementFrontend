@@ -7,11 +7,11 @@ import Popup from 'reactjs-popup';
 
 
 function Addvendors() {
-    const { navigate, postVendor } = useContext(DataContext);
+    const { navigate, postTransaction } = useContext(DataContext);
     const [inputFields, setInputFields] = useState([
 
         {
-            vendorId: '00000000-0000-0000-0000-000000000000',
+
             ProductName: '',
 
             ProductDescription: '',
@@ -30,7 +30,6 @@ function Addvendors() {
             ...inputFields,
 
             {
-                vendorId: '00000000-0000-0000-0000-000000000000',
 
                 ProductName: '',
 
@@ -74,7 +73,7 @@ function Addvendors() {
 
         isActive: true,
 
-        vendorType: 0,
+        vendorType: '',
 
         addressLine1: '',
 
@@ -106,7 +105,7 @@ function Addvendors() {
             {/* Form for adding or updating a vendor */}
             <form id="vendorForm">
                 <div className="top">
-                    <h1>ADD VENDOR</h1>
+                    <h1>Purchase Order</h1>
                     <button className="back_button" onClick={() => navigate('/viewvendors')}>Back</button>
 
                 </div>
@@ -120,7 +119,7 @@ function Addvendors() {
                         {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
 
                         {/* <label for="vendorType">Vendor Type:</label> */}
-                        <input placeholder="Vendor Type" type="text" id="vendorType" name="vendorType" required ></input>
+                        <input placeholder="Vendor Type" type="text" id="vendorType" name="vendorType" required onChange={(e) => { setNewVendor({ ...newVendor, vendorType: e.target.value }) }}></input>
 
 
                     </div>
@@ -146,9 +145,9 @@ function Addvendors() {
                     </div>
                     <div class="sidefields">
                         {/* <label for="telephone1">Telephone 1:</label> */}
-                        <input placeholder="Telephone 1" type="tel" id="telePhone1" name="telePhone1" required onChange={(e) => { setNewVendor({ ...newVendor, telePhone1: e.target.value }) }}></input>
+                        <input placeholder="Telephone 1" type="tel" id="telephone1" name="telephone1" required onChange={(e) => { setNewVendor({ ...newVendor, telephone1: e.target.value }) }}></input>
                         {/* <label for="telephone2">Telephone 2:</label> */}
-                        <input placeholder="Telephone 2" type="tel" id="telePhone2" name="telePhone2" onChange={(e) => { setNewVendor({ ...newVendor, telePhone2: e.target.value }) }}></input>
+                        <input placeholder="Telephone 2" type="tel" id="telephone2" name="telephone2" onChange={(e) => { setNewVendor({ ...newVendor, telephone2: e.target.value }) }}></input>
                     </div>
                     <div class="sidefields">
                         {/* <label for="vendorEmail">Vendor Email:</label> */}
@@ -203,7 +202,7 @@ function Addvendors() {
                         </div>
                     </div>
 
-                    <button className="addvendors" onClick={(e) => { e.preventDefault(); postVendor(newVendor) }}>Add Vendors</button>
+                    <button className="addvendors">Add Vendors</button>
 
 
                 </div>

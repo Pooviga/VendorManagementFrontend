@@ -1,11 +1,9 @@
-.sidefield {
+/* .sidefield {
     display: flex;
     justify-content: space-between;
-    /* gap: 20px; */
 }
 
 .removevendors {
-    /* width: 100%; */
     background-color: #091644;
 
     color: white;
@@ -19,4 +17,4 @@
 
 .pdlabel {
     display: inline-block;
-}
+} */
