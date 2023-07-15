@@ -1,20 +1,69 @@
 form {
     max-width: 800px;
     margin: 5px auto;
-    padding: 20px;
+    padding: 40px;
     background: #f4f7f8;
     border-radius: 5px;
+    height: 600px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
 }
+
+#vendorForm::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+#vendorForm {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.formdetails {
+    height: 600px;
+    /* overflow-y: scroll; */
+}
+
 
 label {
     font-size: 14px;
+}
 
+.sidefield {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 20px; */
+}
+
+.removevendors {
+    /* width: 100%; */
+    background-color: #091644;
+
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.pdlabel {
+    display: inline-block;
 }
 
 .sidefields {
     display: flex;
     gap: 20px;
 
+}
+
+input ::placeholder {
+    font-size: 14px;
 }
 
 .top {

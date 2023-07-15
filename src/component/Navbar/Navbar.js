@@ -20,9 +20,12 @@ function Navbar() {
         <div>
             <IconContext.Provider value={{ color: '#fff' }}>
                 <div className='navbar'>
+
                     <Link to='#' className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
+                    <h1 className='heading'>VENDOR MANAGEMENT SYSTEM</h1>
+
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSidebar}>
@@ -41,7 +44,10 @@ function Navbar() {
                                     <Link to='/viewvendors'><span>View Vendors</span></Link>
                                 </li>
                                 <li className='nav-text'>
-                                    <Link to='/addvendor' ><span>Add Vendor</span></Link>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>View Approval</span></Link>
                                 </li>
                             </div> : <></>}
 
@@ -66,11 +72,7 @@ function Navbar() {
                     </ul>
                 </nav>
             </IconContext.Provider>
-            <div>
-                <Routes>
 
-                </Routes>
-            </div>
         </div>
     );
 }

@@ -2,23 +2,20 @@ import React from 'react'
 import { FaAlignRight } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import '../Viewvendors/Viewvendors.css'
-import Addvendors from '../Addvendors/Addvendors'
+import AddProductPurchaseDetails from '../AddProductPurchaseDetails/AddProductPurchaseDetails'
 import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup'
 import { useEffect, useState } from "react"
 
 
-function Viewvendors() {
+function ViewPurchaseOrder() {
     const navigate = useNavigate("/")
     return (
         <div class="viewvendorswholediv">
             <div className="topics">
-                <h2 className="rh2">Registered Vendors</h2>
-                {/* <Popup trigger={<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>} position="left center">
-                    <div><Addvendors /></div>
-                </Popup> */}
+                <h2 className="rh2">Purchased Product Details</h2>
                 <Popup trigger=
-                    {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>}
+                    {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Create Purchase Order</button>}
                     modal nested>
                     {
                         close => (
@@ -30,7 +27,7 @@ function Viewvendors() {
                                     </button>
                                 </div>
                                 <div className='content'>
-                                    <Addvendors />
+                                    <AddProductPurchaseDetails />
                                 </div>
 
                             </div>
@@ -55,4 +52,4 @@ function Viewvendors() {
     )
 }
 
-export default Viewvendors
+export default ViewPurchaseOrder
