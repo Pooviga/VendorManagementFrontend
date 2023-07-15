@@ -1,9 +1,6 @@
 import { React, useContext, useState } from 'react'
 import '../Addvendors/addvendors.css'
 import DataContext from '../../DataContext/DataContext'
-import AddProduct from '../AddProduct/AddProduct'
-import TextField from '@mui/material/TextField';
-import Popup from 'reactjs-popup';
 
 
 function Addvendors() {
