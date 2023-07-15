@@ -106,9 +106,7 @@ function Addvendors() {
             {/* Form for adding or updating a vendor */}
             <form id="vendorForm">
                 <div className="top">
-                    <h1>ADD VENDOR</h1>
-                    <button className="back_button" onClick={() => navigate('/viewvendors')}>Back</button>
-
+                    <h1>Add Vendor</h1>
                 </div>
                 <div className='formdetails'>
                     <input type="hidden" id="vendorId"></input>

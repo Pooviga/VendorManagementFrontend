@@ -1,0 +1,26 @@
+.Card {
+    border: 2px solid #091644;
+    width: 630px;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 30px;
+    margin: 20px;
+    letter-spacing: 1px;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    background-color: #091644;
+    color: white;
+    padding: 5px 5px;
+    margin: 35px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+}

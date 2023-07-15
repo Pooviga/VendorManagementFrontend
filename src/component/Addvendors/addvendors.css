@@ -6,7 +6,21 @@ form {
     border-radius: 5px;
     height: 600px;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
 
+#vendorForm::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+#vendorForm {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
 }
 
 .formdetails {

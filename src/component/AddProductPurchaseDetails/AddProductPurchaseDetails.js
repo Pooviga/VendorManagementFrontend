@@ -106,14 +106,11 @@ function Addvendors() {
             {/* Form for adding or updating a vendor */}
             <form id="vendorForm">
                 <div className="top">
-                    <h1>ADD VENDOR</h1>
-                    <button className="back_button" onClick={() => navigate('/viewvendors')}>Back</button>
+                    <h1>Create Product Purchase</h1>
 
                 </div>
                 <div className='formdetails'>
                     <input type="hidden" id="userId"></input>
-
-                    <h1>Billing Address</h1>
                     <div class="sidefields">
                         {/* <label for="vendorName">Vendor Name:</label> */}
                         <input placeholder="Billing Adress" type="text" id="billingAddress" name="billingAddress" required onChange={(e) => { setNewVendor({ ...newVendor, billingAddress: e.target.value }) }}></input>

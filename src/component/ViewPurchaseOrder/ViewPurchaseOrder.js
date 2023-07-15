@@ -15,7 +15,7 @@ function ViewPurchaseOrder() {
             <div className="topics">
                 <h2 className="rh2">Purchased Product Details</h2>
                 <Popup trigger=
-                    {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Purchase Order</button>}
+                    {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Create Purchase Order</button>}
                     modal nested>
                     {
                         close => (

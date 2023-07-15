@@ -46,6 +46,9 @@ function Navbar() {
                                 <li className='nav-text'>
                                     <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
                                 </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>View Approval</span></Link>
+                                </li>
                             </div> : <></>}
 
 
