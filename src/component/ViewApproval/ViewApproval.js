@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ViewApprovalCard from '../ViewApprovalCard/ViewApprovalCard'
 import axios from "axios";
+import './ViewApproval.css'
+
 
 
 const ViewApproval = () => {
@@ -11,7 +13,7 @@ const ViewApproval = () => {
     }, [])
 
     return (
-        <div>
+        <div className="container">
             {data.map((d) => {
                 return <ViewApprovalCard key={d.id} data={d} />
             })}

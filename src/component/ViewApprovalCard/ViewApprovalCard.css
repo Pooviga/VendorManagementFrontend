@@ -1,13 +1,81 @@
 .Card {
     border: 2px solid #091644;
-    width: 630px;
+    width: 625px;
     border-radius: 16px;
     overflow: hidden;
     padding: 30px;
     margin: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+}
+
+.viewdetails {
+    display: flex;
+    justify-content: space-between;
 
 }
+
+/* .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+} */
+.popup-content {
+    max-width: 600px;
+    margin: 5px auto;
+    padding: 30px;
+    background: #f4f7f8;
+    border-radius: 5px;
+    height: 600px;
+    overflow-y: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #091644;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #3B6CCF;
+}
+
+
+
+.popup-arrow {
+    color: rgb(255, 255, 255);
+}
+
+[role='tooltip'].popup-content {
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+[data-popup='tooltip'].popup-overlay {
+    background: transparent;
+}
+
 
 .buttons {
     display: flex;
