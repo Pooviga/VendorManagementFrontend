@@ -10,6 +10,10 @@ function Login() {
     const [email, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
+    const [phoneNumber,setMobileNumber]=useState("");
+    const[name,setName]=useState("");
+    //const[role,setRoles]=useState("");
+    
 
     const [transaction, setTransaction] = useState([]);
 
@@ -39,7 +43,6 @@ function Login() {
 
         axios.post("https://localhost:7017/login", loginRequest)
             .then((response) => {
-
                 setIslogin(true)
                 const roleName = response.data.role.name.toLowerCase();
                 console.log(response.data.role.name)
@@ -55,9 +58,33 @@ function Login() {
               });
 
     }
-    function registerHandler(params) {
+    function registerHandler(params) { 
+        const signUpRequest={email,password,phoneNumber,role,name}
+        axios.post("https://localhost:7017/api/User",signUpRequest)
+        .then((response) => {
+
+            console.log(response.data);
+
+        }) .catch((error) => {
+            
+            setLoginError(true);
+            
+          });
 
     }
+
+const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    setRole(selectedRole); 
+  };
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    setIsEmailValid(emailRegex.test(value));
+  };
+
 
     return (
         <div>
@@ -66,7 +93,7 @@ function Login() {
                     {stat ? <div>
                         <h1>Login Page</h1>
                         <div >
-                            <input type="text" placeholder="Email Address" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
+                            <input type="text" placeholder="Email Address" className="name"  value={email} onChange={handleUsernameChange}  required></input>
                         </div>
                         <div className="second-input">
                             <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
@@ -86,10 +113,11 @@ function Login() {
                             <h1>Register Page</h1>
                             <div className='sidediv'>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                    <input type="text" placeholder="Username" className="name" onChange={(e) => { setName(e.target.value) }} />
                                 </div>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Email" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                    <input type="text" placeholder="Email"  className="name" value={email} onChange={handleUsernameChange} />
+                        
                                 </div>
 
                             </div>
@@ -103,12 +131,13 @@ function Login() {
                             </div>
                             <div className='sidediv'>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setUsername(e.target.value) }} />
+                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
                                 </div>
                                 <div className="second-input">
-                                    <select className="name" placeholder="Role" name="role">
+                                    <select className="name" placeholder="Role" name="role" value={role} onChange={handleRoleChange}>
                                         <option className="name" value="approver">Approver</option>
-                                        <option className="name" value="user">User</option>
+                                        <option className="name" value="user">User</option> 
+                                        <option className="name" value="readonly">General User</option>
                                     </select>
                                 </div>
                             </div>
