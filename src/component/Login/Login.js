@@ -7,7 +7,7 @@ import axios from 'axios'
 function Login() {
 
 
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
 
@@ -19,37 +19,65 @@ function Login() {
 
     useEffect(() => {
 
-        axios.get("https://64ad6d54b470006a5ec5f2ed.mockapi.io/vendor/api/users").then((response) => {
+        axios.get("https://localhost:7017/api/User").then((response) => {
 
-            setTransaction(response.data);
+         //   setTransaction(response.data);
 
             console.log(response.data)
         });
 
     }, []);
 
-    function loginHandler(params) {
-
-        transaction.map((detail) => {
-
-            // console.log(detail)
-
-            if (((detail.username) == username) && (detail.password) == password) {
-
-                setIslogin(true)
+    function loginHandler(params) { 
 
 
 
-                console.log(detail.role)
+          const loginRequest = { email, password };
 
-                setRole(detail.role)
+          axios.post("https://localhost:7017/login", loginRequest)
+          .then((response) => { 
+          console.log(response.data); // Log the response data
+      // Other logic using the response data
+    })
 
-                navigate("/dashboard")
 
-                //add
-            }
 
-        })
+          
+        //   const response = axios.post("https://localhost:7017/login", loginRequest);
+          
+        //   if (response) {
+        //     console.log(response.data)
+        //    setTransaction(response);
+    
+            // // Map through the transactions only if the login request was successful
+            // response.data.map((detail) => {
+            //   console.log(detail);
+            //   setRole(detail.role.name);
+            //   setIsLogin(true);
+            //   console.log(detail.role.name);
+            //   navigate("/dashboard");
+            // });
+          }
+
+        // transaction.map((detail) => {
+
+        //     // console.log(detail)  
+
+
+        //         setIslogin(true)
+
+
+
+        //         console.log(detail.role.name)
+
+        //         setRole(detail.role.name)
+
+        //         navigate("/dashboard")
+
+        //         //add
+            
+
+        // })
 
 
 
@@ -65,7 +93,7 @@ function Login() {
                     {stat ? <div>
                         <h1>Login Page</h1>
                         <div >
-                            <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
+                            <input type="text" placeholder="Email Address" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
                         </div>
                         <div className="second-input">
                             <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
