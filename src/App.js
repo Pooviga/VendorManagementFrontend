@@ -13,6 +13,9 @@ import Addvendors from './component/Addvendors/Addvendors';
 import Home from './component/Home/Home';
 import PurchaseOrder from './component/ViewPurchaseOrder/ViewPurchaseOrder'
 import ViewApproval from './component/ViewApproval/ViewApproval';
+import ViewUserApproval from './component/ViewUserApproval/ViewUserApproval';
+import ViewUsers from './component/ViewUsers/ViewUsers';
+
 // import PurchaseOrder from './component/PurchaseOrder/PurchaseOrder';
 
 
@@ -27,9 +30,12 @@ function App() {
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/viewusers" element={<ViewUsers />} />
           <Route path="/viewvendors" element={<Viewvendors />} />
           <Route path="/purchaseorders" element={<PurchaseOrder />} />
           <Route path="/viewapproval" element={<ViewApproval />} />
+          <Route path="/viewuserapproval" element={<ViewUserApproval />} />
+
 
           {/* <Route path="/purchaseorder" element={<PurchaseOrder />} /> */}
 
