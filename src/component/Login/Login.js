@@ -30,61 +30,56 @@ function Login() {
 
     function loginHandler(params) { 
 
+        
+        transaction.map((detail) => {
+
+             console.log(detail)
+
+            if (((detail.username) == username) && (detail.password) == password) {
+
+                setIslogin(true)
 
 
-          const loginRequest = { email, password };
 
-          axios.post("https://localhost:7017/login", loginRequest)
-          .then((response) => { 
-          console.log(response.data); // Log the response data
+                console.log(detail.role)
+
+                setRole(detail.role)
+
+                navigate("/dashboard")
+
+                //add
+            }
+
+        })
+
+
+        //   const loginRequest = { email, password };
+
+        //   axios.post("https://localhost:7017/login", loginRequest)
+        //   .then((response) => { 
+        //   console.log(response.data); // Log the response data
       // Other logic using the response data
-    })
-
-
-
-          
-        //   const response = axios.post("https://localhost:7017/login", loginRequest);
-          
-        //   if (response) {
-        //     console.log(response.data)
-        //    setTransaction(response);
     
-            // // Map through the transactions only if the login request was successful
-            // response.data.map((detail) => {
-            //   console.log(detail);
-            //   setRole(detail.role.name);
-            //   setIsLogin(true);
-            //   console.log(detail.role.name);
-            //   navigate("/dashboard");
-            // });
+
+
+
+          
+       
           }
 
-        // transaction.map((detail) => {
-
-        //     // console.log(detail)  
-
-
-        //         setIslogin(true)
-
-
-
-        //         console.log(detail.role.name)
-
-        //         setRole(detail.role.name)
-
-        //         navigate("/dashboard")
-
-        //         //add
-            
-
-        // })
-
-
+      
 
     }
     function registerHandler(params) {
 
     }
+
+//   const loginRequest = { email, password };
+
+        //   axios.post("https://localhost:7017/login", loginRequest)
+        //   .then((response) => { 
+        //   console.log(response.data); // Log the response data
+      // Other logic using the response data
 
     return (
         <div>
