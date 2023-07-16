@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 function ViewUsers() {
     const [data, setData] = useState([]);
+    const [filter, setFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         axios
@@ -50,9 +52,41 @@ function ViewUsers() {
             })
             .catch(er => console.log(er));
     };
+    // Filter the users based on the selected filter option
+    const filteredData = filter === 'all' ? data : data.filter((user) => user.approvalStatus === filter);
+
+    // Search for users based on the search term
+    const searchedData = filteredData.filter(
+        (user) =>
+            user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            user.phoneNumber.includes(searchTerm)
+    );
 
     return (
         <div>
+            <div className="filter-container">
+                <label htmlFor="filter">Filter by Approval Status:</label>
+                <select
+                    id="filter"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                >
+                    <option value="all">All</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Pending">Pending</option>
+                    {/* Add more filter options if needed */}
+                </select>
+            </div>
+
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search by name, email, or phone number"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -67,7 +101,7 @@ function ViewUsers() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((user, index) => (
+                    {searchedData.map((user, index) => (
                         <tr key={index}>
                             <td>{user.id}</td>
                             <td>
@@ -115,9 +149,11 @@ function ViewUsers() {
                                     user.phoneNumber
                                 )}
                             </td>
+
                             <td>{user.role.name}</td>
                             <td>{user.approvalStatus}</td>
-                            <td>{user.role.isActive}</td>
+                            <td>{user.isActive ? 'true' : 'false'}</td>
+
                             <td>
                                 {user.editing ? (
                                     <button onClick={() => handleSave(index)}>Update</button>

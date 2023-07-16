@@ -10,7 +10,7 @@ import Addvendors from '../Addvendors/Addvendors';
 import Viewvendors from '../Viewvendors/Viewvendors';
 
 function Navbar() {
-    const { role } = useContext(DataContext)
+    const { roleName } = useContext(DataContext)
 
     const [sidebar, setSidebar] = useState(false);
 
@@ -35,31 +35,32 @@ function Navbar() {
                             </Link>
                         </li>
 
-                        {role == 'admin' ?
-                            <div>
-                                <li className='nav-text'>
-                                    <Link to='/dashboard'><span>Dashboard</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/viewusers' ><span>View Users</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/viewapproval' ><span>PO Approval</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/viewuserapproval' ><span>User Approval</span></Link>
-                                </li>
+                        {/* {roleName == 'Generaluser' ? */}
+                        <div>
+                            <li className='nav-text'>
+                                <Link to='/dashboard'><span>Dashboard</span></Link>
+                            </li>
+                            <li className='nav-text'>
+                                <Link to='/viewusers' ><span>View Users</span></Link>
+                            </li>
+                            <li className='nav-text'>
+                                <Link to='/viewvendors'><span>View Vendors</span></Link>
+                            </li>
+                            <li className='nav-text'>
+                                <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                            </li>
+                            <li className='nav-text'>
+                                <Link to='/viewapproval' ><span>PO Approval</span></Link>
+                            </li>
+                            <li className='nav-text'>
+                                <Link to='/viewuserapproval' ><span>User Approval</span></Link>
+                            </li>
 
-                            </div> : <></>}
+                        </div> : <></>
+                        {/* } */}
 
 
-                        {role == 'approver' ?
+                        {/* {role == 'approver' ?
                             <li className='nav-text'>
                                 <Link to='/'><span>{role}</span></Link>
                             </li> : <></>}
@@ -74,7 +75,12 @@ function Navbar() {
                         {role == 'guest' ?
                             <li className='nav-text'>
                                 <Link to='/'><span>{role}</span></Link>
-                            </li> : <></>}
+                            </li> : <></>} */}
+                        {/* {role == 'guest' ?
+                            <li className='nav-text'>
+                                <Link to='/'><span>{role}</span></Link>
+                            </li> : <></>} */}
+
 
                     </ul>
                 </nav>
