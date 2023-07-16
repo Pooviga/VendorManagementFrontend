@@ -1,156 +1,187 @@
-import { React, useContext, useEffect, useState } from 'react'
-import "../Login/Login.css"
-import DataContext from '../../DataContext/DataContext'
-import axios from 'axios'
-
+import { React, useContext, useEffect, useState } from "react";
+import "../Login/Login.css";
+import DataContext from "../../DataContext/DataContext";
+import axios from "axios";
 
 function Login() {
+  const [email, setUsername] = useState("");
 
+  const [password, setPassword] = useState("");
 
-    const [email, setUsername] = useState("");
+  const [transaction, setTransaction] = useState([]);
 
-    const [password, setPassword] = useState("");
+  const [stat, setStat] = useState(true);
 
-    const [transaction, setTransaction] = useState([]);
+  const { role, setRole, islogin, setIslogin, navigate } =
+    useContext(DataContext);
+  const [loginError, setLoginError] = useState(false);
 
-    const [stat, setStat] = useState(true)
+  useEffect(() => {
+    axios.get("https://localhost:7017/api/User").then((response) => {
+      setTransaction(response.data);
 
-    const { role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+      console.log(response.data);
+    });
+  }, []);
 
-    useEffect(() => {
+  function loginHandler(params) {
+    const loginRequest = { email, password };
 
-        axios.get("https://localhost:7017/api/User").then((response) => {
+    axios
+      .post("https://localhost:7017/login", loginRequest)
+      .then((response) => {
+        setIslogin(true);
+        const roleName = response.data.role.name.toLowerCase();
 
-         //   setTransaction(response.data);
+        console.log(response.data.role.name);
 
-            console.log(response.data)
-        });
+        setRole(roleName);
 
-    }, []);
+        navigate("/dashboard");
 
-    function loginHandler(params) { 
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+        setLoginError(true);
+      });
+  }
+  function registerHandler(params) {}
 
-        
-        transaction.map((detail) => {
-
-             console.log(detail)
-
-            if (((detail.username) == username) && (detail.password) == password) {
-
-                setIslogin(true)
-
-
-
-                console.log(detail.role)
-
-                setRole(detail.role)
-
-                navigate("/dashboard")
-
-                //add
-            }
-
-        })
-
-
-        //   const loginRequest = { email, password };
-
-        //   axios.post("https://localhost:7017/login", loginRequest)
-        //   .then((response) => { 
-        //   console.log(response.data); // Log the response data
-      // Other logic using the response data
-    
-
-
-
-          
-       
-          }
-
-      
-
-    }
-    function registerHandler(params) {
-
-    }
-
-//   const loginRequest = { email, password };
-
-        //   axios.post("https://localhost:7017/login", loginRequest)
-        //   .then((response) => { 
-        //   console.log(response.data); // Log the response data
-      // Other logic using the response data
-
-    return (
-        <div>
-            <div className="main">
-                <div className="sub-main">
-                    {stat ? <div>
-                        <h1>Login Page</h1>
-                        <div >
-                            <input type="text" placeholder="Email Address" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
-                        </div>
-                        <div className="second-input">
-                            <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
-                        </div>
-                        <div >
-                            <button className="login-button" onClick={() => loginHandler()}>Login</button>
-                        </div>
-                        <div >
-                            <button className="sign-button" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "SignIn"}</button>
-                        </div>
-
-                    </div>
-                        :
-                        <div>
-                            <h1>Register Page</h1>
-                            <div className='sidediv'>
-                                <div className="second-input">
-                                    <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} />
-                                </div>
-                                <div className="second-input">
-                                    <input type="text" placeholder="Email" className="name" onChange={(e) => { setUsername(e.target.value) }} />
-                                </div>
-
-                            </div>
-                            <div className='sidediv'>
-                                <div className="second-input">
-                                    <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
-                                </div>
-                                <div className="second-input">
-                                    <input type="password" placeholder="Confirm Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
-                                </div>
-                            </div>
-                            <div className='sidediv'>
-                                <div className="second-input">
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setUsername(e.target.value) }} />
-                                </div>
-                                <div className="second-input">
-                                    <select className="name" placeholder="Role" name="role">
-                                        <option className="name" value="approver">Approver</option>
-                                        <option className="name" value="user">User</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div >
-                                    <button className="login-button_signup" onClick={() => registerHandler()}>SignUp</button>
-                                </div>
-                                <div >
-                                    <button className="sign-button_signup" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "LogIn"}</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    }
-
-
-
-                </div>
+  return (
+    <div>
+      <div className="main">
+        <div className="sub-main">
+          {stat ? (
+            <div>
+              <h1>Login Page</h1>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Email Address"
+                  className="name"
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
+                  required
+                ></input>
+              </div>
+              <div className="second-input">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="name"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+              </div>
+              <div>
+                <button className="login-button" onClick={() => loginHandler()}>
+                  Login
+                </button>
+                {loginError && <p>Invalid credentials</p>}
+              </div>
+              <div>
+                <button className="sign-button" onClick={() => setStat(!stat)}>
+                  {stat ? "SignUp" : "SignIn"}
+                </button>
+              </div>
             </div>
+          ) : (
+            <div>
+              <h1>Register Page</h1>
+              <div className="sidediv">
+                <div className="second-input">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    className="name"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="second-input">
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    className="name"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="sidediv">
+                <div className="second-input">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="name"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="second-input">
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="name"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="sidediv">
+                <div className="second-input">
+                  <input
+                    type="text"
+                    placeholder="Mobile No"
+                    className="name"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="second-input">
+                  <select className="name" placeholder="Role" name="role">
+                    <option className="name" value="approver">
+                      Approver
+                    </option>
+                    <option className="name" value="user">
+                      User
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <button
+                    className="login-button_signup"
+                    onClick={() => registerHandler()}
+                  >
+                    SignUp
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="sign-button_signup"
+                    onClick={() => setStat(!stat)}
+                  >
+                    {stat ? "SignUp" : "LogIn"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
