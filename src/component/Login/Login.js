@@ -24,10 +24,6 @@ function Login() {
             setTransaction(response.data);
 
             console.log(response.data)
-
-
-
-
         });
 
     }, []);
