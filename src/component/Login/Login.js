@@ -7,7 +7,7 @@ import axios from 'axios'
 function Login() {
 
 
-    const [username, setUsername] = useState("");
+    const [email, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
 
@@ -16,46 +16,43 @@ function Login() {
     const [stat, setStat] = useState(true)
 
     const { role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+    const [loginError, setLoginError] = useState(false);
+
 
     useEffect(() => {
 
-        axios.get("https://64ad6d54b470006a5ec5f2ed.mockapi.io/vendor/api/users").then((response) => {
+        axios.get("https://localhost:7017/api/User").then((response) => {
 
             setTransaction(response.data);
 
             console.log(response.data)
-
-
-
-
         });
 
     }, []);
 
     function loginHandler(params) {
 
-        transaction.map((detail) => {
 
-            // console.log(detail)
 
-            if (((detail.username) == username) && (detail.password) == password) {
+        const loginRequest = { email, password };
+
+
+        axios.post("https://localhost:7017/login", loginRequest)
+            .then((response) => {
 
                 setIslogin(true)
-
-
-
-                console.log(detail.role)
-
-                setRole(detail.role)
-
+                const roleName = response.data.role.name.toLowerCase();
+                console.log(response.data.role.name)
+                setRole(roleName)
                 navigate("/dashboard")
+                console.log(response.data);
 
-                //add
-            }
-
-        })
-
-
+            }) .catch((error) => {
+                
+                console.error('Login failed:', error);
+                setLoginError(true);
+                
+              });
 
     }
     function registerHandler(params) {
@@ -69,13 +66,15 @@ function Login() {
                     {stat ? <div>
                         <h1>Login Page</h1>
                         <div >
-                            <input type="text" placeholder="Username" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
+                            <input type="text" placeholder="Email Address" className="name" onChange={(e) => { setUsername(e.target.value) }} required></input>
                         </div>
                         <div className="second-input">
                             <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
                         </div>
                         <div >
                             <button className="login-button" onClick={() => loginHandler()}>Login</button>
+                            {loginError && <p>Invalid credentials</p>}
+
                         </div>
                         <div >
                             <button className="sign-button" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "SignIn"}</button>
