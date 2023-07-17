@@ -66,7 +66,7 @@ function ViewUsers() {
 
     return (
         <div className='body-content'>
-            <label htmlFor="filter">Filter by Approval Status:</label>
+            <label htmlFor="filter">Filter by Role</label>
             <div  className='searches'>
                 <div className="filter-container">
                     <select

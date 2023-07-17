@@ -1,9 +1,10 @@
 import React from 'react'
+import './Dashboard.css'
 
 function Dashboard() {
 
     return (
-        <div>
+        <div className='body-content'>
             <h1>dashboard</h1>
         </div>
     )
