@@ -10,7 +10,7 @@ import Addvendors from '../Addvendors/Addvendors';
 import Viewvendors from '../Viewvendors/Viewvendors';
 
 function Navbar() {
-    const { roleName } = useContext(DataContext)
+    const { role } = useContext(DataContext)
 
     const [sidebar, setSidebar] = useState(false);
 
@@ -35,51 +35,68 @@ function Navbar() {
                             </Link>
                         </li>
 
-                        {/* {roleName == 'Generaluser' ? */}
-                        <div>
-                            <li className='nav-text'>
-                                <Link to='/dashboard'><span>Dashboard</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewusers' ><span>View Users</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewvendors'><span>View Vendors</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewapproval' ><span>PO Approval</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewuserapproval' ><span>User Approval</span></Link>
-                            </li>
+                        {role == 'admin' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewusers' ><span>View Users</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>PO Approval</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewuserapproval' ><span>User Approval</span></Link>
+                                </li>
 
-                        </div> : <></>
-                        {/* } */}
-
-
-                        {/* {role == 'approver' ?
-                            <li className='nav-text'>
-                                <Link to='/'><span>{role}</span></Link>
-                            </li> : <></>}
+                            </div> : <></>
+                        }
 
 
+                        {role == 'approver' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>PO Approval</span></Link>
+                                </li>
+
+                            </div> : <></>}
                         {role == 'user' ?
-                            <li className='nav-text'>
-                                <Link to='/'><span>{role}</span></Link>
-                            </li> : <></>}
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                            </div> : <></>}
+                        {role == 'readonly' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+
+                            </div> : <></>}
 
 
-                        {role == 'guest' ?
-                            <li className='nav-text'>
-                                <Link to='/'><span>{role}</span></Link>
-                            </li> : <></>} */}
-                        {/* {role == 'guest' ?
-                            <li className='nav-text'>
-                                <Link to='/'><span>{role}</span></Link>
-                            </li> : <></>} */}
 
 
                     </ul>
