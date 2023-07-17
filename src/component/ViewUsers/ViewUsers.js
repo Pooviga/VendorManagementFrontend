@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import './ViewUsers.css'
 
 function ViewUsers() {
     const [data, setData] = useState([]);
@@ -64,28 +65,29 @@ function ViewUsers() {
     );
 
     return (
-        <div>
-            <div className="filter-container">
-                <label htmlFor="filter">Filter by Approval Status:</label>
-                <select
-                    id="filter"
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                >
-                    <option value="all">All</option>
-                    <option value="Approved">Approved</option>
-                    <option value="Pending">Pending</option>
-                    {/* Add more filter options if needed */}
-                </select>
-            </div>
-
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search by name, email, or phone number"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+        <div className='body-content'>
+            <label htmlFor="filter">Filter by Role</label>
+            <div  className='searches'>
+                <div className="filter-container">
+                    <select
+                        id="filter"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    >
+                        <option value="all">All</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        {/* Add more filter options if needed */}
+                    </select>
+                </div>
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search by name, email, or phone number"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
             </div>
             <div className='table_overflow'>
             <table >

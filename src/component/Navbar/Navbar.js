@@ -24,7 +24,7 @@ function Navbar() {
                     <Link to='#' className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
-                    <h1 className='heading'>VENDOR MANAGEMENT SYSTEM</h1>
+                    <h5 className='heading'>VENDOR MANAGEMENT SYSTEM</h5>
 
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
