@@ -9,7 +9,10 @@
 }
 
 .menu-bars {
-	margin-left: 2rem;
+	/* margin-left: 2rem; */
+	display: flex;
+    align-items: center;
+    margin-left: 4px;
 	font-size: 2rem;
 	background: none;
 	place-content: center;

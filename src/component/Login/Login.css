@@ -272,5 +272,8 @@ select {
 a {
 
     color: blue;
+} 
 
+.error-color {
+    color: red;
 }

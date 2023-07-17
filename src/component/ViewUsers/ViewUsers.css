@@ -1,0 +1,16 @@
+.body-content {
+    padding: 24px;
+}
+
+.searches {
+    display: flex;
+    align-items: center;
+}
+
+.filter-container{
+    margin-right: 8px;
+}
+
+.search-container {
+    width: 40%;
+}

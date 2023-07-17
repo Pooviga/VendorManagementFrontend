@@ -6,6 +6,10 @@ form {
     border-radius: 5px;
 }
 
+.viewvendorswholediv {
+    padding: 24px;
+}
+
 label {
     font-size: 14px;
 
@@ -13,6 +17,7 @@ label {
 
 .topics {
     display: flex;
+    align-items: center;
     gap: 60%;
     justify-content: space-between;
 }
