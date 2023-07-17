@@ -44,13 +44,49 @@ function Viewvendors() {
   }, []);
 
   function deleteVendor(id) {
+
     axios.delete("https://localhost:7017/api/VendorDetails/" + id)
+
       .then((response) => {
-        console.log(response.data)
+
+        console.log('deleted', response.data)
+
+        axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
+
+          setDetails(response.data);
+
+          response.data.map((newdata) => {
+
+            vdata.push(newdata.vendorDetails);
+
+            setVendorDetails(vdata);
+
+            pdata.push(newdata.productDetails);
+
+            setProductDetails(pdata);
+
+          });
+
+
+
+          console.log("changed", vdata);
+
+          console.log("changed", pdata);
+
+
+
+          // console.log('here:',response.data.vendorDetails);
+
+          // setVendorDetails(response.data.vendorDetails)
+
+        });
 
       })
 
+
+
   }
+
 
   console.log("asigned 1 :", vendorDetails);
   console.log("asigned 2 :", productDetails);

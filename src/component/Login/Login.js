@@ -46,8 +46,6 @@ function Login() {
                 setIslogin(true)
                 const roleName = response.data.user.role.name.toLowerCase();
                 console.log(response.data.user.role.name)
-                const roleName = response.data.user.role.name.toLowerCase();
-                console.log(response.data.user.role.name)
                 setRole(roleName)
                 const id = response.data.user.id
                 setId(id)
