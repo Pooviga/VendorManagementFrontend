@@ -18,14 +18,16 @@ export const DataProvider = ({ children }) => {
 
     const [islogin, setIslogin] = useState(false);
 
-    const [person, setPerson] = useState(0);
+    const [username,setUsername]=useState('');
 
-    const [weight, setWeight] = useState(0);
-
+    
     const [role, setRole] = useState(null);
+    
     const navigate = useNavigate()
 
+    const [vendorDetails, setVendorDetails] = useState([]);
 
+    const [productDetails, setProductDetails] = useState([]);
 
 
 
@@ -84,13 +86,16 @@ export const DataProvider = ({ children }) => {
 
             islogin, setIslogin,
 
-            person, setPerson,
-
-            weight, setWeight,
+            username,setUsername,
 
             postVendor,
 
             role, setRole,
+
+            productDetails, setProductDetails,
+
+            vendorDetails, setVendorDetails,
+
             navigate
 
 
