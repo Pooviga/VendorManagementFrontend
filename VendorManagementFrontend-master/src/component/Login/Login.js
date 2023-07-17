@@ -1,7 +1,7 @@
 import { React, useContext, useEffect, useState } from 'react'
 import "../Login/Login.css"
 import DataContext from '../../DataContext/DataContext'
-import axios from 'axios'
+import axios from 'axios';
 
 
 function Login() {
