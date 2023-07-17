@@ -23,6 +23,7 @@ export const DataProvider = ({ children }) => {
     const [weight, setWeight] = useState(0);
 
     const [role, setRole] = useState(null);
+    const[id,setId]=useState(0);
     const navigate = useNavigate()
 
 
@@ -87,11 +88,14 @@ export const DataProvider = ({ children }) => {
             person, setPerson,
 
             weight, setWeight,
+           
 
             postVendor,
 
             role, setRole,
+            id,setId,
             navigate
+            
 
 
 

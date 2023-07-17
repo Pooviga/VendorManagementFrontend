@@ -19,7 +19,7 @@ function Login() {
 
     const [stat, setStat] = useState(true)
 
-    const { role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+    const {id,setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
     const [loginError, setLoginError] = useState(false);
 
 
@@ -44,9 +44,13 @@ function Login() {
         axios.post("https://localhost:7017/login", loginRequest)
             .then((response) => {
                 setIslogin(true)
-                const roleName = response.data.role.name.toLowerCase();
-                console.log(response.data.role.name)
+                const roleName = response.data.user.role.name.toLowerCase();
+                console.log(response.data.user.role.name)
                 setRole(roleName)
+                const id=response.data.user.id
+                setId(id)
+                console.log(id)
+                console.log(roleName)
                 navigate("/dashboard")
                 console.log(response.data);
 
@@ -82,7 +86,7 @@ const handleRoleChange = (e) => {
     setUsername(value);
 
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    setIsEmailValid(emailRegex.test(value));
+    setIsUsername(emailRegex.test(value));
   };
 
 
@@ -135,9 +139,9 @@ const handleRoleChange = (e) => {
                                 </div>
                                 <div className="second-input">
                                     <select className="name" placeholder="Role" name="role" value={role} onChange={handleRoleChange}>
-                                        <option className="name" value="approver">Approver</option>
-                                        <option className="name" value="user">User</option> 
-                                        <option className="name" value="readonly">General User</option>
+                                        <option className="name" value="Approver">Approver</option>
+                                        <option className="name" value="User">User</option> 
+                                        <option className="name" value="Readonly">General User</option>
                                     </select>
                                 </div>
                             </div>

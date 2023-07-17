@@ -97,10 +97,12 @@ function Viewvendors() {
                 </table>
             </div> */}
             
-    <div class="container">
+    {/* <div class="container">
       <div class="row">
-        <div class="col-12">
-          <table class="table table-bordered">
+        <div class="col-12"> */}
+        <div className='table_overflow'>
+
+          <table>
             <thead>
               <tr>
                 <th scope="col">Id</th>
@@ -134,11 +136,12 @@ function Viewvendors() {
               })}
             </tbody>
           </table>
+          </div>
         </div>
-      </div>
-    </div>
+    //   </div>
+    // </div>
 
-        </div>
+    //     </div>
     )
 }
 
