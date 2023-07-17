@@ -10,16 +10,16 @@ function Login() {
     const [email, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
-    const [phoneNumber,setMobileNumber]=useState("");
-    const[name,setName]=useState("");
+    const [phoneNumber, setMobileNumber] = useState("");
+    const [name, setName] = useState("");
     //const[role,setRoles]=useState("");
-    
+
 
     const [transaction, setTransaction] = useState([]);
 
     const [stat, setStat] = useState(true)
 
-    const {id,setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+    const { id, setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
     const [loginError, setLoginError] = useState(false);
 
 
@@ -47,47 +47,61 @@ function Login() {
                 const roleName = response.data.user.role.name.toLowerCase();
                 console.log(response.data.user.role.name)
                 setRole(roleName)
-                const id=response.data.user.id
+                const id = response.data.user.id
                 setId(id)
                 console.log(id)
                 console.log(roleName)
                 navigate("/dashboard")
                 console.log(response.data);
 
-            }) .catch((error) => {
-                
+            }).catch((error) => {
+
                 console.error('Login failed:', error);
                 setLoginError(true);
-                
-              });
+
+            });
 
     }
-    function registerHandler(params) { 
-        const signUpRequest={email,password,phoneNumber,role,name}
-        axios.post("https://localhost:7017/api/User",signUpRequest)
-        .then((response) => {
+    function registerHandler(params) {
+        const signUpRequest = { email, password, phoneNumber, role, name }
+        axios.post("https://localhost:7017/api/User", signUpRequest)
+            .then((response) => {
 
-            console.log(response.data);
+                console.log(response.data);
 
-        }) .catch((error) => {
-            
-            setLoginError(true);
-            
-          });
+            }).catch((error) => {
+
+                setLoginError(true);
+
+            });
 
     }
 
-const handleRoleChange = (e) => {
-    const selectedRole = e.target.value;
-    setRole(selectedRole); 
-  };
-  const handleUsernameChange = (e) => {
-    const value = e.target.value;
-    setUsername(value);
+    const handleRoleChange = (e) => {
 
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    setIsUsername(emailRegex.test(value));
-  };
+        const selectedRole = e.target.value;
+
+        setRole(selectedRole);
+
+    };
+
+    const handleUsernameChange = (e) => {
+
+        const value = e.target.value;
+
+        setUsername(value);
+
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+        setUsername(emailRegex.test(value));
+
+        if (setUsername) {
+
+            setUsername(value);
+
+        }
+
+    };
 
 
     return (
@@ -97,7 +111,7 @@ const handleRoleChange = (e) => {
                     {stat ? <div>
                         <h1>Login Page</h1>
                         <div >
-                            <input type="text" placeholder="Email Address" className="name"  value={email} onChange={handleUsernameChange}  required></input>
+                            <input type="text" placeholder="Email Address" className="name" value={email} onChange={handleUsernameChange} required></input>
                         </div>
                         <div className="second-input">
                             <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
@@ -120,8 +134,8 @@ const handleRoleChange = (e) => {
                                     <input type="text" placeholder="Username" className="name" onChange={(e) => { setName(e.target.value) }} />
                                 </div>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Email"  className="name" value={email} onChange={handleUsernameChange} />
-                        
+                                    <input type="text" placeholder="Email" className="name" value={email} onChange={handleUsernameChange} />
+
                                 </div>
 
                             </div>
@@ -136,11 +150,12 @@ const handleRoleChange = (e) => {
                             <div className='sidediv'>
                                 <div className="second-input">
                                     <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
+                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
                                 </div>
                                 <div className="second-input">
                                     <select className="name" placeholder="Role" name="role" value={role} onChange={handleRoleChange}>
                                         <option className="name" value="Approver">Approver</option>
-                                        <option className="name" value="User">User</option> 
+                                        <option className="name" value="User">User</option>
                                         <option className="name" value="Readonly">General User</option>
                                     </select>
                                 </div>

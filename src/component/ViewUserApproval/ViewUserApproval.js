@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import ViewUserApprovalCard from '../ViewUserApprovalCard/ViewUserApprovalCard'
-import axios from 'axios';
-import './ViewUserApproval.css'
+// import React, { useState, useEffect } from 'react'
+// import ViewUserApprovalCard from '../ViewUserApprovalCard/ViewUserApprovalCard'
+// import axios from 'axios';
+// import './ViewUserApproval.css'
 
 
-const ViewUserApproval = () => {
+// const ViewUserApproval = () => {
 
-    const [data, setData] = useState([]);
+//     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios.get("https://localhost:7017/api/User").then((res) => setData(res.data));
-    }, [])
+//     useEffect(() => {
+//         axios.get("https://localhost:7017/api/User").then((res) => setData(res.data));
+//     }, [])
 
-    return (
-        <div className='container'>
-            {data.map((d) => {
-                return <ViewUserApprovalCard key={d.id} data={d} />
-            })}
-        </div>
-    )
-}
+//     return (
+//         <div className='container'>
+//             {data.map((d) => {
+//                 return <ViewUserApprovalCard key={d.id} data={d} />
+//             })}
+//         </div>
+//     )
+// }
 
-export default ViewUserApproval
+// export default ViewUserApproval

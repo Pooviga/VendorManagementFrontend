@@ -1,0 +1,131 @@
+<div class="viewvendorswholediv">
+            <div className="topics">
+                <h2 className="rh2">Registered Vendors</h2>
+                <button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>
+            </div>
+
+            <table id="vendorTable">
+                <tr>
+                    <th>Vendor Name</th>
+                    <th>Active</th>
+                    <th>Contact Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Pin Code</th>
+                    <th>Country</th>
+                    <th>Vendor Type</th>
+                    <th>Telephone 1</th>
+                    <th>Telephone 2</th>
+                    <th>Vendor Email</th>
+                    <th>Vendor Website</th>
+                    <th>Product Details</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+        //logic
+
+
+
+            const [vendorDetails, setVendorDetails] = useState([]);
+    const [productDetails, setProductDetails] = useState([]);
+
+    // const[allDetails, setAllDetailes] = useState([{
+    //     Vdata:{},
+    //     Pdata:[]
+
+    // }])
+    const [details,setDetails]=useState([])
+    var data = []
+    var vdata=[];
+    var pdata = [];
+    const navigate = useNavigate("/");
+
+
+    // function FetchVendor(params) {
+
+    //     params.map((newdata)=>{
+
+    //         vdata.push(newdata.vendorDetails)
+    //         pdata.push(newdata.productDetails)
+    //     })}
+
+
+
+
+        // setProductDetails(pdata);
+        // console.log('here:',details);
+
+
+
+    useEffect(() => {
+        axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
+        setDetails(response.data)
+        // FetchVendor(response.data)
+        response.data.map((newdata)=>{
+            // setVendorDetails([...vendorDetails,newdata.vendorDetails]);
+            // pdata.push(data.productDetails);
+            // console.log(newdata.vendorDetails);
+            vdata.push(newdata.vendorDetails)
+            setVendorDetails(vdata)
+            pdata.push(newdata.productDetails)
+            setProductDetails(pdata)
+
+        })
+
+        console.log("asigned",vdata);
+        console.log("asigned",pdata);
+
+        // console.log('here:',response.data.vendorDetails);
+        // setVendorDetails(response.data.vendorDetails)
+    });
+
+    }, []);
+
+    useEffect(()=>{
+        console.log("new",details);
+
+    },[])
+
+
+
+
+    // console.log(details)
+
+
+
+
+
+
+
+      // Destructure the JSON into variables
+    //   const { vendorDetails, productDetails } =vendors;
+
+
+    console.log("asigned 1 :",vendorDetails);
+    console.log("asigned 2 :",productDetails);
+
+        //////table data snippet
+
+                  <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td>Cristina</td>
+                <td>2.846</td>
+                <td>
+                  <button type="button" class="btn btn-primary">
+                    <i class="far fa-eye"></i>
+                  </button>
+                  <button type="button" class="btn btn-success">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>

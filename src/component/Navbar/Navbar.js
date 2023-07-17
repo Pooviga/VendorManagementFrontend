@@ -36,68 +36,68 @@ function Navbar() {
                         </li>
 
                         {role == 'admin' ?
-                        <div>
-                            <li className='nav-text'>
-                                <Link to='/dashboard'><span>Dashboard</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewusers' ><span>View Users</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewvendors'><span>View Vendors</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewapproval' ><span>PO Approval</span></Link>
-                            </li>
-                            <li className='nav-text'>
-                                <Link to='/viewuserapproval' ><span>User Approval</span></Link>
-                            </li>
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewusers' ><span>View Users</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>PO Approval</span></Link>
+                                </li>
+                                {/* <li className='nav-text'>
+                                    <Link to='/viewuserapproval' ><span>User Approval</span></Link>
+                                </li> */}
 
-                        </div> : <></>
+                            </div> : <></>
                         }
 
 
-                         {role == 'approver' ?
-                         <div>
-                         <li className='nav-text'>
-                             <Link to='/dashboard'><span>Dashboard</span></Link>
-                         </li>
-                         <li className='nav-text'>
-                             <Link to='/viewvendors'><span>View Vendors</span></Link>
-                         </li>
-                         <li className='nav-text'>
-                             <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
-                         </li>
-                         <li className='nav-text'>
-                             <Link to='/viewapproval' ><span>PO Approval</span></Link>
-                         </li>
+                        {role == 'approver' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewapproval' ><span>PO Approval</span></Link>
+                                </li>
 
-                     </div> : <></>}
-                     {role == 'user' ?
-                         <div>
-                         <li className='nav-text'>
-                             <Link to='/dashboard'><span>Dashboard</span></Link>
-                         </li>
-                         <li className='nav-text'>
-                             <Link to='/viewvendors'><span>View Vendors</span></Link>
-                         </li>
-                         <li className='nav-text'>
-                             <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
-                         </li>
-                     </div> : <></>}
-                     {role == 'readonly' ?
-                         <div>
-                         <li className='nav-text'>
-                             <Link to='/dashboard'><span>Dashboard</span></Link>
-                         </li>
-                    
-                     </div> : <></>}
-                     
+                            </div> : <></>}
+                        {role == 'user' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
+                                </li>
+                                <li className='nav-text'>
+                                    <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>
+                                </li>
+                            </div> : <></>}
+                        {role == 'readonly' ?
+                            <div>
+                                <li className='nav-text'>
+                                    <Link to='/dashboard'><span>Dashboard</span></Link>
+                                </li>
 
-                    
+                            </div> : <></>}
+
+
+
 
                     </ul>
                 </nav>
