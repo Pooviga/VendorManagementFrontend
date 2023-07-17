@@ -6,14 +6,14 @@ import Popup from 'reactjs-popup'
 
 
 const ViewApprovalCard = (props) => {
-    const status = props.data.purchaseOrders.status;
-    console.log(props.data?.purchaseProducts)
+    const status = props.data.purchaseOrderWithUsersName.status;
+    console.log(props.data.purchaseOrderWithUsersName)
     if (status === "Pending") {
         return (
 
             <div className="Card">
                 <div className='viewdetails'>
-                    <p><b>Purchased Order Id</b> : {props.data.purchaseOrders.id}</p>
+                    <p><b>Purchased Order Id</b> : {props.data.purchaseOrderWithUsersName.id}</p>
                     {/* <button style={{ fontSize: '24px' }} type="button" class="btn btn-primary"> */}
                     <Popup className='popmodal' trigger=
                         {<button onClick={() => { }}>View</button>}
@@ -29,7 +29,7 @@ const ViewApprovalCard = (props) => {
                                     </div>
                                     <div className='content'>
                                         <p><b>Purchase Order Id </b> : </p>
-                                        <p>{props.data.purchaseOrders.id}</p>
+                                        <p>{props.data.purchaseOrderWithUsersName.id}</p>
                                         <p><b>Vendor Name</b> : {props.data.vendorForPurchaseOrder.vendorName}</p>
                                         <>
                                             {props.data?.purchaseProducts?.map((products) => (
@@ -42,18 +42,18 @@ const ViewApprovalCard = (props) => {
                                                 </div>
                                             ))}
                                         </>
-                                        <p><b>Total Amount</b> : Rs.{props.data.purchaseOrders.total}</p>
-                                        <p><b>Ordered On</b> : {props.data.purchaseOrders.orderDateTime}</p>
+                                        <p><b>Total Amount</b> : Rs.{props.data.purchaseOrderWithUsersName.total}</p>
+                                        <p><b>Ordered On</b> : {props.data.purchaseOrderWithUsersName.orderDateTime}</p>
 
                                         <p><b>Billing Adress</b> : </p>
-                                        <p>{props.data.purchaseOrders.billingAddress}, {props.data.purchaseOrders.billingAddressCity}</p>
-                                        <p>{props.data.purchaseOrders.billingAddressState}, {props.data.purchaseOrders.billingAddressCountry} </p>
-                                        <p>{props.data.purchaseOrders.billingAddressZipcode}</p>
+                                        <p>{props.data.purchaseOrderWithUsersName.billingAddress}, {props.data.purchaseOrderWithUsersName.billingAddressCity}</p>
+                                        <p>{props.data.purchaseOrderWithUsersName.billingAddressState}, {props.data.purchaseOrderWithUsersName.billingAddressCountry} </p>
+                                        <p>{props.data.purchaseOrderWithUsersName.billingAddressZipcode}</p>
                                         <p><b>Shipping Adress </b> : </p>
-                                        <p>{props.data.purchaseOrders.shippingAddress}, {props.data.purchaseOrders.shippingAddressCity}</p>
-                                        <p>{props.data.purchaseOrders.shippingAddressState}, {props.data.purchaseOrders.shippingAddressCountry} </p>
-                                        <p>{props.data.purchaseOrders.shippingAddressZipcode}</p>
-                                        <p><b>Terms and Conditions </b> : {props.data.purchaseOrders.termsAndConditions}</p>
+                                        <p>{props.data.purchaseOrderWithUsersName.shippingAddress}, {props.data.purchaseOrderWithUsersName.shippingAddressCity}</p>
+                                        <p>{props.data.purchaseOrderWithUsersName.shippingAddressState}, {props.data.purchaseOrderWithUsersName.shippingAddressCountry} </p>
+                                        <p>{props.data.purchaseOrderWithUsersName.shippingAddressZipcode}</p>
+                                        <p><b>Terms and Conditions </b> : {props.data.purchaseOrderWithUsersName.termsAndConditions}</p>
 
 
                                     </div>
@@ -67,7 +67,7 @@ const ViewApprovalCard = (props) => {
                 {/* <i class="fa-thin fa-circle-info"></i> */}
                 {/* </button> */}
                 <p><b>Status</b> : {status}</p>
-                <p><b>Ordered Date</b> : {props.data.purchaseOrders.orderDateTime}</p>
+                <p><b>Ordered Date</b> : {props.data.purchaseOrderWithUsersName.orderDateTime}</p>
                 <p><b>Vendor Name</b> : {props.data.vendorForPurchaseOrder.vendorName}</p>
                 <p><b>Purchased Products :</b></p>
                 <>

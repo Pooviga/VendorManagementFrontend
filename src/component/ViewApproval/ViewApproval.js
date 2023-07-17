@@ -11,7 +11,7 @@ const ViewApproval = () => {
     useEffect(() => {
         axios.get("https://localhost:7017/PurchaseOrder").then((res) => setData(res.data));
     }, [])
-
+    console.log(data)
     return (
         <div className="container">
             {data.map((d) => {

@@ -22,7 +22,7 @@ export const DataProvider = ({ children }) => {
 
     
     const [role, setRole] = useState(null);
-    
+    const[id,setId]=useState(0);
     const navigate = useNavigate()
 
     const [vendorDetails, setVendorDetails] = useState([]);
@@ -86,17 +86,21 @@ export const DataProvider = ({ children }) => {
 
             islogin, setIslogin,
 
-            username,setUsername,
+            person, setPerson,
+
+            weight, setWeight,
 
             postVendor,
 
             role, setRole,
+            id,setId,
 
             productDetails, setProductDetails,
 
             vendorDetails, setVendorDetails,
 
             navigate
+            
 
 
 
