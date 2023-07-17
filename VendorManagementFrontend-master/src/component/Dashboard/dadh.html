@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="chart">
+        <!-- Add your chart here -->
+      </div>
+
+      <div class="card">
+        <h2>Total No. of Vendors</h2>
+
+        <p>100</p>
+      </div>
+
+      <div class="card">
+        <h2>Early Income</h2>
+
+        <p>$10,000</p>
+      </div>
+
+      <div class="card">
+        <h2>Monthly Income</h2>
+
+        <p>$50,000</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="Chart">
+        <!-- Add your chart here -->
+
+        <canvas id="barChart"></canvas>
+
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Bar graph data
+
+    var barData = {
+      labels: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
+
+      datasets: [
+        {
+          label: "Income",
+
+          data: [
+            5000, 8000, 6000, 9000, 7000, 12000, 10000, 8500, 9500, 11000, 7500,
+            8800,
+          ],
+
+          backgroundColor: "#36a2eb",
+
+          borderColor: "#36a2eb",
+
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    // Bar graph options
+
+    var barOptions = {
+      responsive: true,
+
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    };
+
+    // Create the bar graph
+
+    var ctxBar = document.getElementById("barChart").getContext("2d");
+
+    var barChart = new Chart(ctxBar, {
+      type: "bar",
+
+      data: barData,
+
+      options: barOptions,
+    });
+
+    var pieData = {
+      labels: ["Category 1", "Category 2", "Category 3", "Category 4"],
+
+      datasets: [
+        {
+          data: [20, 30, 15, 35],
+
+          backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56"],
+        },
+      ],
+    };
+
+    // Pie chart options
+
+    var pieOptions = {
+      responsive: true,
+    };
+
+    // Create the pie chart
+
+    var ctxPie = document.getElementById("pieChart").getContext("2d");
+
+    var pieChart = new Chart(ctxPie, {
+      type: "pie",
+
+      data: pieData,
+
+      options: pieOptions,
+    });
+  </script>
+</html>
