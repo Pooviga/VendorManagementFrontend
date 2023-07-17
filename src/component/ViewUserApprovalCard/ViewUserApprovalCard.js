@@ -1,32 +1,42 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './ViewUserApprovalCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Popup from 'reactjs-popup';
+import DataContext from '../../DataContext/DataContext';
+import { Navigate, useNavigate } from 'react-router';
+
 
 const ViewUserApprovalCard = (props) => {
     const status = props.data.approvalStatus;
+    const { id } = useContext(DataContext);
+    const navigate = useNavigate();
 
     const handleApprove = () => {
-        const apiEndpoint = `https://localhost:7017/api/User/${props.data.id}/4/Approved`;
-        // Replace 'approverId' with the actual ID of the user who is approving the request.
-        // You need to specify the appropriate approver ID here.
 
-        fetch(apiEndpoint, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(props.data),
-        })
-            .then((response) => {
-                // Handle the response from the server if needed
-                alert("approved successfully");
-                console.log('User approved successfully');
-            })
-            .catch((error) => {
-                // Handle errors if the request fails
-                console.error('Error while approving user:', error);
-            });
+        console.log(id)
+        console.log(props.data.id)
+        const apiEndpoint = `https://localhost:7017/update/${props.data.id}/${id}/${"Approved"}`;
+
+    fetch(apiEndpoint, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(),
+    })
+    .then((response) => {
+        // Handle the response from the server if needed
+        // navigate("/viewuserapproval")
+        console.log(props)
+        // props.call;
+        console.log('User approved successfully');
+        
+    })
+    .catch((error) => {
+        // Handle errors if the request fails
+        console.error('Error while approving user:', error);
+    });
+    axios.get("https://localhost:7017/api/User").then((res) => setData(res.data));
     };
 
     if (status === 'Pending') {

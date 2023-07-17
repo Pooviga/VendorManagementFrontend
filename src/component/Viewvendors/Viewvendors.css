@@ -61,7 +61,7 @@ input[type="submit"] {
 
 
 
-.back_button {
+/* .back_button {
     width: 100px;
     background-color: #091644;
 
@@ -72,7 +72,7 @@ input[type="submit"] {
     border-radius: 5px;
 
     cursor: pointer;
-}
+} */
 
 input[type="text"] {
     border-radius: 5px;
@@ -94,7 +94,7 @@ input[type="tel"] {
     border: 1px solid #777676;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -104,7 +104,7 @@ td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-}
+} */
 
 .popup-content {
     margin: auto;
@@ -130,12 +130,12 @@ td {
     background: transparent;
 }
 
-th {
+/* th {
     background-color: #091644;
     color: white;
     font-weight: normal;
 
-}
+} */
 
 #active {
     border-radius: 5px;
@@ -147,12 +147,12 @@ th {
     border: 1px solid #777676;
 }
 
-table {
+/* table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
-}
+} */
 
 .table_overflow {
     overflow-x: auto;

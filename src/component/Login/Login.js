@@ -46,6 +46,8 @@ function Login() {
                 setIslogin(true)
                 const roleName = response.data.user.role.name.toLowerCase();
                 console.log(response.data.user.role.name)
+                const roleName = response.data.user.role.name.toLowerCase();
+                console.log(response.data.user.role.name)
                 setRole(roleName)
                 const id = response.data.user.id
                 setId(id)
@@ -149,6 +151,7 @@ function Login() {
                             </div>
                             <div className='sidediv'>
                                 <div className="second-input">
+                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
                                     <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
                                 </div>
                                 <div className="second-input">

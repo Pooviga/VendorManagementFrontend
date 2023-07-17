@@ -87,7 +87,8 @@ function ViewUsers() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
-            <table>
+            <div className='table_overflow'>
+            <table >
                 <thead>
                     <tr>
                         <th>User Id</th>
@@ -172,6 +173,8 @@ function ViewUsers() {
                     ))}
                 </tbody>
             </table>
+            </div>
+            
         </div>
     );
 }

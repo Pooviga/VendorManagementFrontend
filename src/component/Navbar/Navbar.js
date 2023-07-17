@@ -11,6 +11,7 @@ import Viewvendors from '../Viewvendors/Viewvendors';
 
 function Navbar() {
     const { role } = useContext(DataContext)
+    const { role } = useContext(DataContext)
 
     const [sidebar, setSidebar] = useState(false);
 

@@ -2,101 +2,7 @@ import { React, useContext, useState } from 'react'
 import '../Addvendors/addvendors.css'
 import DataContext from '../../DataContext/DataContext'
 
-
-function Addvendors() {
-    const { navigate, postVendor } = useContext(DataContext);
-    const [inputFields, setInputFields] = useState([
-
-        {
-            vendorId: '00000000-0000-0000-0000-000000000000',
-            ProductName: '',
-
-            ProductDescription: '',
-
-            price: ''
-
-        },
-
-    ]);
-    const addInputField = (e) => {
-
-        e.preventDefault()
-
-        setInputFields([
-
-            ...inputFields,
-
-            {
-                vendorId: '00000000-0000-0000-0000-000000000000',
-
-                ProductName: '',
-
-                ProductDescription: '',
-
-                price: ''
-
-            },
-
-        ]);
-
-    };
-
-    const removeInputFields = (index) => {
-
-        const rows = [...inputFields];
-
-        rows.splice(index, 1);
-
-        setInputFields(rows);
-
-    };
-
-    const handleChange = (index, evnt) => {
-
-        const { name, value } = evnt.target;
-
-        const list = [...inputFields];
-
-        list[index][name] = value;
-
-        setInputFields(list);
-
-        console.log(...list);
-
-    };
-
-    const [newVendor, setNewVendor] = useState({
-
-        vendorName: '',
-
-        isActive: true,
-
-        vendorType: 0,
-
-        addressLine1: '',
-
-        addressLine2: '',
-
-        city: '',
-
-        state: '',
-
-        postalCode: '',
-
-        country: '',
-
-        telePhone1: '',
-
-        telePhone2: '',
-
-        vendorEmail: '',
-
-        vendorWebsite: '',
-
-        productDetailsRequest: [...inputFields]
-
-    })
-
+function EditVendors(){
     return (
         <div className='wholevendors'>
 
@@ -208,4 +114,4 @@ function Addvendors() {
 }
 
 
-export default Addvendors
+export default EditVendors
