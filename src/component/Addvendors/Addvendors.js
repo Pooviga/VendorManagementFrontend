@@ -100,7 +100,6 @@ function Addvendors() {
     return (
         <div className='wholevendors'>
 
-            {/* Form for adding or updating a vendor */}
             <form id="vendorForm">
                 <div className="top">
                     <h1>Add Vendor</h1>
@@ -110,45 +109,43 @@ function Addvendors() {
 
 
                     <div class="sidefields">
-                        {/* <label for="vendorName">Vendor Name:</label> */}
+                 
                         <input placeholder="Vendor Name" type="text" id="vendorName" name="vendorName" required onChange={(e) => { setNewVendor({ ...newVendor, vendorName: e.target.value }) }}></input>
-                        {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
-
-                        {/* <label for="vendorType">Vendor Type:</label> */}
+                        
                         <input placeholder="Vendor Type" type="text" id="vendorType" name="vendorType" required ></input>
 
 
                     </div>
 
                     <div class="sidefields">
-                        {/* <label for="addressLine1">Address-Line 1:</label> */}
+                        
                         <input placeholder="Adress-Line 1" type="text" id="addressLine1" name="addressLine1" required onChange={(e) => { setNewVendor({ ...newVendor, addressLine1: e.target.value }) }}></input>
 
-                        {/* <label for="addressLine2">Address-Line 2:</label> */}
+                        
                         <input placeholder="Adress-Line 2" type="text" id="addressLine2" name="addressLine2" onChange={(e) => { setNewVendor({ ...newVendor, addressLine2: e.target.value }) }}></input>
                     </div>
                     <div class="sidefields">
-                        {/* <label for="city">City:</label> */}
+                        
                         <input placeholder="City" type="text" id="city" name="city" required onChange={(e) => { setNewVendor({ ...newVendor, city: e.target.value }) }}></input>
-                        {/* <label for="state">State:</label> */}
+                      
                         <input placeholder="State" type="text" id="state" name="state" required onChange={(e) => { setNewVendor({ ...newVendor, state: e.target.value }) }}></input>
                     </div>
                     <div class="sidefields">
-                        {/* <label for="pinCode">Pin Code:</label> */}
+                     
                         <input placeholder="Postal code" type="text" id="postalCode" name="postalCode" required onChange={(e) => { setNewVendor({ ...newVendor, postalCode: e.target.value }) }}></input>
-                        {/* <label for="country">Country:</label> */}
+                    
                         <input placeholder="Country" type="text" id="country" name="country" required onChange={(e) => { setNewVendor({ ...newVendor, country: e.target.value }) }}></input>
                     </div>
                     <div class="sidefields">
-                        {/* <label for="telephone1">Telephone 1:</label> */}
+                       
                         <input placeholder="Telephone 1" type="tel" id="telePhone1" name="telePhone1" required onChange={(e) => { setNewVendor({ ...newVendor, telePhone1: e.target.value }) }}></input>
-                        {/* <label for="telephone2">Telephone 2:</label> */}
+                     
                         <input placeholder="Telephone 2" type="tel" id="telePhone2" name="telePhone2" onChange={(e) => { setNewVendor({ ...newVendor, telePhone2: e.target.value }) }}></input>
                     </div>
                     <div class="sidefields">
-                        {/* <label for="vendorEmail">Vendor Email:</label> */}
+                      
                         <input placeholder="Email" type="email" id="vendorEmail" name="vendorEmail" required onChange={(e) => { setNewVendor({ ...newVendor, vendorEmail: e.target.value }) }}></input>
-                        {/* <label for="vendorWebsite">Vendor Web Site:</label> */}
+                      
                         <input placeholder="Website Link" type="text" id="vendorWebsite" name="vendorWebsite" onChange={(e) => { setNewVendor({ ...newVendor, vendorWebsite: e.target.value }) }}></input>
                     </div>
 
