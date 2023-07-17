@@ -41,13 +41,12 @@ function Login() {
             .then((response) => {
 
                 setIslogin(true)
-                const roleName = response.data.user.role.name.toLowerCase();
-                console.log(response.data.user.role.name)
-                setRole(roleName)
+            
+                
+                setRole(response.data.user.role.name.toLowerCase())
                 const id=response.data.user.id
                 setId(id)
                 console.log(id)
-                console.log(roleName)
                 navigate("/dashboard")
                 
                 //localStorage.setItem("auth",  JSON.stringify(obj));
