@@ -12,6 +12,20 @@
 input::placeholder {
     font: 14px;
 }
+.input-error{
+  border-color: #fc8181 !important;
+}
+
+.error {
+    color: #fc8181;
+    font-size: 0.75rem;
+    text-align: left;
+    margin: 0;
+}
+  
+.mobile-container {
+    width: 100% !important;
+}
 
 .sub-main {
 
