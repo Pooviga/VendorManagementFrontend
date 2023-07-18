@@ -87,7 +87,10 @@ function Viewvendors() {
   return (
     <div class="viewvendorswholediv">
       <div className="topics">
-        <h2 className="rh2">Registered Vendors</h2>
+        <h3 className="rh2">Vendors</h3>
+        {/* <Popup trigger={<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>} position="left center">
+                    <div><Addvendors /></div>
+                </Popup> */}
         <Popup trigger=
           {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>}
           modal nested>

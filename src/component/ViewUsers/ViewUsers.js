@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState, useContext } from 'react';
 import DataContext from '../../DataContext/DataContext'
+import './ViewUsers.css'
 
 
 function ViewUsers() {
@@ -68,29 +69,31 @@ function ViewUsers() {
     );
 
     return (
-        <div>
-            <div className="filter-container">
-                <label htmlFor="filter">Filter by Role:</label>
-                <select
-                    id="filter"
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                >
-                    <option value="all">All</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
-                    <option value="Approver">Approver</option>
-                    <option value="Readonly">Readonly</option>
-                </select>
-            </div>
-
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search by name, email, or phone number"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+        <div className='body-content'>
+            <label htmlFor="filter">Filter by Role</label>
+            <div className='searches'>
+                <div className="filter-container">
+                    <select
+                        id="filter"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    >
+                        <option value="all">All</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                        <option value="Approver">Approver</option>
+                        <option value="Readonly">Readonly</option>
+                        {/* Add more filter options if needed */}
+                    </select>
+                </div>
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search by name, email, or phone number"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
             </div>
             <div className='table_overflow'>
                 <table >

@@ -30,7 +30,7 @@ function Navbar() {
                     <Link to='#' className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
-                    <h1 className='heading'>VENDOR MANAGEMENT SYSTEM</h1>
+                    <h5 className='heading'>VENDOR MANAGEMENT SYSTEM</h5>
                     <button className='profile_icon' onClick={navigateProfile}><i class="fa fa-user" aria-hidden="true"></i></button>
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

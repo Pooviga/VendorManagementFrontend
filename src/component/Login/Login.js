@@ -2,6 +2,7 @@ import { React, useContext, useEffect, useState } from 'react'
 import "../Login/Login.css"
 import DataContext from '../../DataContext/DataContext'
 import axios from 'axios'
+import { colors } from '@mui/material';
 
 
 function Login() {
@@ -124,7 +125,7 @@ function Login() {
                         </div>
                         <div >
                             <button className="login-button" onClick={() => loginHandler()}>Login</button>
-                            {loginError && <p>Invalid credentials</p>}
+                            {loginError && <p className='error-color'>Invalid credentials</p>}
 
                         </div>
                         <div >
