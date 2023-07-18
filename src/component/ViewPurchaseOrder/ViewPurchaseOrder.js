@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 function ViewPurchaseOrder() {
     const navigate = useNavigate("/")
     return (
-        <div class="viewvendorswholediv">
+        <div>
             <div className="topics">
                 <h2 className="rh2">Purchased Product Details</h2>
                 <Popup trigger=
@@ -19,14 +19,14 @@ function ViewPurchaseOrder() {
                     modal nested>
                     {
                         close => (
-                            <div className='modal'>
+                            <div>
                                 <div>
                                     <button className="close" onClick=
                                         {() => close()}>
                                         X
                                     </button>
                                 </div>
-                                <div className='content'>
+                                <div className='productform'>
                                     <AddProductPurchaseDetails />
                                 </div>
 

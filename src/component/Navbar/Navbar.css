@@ -72,22 +72,24 @@
 
 .popup_content {
 	padding: 30px;
-	background-color: aqua;
 }
 
-.whole_div {
-	border-radius: 10px;
-	background-color: rgb(23, 22, 21);
 
-}
-
-.contents {
+/* .contents {
 	max-width: 600px;
 	margin: 5px auto;
 	padding: 30px;
 	background: #f4f7f8;
 	border-radius: 5px;
 	height: 600px;
+} */
+.popup-content {
+	background: none !important;
+	height: 550px !important;
+	/* overflow-y: scroll !important; */
+	padding: 30px !important;
+	background-color: white !important;
+	border-radius: 12px !important;
 }
 
 .nav-menu-items {
