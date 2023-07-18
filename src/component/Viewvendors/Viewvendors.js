@@ -121,7 +121,8 @@ function Viewvendors() {
               <th scope="col">Id</th>
               <th scope="col">Vendor Name</th>
               <th scope="col">Type</th>
-              <th scope="col">Status</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Mobile No</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -131,6 +132,7 @@ function Viewvendors() {
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{x.vendorName}</td>
+                  <td></td>
                   <td>Product</td>
                   <td>{x.isActive ? 'active' : 'inactive'}</td>
                   <td>
