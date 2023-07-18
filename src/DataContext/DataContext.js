@@ -40,6 +40,17 @@ export const DataProvider = ({ children }) => {
     }, [])
 
 
+    function postPurchaseOrder(prop) {
+
+        console.log(prop);
+
+        axios.post("https://localhost:7017/PurchaseOrder", prop).then((response) => {
+
+            console.log(response.data)
+
+        })
+
+    }
 
     // useEffect(()=>{
 
@@ -116,6 +127,7 @@ export const DataProvider = ({ children }) => {
 
             vendorDetails, setVendorDetails,
             allData, setAllData,
+            postPurchaseOrder,
 
             navigate
 

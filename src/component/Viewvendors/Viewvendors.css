@@ -1,13 +1,20 @@
-form {
+/* form {
     max-width: 800px;
     margin: 5px auto;
     padding: 20px;
     background: #f4f7f8;
     border-radius: 5px;
-}
+
+} */
 
 .viewvendorswholediv {
     padding: 24px;
+}
+
+.viewvendordetail {
+    height: 400px;
+    padding: 10px;
+    overflow-y: scroll;
 }
 
 label {
@@ -110,22 +117,37 @@ td {
     padding: 8px;
     text-align: left;
 } */
+/* .modals {
+    height: 500px;
+    border-radius: 12px;
+    overflow-y: scroll;
+    padding: 20px;
+    background-color: white;
+} */
 
-.content-vendor {
+/* .content-vendor {
     margin: auto;
     background: rgb(255, 255, 255);
-    width: 50%;
+    width: 100%;
     padding: 5px;
-}
+    height: 400px;
+} */
+
+/* .popup-content {
+    position: relative;
+    margin: auto;
+    pointer-events: auto;
+    border-radius: 20px;
+} */
 
 .popup-arrow {
     color: rgb(255, 255, 255);
 }
 
-[role='tooltip'].popup-content {
+/* [role='tooltip'].popup-content {
     width: 200px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
-}
+} */
 
 .popup-overlay {
     background: rgba(0, 0, 0, 0.5);

@@ -103,7 +103,7 @@ function Viewvendors() {
                     X
                   </button>
                 </div>
-                <div className='content-vendor'>
+                <div>
                   <Addvendors />
                 </div>
 
@@ -118,7 +118,8 @@ function Viewvendors() {
         <table>
           <thead>
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col">S.No</th>
+              <th scope="col">Vendor Id</th>
               <th scope="col">Vendor Name</th>
               <th scope="col">Type</th>
               <th scope="col">E-mail</th>
@@ -129,12 +130,15 @@ function Viewvendors() {
           <tbody>
             {vendorDetails.map((x, index) => {
               return (
+
                 <tr>
                   <th scope="row">{index + 1}</th>
+                  <td>{x.id}</td>
                   <td>{x.vendorName}</td>
-                  <td></td>
-                  <td>Product</td>
-                  <td>{x.isActive ? 'active' : 'inactive'}</td>
+                  <td>{x.vendorType}</td>
+                  <td>{x.vendorEmail}</td>
+                  <td>{x.telePhone1}</td>
+
                   <td>
 
                     <Popup trigger=
@@ -155,105 +159,42 @@ function Viewvendors() {
 
                         close => (
 
-                          <div className='modal'>
+                          <div >
 
                             <div>
 
-                              <button className="btn-btn" style={{ float: 'right' }} onClick={() => close()}>
+                              <button style={{ float: 'right' }} onClick={() => close()}>
 
-                                <i class="fa-regular fa-rectangle-xmark"></i>
+                                x
 
                               </button>
-
+                              <h4>Vendor Details</h4>
                             </div>
 
-                            <div className='vendor-details'>
+                            <div className='viewvendordetail'>
+                              <p>
+                                <p><b>Vendor Id</b> : {x.id}</p>
 
-                              vendorDetails<br /><br />
+                                <p><b>Vendor Name</b>:  {x.vendorName} </p>
 
-                            </div>
+                                <p><b>Vendor Type </b>:  {x.vendorType} </p>
 
-                            <p>
+                                <p><b>Adress </b>: </p>
 
-                              id : {index}
+                                <p>{x.addressLine1} </p>
+                                <p>{x.addressLine2} </p>
+                                <p>{x.city} </p>
+                                <p>{x.state} </p>
+                                <p>{x.country} </p>
+                                <p>{x.postalCode} </p>
+                                <p><b>Telephone1 </b>:  {x.telePhone1} </p>
+                                <p><b>Telephone2</b>:  {x.telePhone2} </p>
+                                <p><b>Vendor Email </b>:  {x.vendorEmail} </p>
+                                <p><b>Vendor Website</b>:  {x.vendorWebsite} </p>
+                              </p>
+                              productDetails<br /><br />
+                              <p>{productDetails[index].id}</p></div>
 
-
-
-
-                              "id": {x.id}
-
-
-
-                              "vendorName": {x.vendorName},
-
-
-
-
-                              "isActive": {x.isActive},
-
-
-
-
-                              "vendorType": {x.vendorType},
-
-
-
-
-                              "addressLine1": {x.addressLine1},
-
-
-
-                              "addressLine2": {x.addressLine2},
-
-
-
-                              "city": {x.city},
-
-
-
-                              "state": {x.state},
-
-
-
-                              "postalCode": {x.postalCode},
-
-
-
-                              "country": {x.country},
-
-
-
-                              "telePhone1": {x.telePhone1},
-
-
-
-                              "telePhone2": {x.telePhone2},
-
-
-
-                              "vendorEmail": {x.vendorEmail},
-
-
-
-                              "vendorWebsite": {x.vendorWebsite},
-
-
-
-                              "createdOn": null,
-
-
-
-                              "updatedOn": null,
-
-
-
-                              "deletedOn": null
-
-                            </p>
-
-                            productDetails<br /><br />
-
-                            <p>{productDetails[index].id}</p>
 
                           </div>
 

@@ -36,7 +36,7 @@ function Navbar() {
                     <h5 className='heading'>VENDOR MANAGEMENT SYSTEM</h5>
                     {/* <button onClick={() => { setIslogin(false); navigate('/') }}>Logout</button> */}
                     {/* <button className='profile_icon' onClick={() => setIsOpen(true)}><i class="fa fa-user" aria-hidden="true"></i></button> */}
-                    <div className='whole_div'>
+                    <div>
                         <Popup trigger=
                             {<button className='profile_icon' onClick={() => { }}><i class="fa fa-user" aria-hidden="true"></i></button>}
                             modal nested>
@@ -49,7 +49,7 @@ function Navbar() {
                                                 X
                                             </button>
                                         </div>
-                                        <div className="popup_content">
+                                        <div>
 
                                             <Profile />
                                         </div>

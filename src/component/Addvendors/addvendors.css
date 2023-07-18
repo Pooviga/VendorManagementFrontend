@@ -1,4 +1,4 @@
-form {
+.vendorForm {
     max-width: 800px;
     margin: 5px auto;
     padding: 40px;
@@ -7,6 +7,13 @@ form {
     height: 600px;
 }
 
+/* 
+.eachrow {
+    display: flex;
+} */
+.pdlabel {
+    padding-top: 20px;
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -32,7 +39,9 @@ form {
 }
 
 .formdetails {
-    height: 600px;
+    height: 450px;
+    padding: 20px;
+    overflow-y: scroll;
     /* overflow-y: scroll; */
 }
 
@@ -67,6 +76,7 @@ label {
 .sidefields {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
 
 }
 
@@ -136,6 +146,12 @@ input[type="submit"] {
     border-radius: 5px;
 
     cursor: pointer;
+}
+
+#vendorForm {
+    overflow-y: scroll;
+    height: 550px;
+    padding: 10px;
 }
 
 input[type="text"] {

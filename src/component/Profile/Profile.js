@@ -43,7 +43,7 @@ function Profile() {
     };
 
     return (
-        <div>
+        <div className='userdetails'>
             <h2>User Details</h2>
             <p>{role}</p>
             <p>ID: {id}</p>
@@ -52,7 +52,7 @@ function Profile() {
                     <p>Name: {name}</p>
                     <p>Email: {mail}</p>
                     <p>Phone Number: {phonenumber}</p>
-                    <button onClick={() => setIsEditing(true)}>Edit Details</button>
+                    <button className="add_button" onClick={() => setIsEditing(true)}>Edit Details</button>
                 </>
             ) : (
                 <div>
@@ -80,8 +80,8 @@ function Profile() {
                             onChange={(e) => setEditedPhoneNumber(e.target.value)}
                         />
                     </label>
-                    <button onClick={handleUpdateUserDetails}>Update Details</button>
-                    <button onClick={() => setIsEditing(false)}>Cancel</button>
+                    <button className="add_button" onClick={handleUpdateUserDetails}>Update Details</button>
+                    <button className="add_button" onClick={() => setIsEditing(false)}>Cancel</button>
                 </div>
             )}
         </div>
