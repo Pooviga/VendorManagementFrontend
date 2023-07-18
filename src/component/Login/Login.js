@@ -41,7 +41,7 @@ function Login() {
 
     const [stat, setStat] = useState(true)
 
-    const { id, setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+    const { username, setUser, phonenumber, setPhoneNumber, mail, setEmail, id, setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
     const [loginError, setLoginError] = useState(false);
 
 
@@ -85,6 +85,12 @@ function Login() {
                 setRole(roleName)
                 const id = response.data.user.id
                 setId(id)
+                const mail = response.data.user.email
+                setEmail(mail)
+                const username = response.data.user.name
+                setUser(username)
+                const phonenumber = response.data.user.phoneNumber
+                setPhoneNumber(phonenumber)
                 console.log(id)
                 console.log(roleName)
                 navigate("/dashboard")

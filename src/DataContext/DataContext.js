@@ -18,16 +18,21 @@ export const DataProvider = ({ children }) => {
 
     const [islogin, setIslogin] = useState(false);
 
-    const [username,setUsername]=useState('');
+    const [username, setUsername] = useState('');
 
-    
+
     const [role, setRole] = useState(null);
-    
+
     const navigate = useNavigate()
 
     const [vendorDetails, setVendorDetails] = useState([]);
 
     const [productDetails, setProductDetails] = useState([]);
+    const [id, setId] = useState(0);
+    const [mail, setEmail] = useState('');
+    const [phonenumber, setPhoneNumber] = useState('');
+    const [name, setUser] = useState('');
+
 
 
 
@@ -46,26 +51,33 @@ export const DataProvider = ({ children }) => {
 
     function postVendor(dataSet) {
 
+        axios.post('https://localhost:7017/api/VendorDetails', dataSet)
+            .then((response) => {
+                navigate('/viewvendors')
+
+            }).catch((error) => {
+                console.log(error);
+
+            })
 
 
+        // console.log("console:::", dataSet);
 
-        console.log("console:::", dataSet);
+        // const requestOptions = {
 
-        const requestOptions = {
+        //     method: 'POST',
 
-            method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
 
-            headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(dataSet)
 
-            body: JSON.stringify(dataSet)
+        // };
 
-        };
+        // fetch('https://localhost:7017/api/VendorDetails', requestOptions)
 
-        fetch('https://localhost:7017/api/VendorDetails', requestOptions)
+        //     .then(response => response.json())
 
-            .then(response => response.json())
-
-            .then(data => console.log(data));
+        //     .then(data => console.log(data));
 
 
 
@@ -86,18 +98,21 @@ export const DataProvider = ({ children }) => {
 
             islogin, setIslogin,
 
-            username,setUsername,
+            username, setUsername,
 
             postVendor,
 
             role, setRole,
-
+            id, setId,
+            mail, setEmail,
+            name, setUser,
+            phonenumber, setPhoneNumber,
             productDetails, setProductDetails,
 
             vendorDetails, setVendorDetails,
 
             navigate
-            
+
 
 
 

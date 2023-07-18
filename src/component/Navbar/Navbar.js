@@ -8,13 +8,22 @@ import { IconContext } from 'react-icons';
 import DataContext from '../../DataContext/DataContext';
 import Addvendors from '../Addvendors/Addvendors';
 import Viewvendors from '../Viewvendors/Viewvendors';
+import { useNavigate } from 'react-router-dom';
+import Profile from '../Profile/Profile';
+import Popup from 'reactjs-popup'
+
 
 function Navbar() {
     const { role } = useContext(DataContext)
+    const navigate = useNavigate();
 
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
+    const navigateProfile = () => {
+        navigate('/profile')
+    }
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div>
@@ -25,6 +34,30 @@ function Navbar() {
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
                     <h5 className='heading'>VENDOR MANAGEMENT SYSTEM</h5>
+                    {/* <button className='profile_icon' onClick={() => setIsOpen(true)}><i class="fa fa-user" aria-hidden="true"></i></button> */}
+                    <div className='whole_div'>
+                        <Popup trigger=
+                            {<button className='profile_icon' onClick={() => { }}><i class="fa fa-user" aria-hidden="true"></i></button>}
+                            modal nested>
+                            {
+                                close => (
+                                    <div>
+                                        <div>
+                                            <button className="close" onClick=
+                                                {() => close()}>
+                                                X
+                                            </button>
+                                        </div>
+                                        <div className="popup_content">
+
+                                            <Profile />
+                                        </div>
+
+                                    </div>
+                                )
+                            }
+                        </Popup>
+                    </div>
 
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

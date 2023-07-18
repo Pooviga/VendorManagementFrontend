@@ -111,7 +111,7 @@ td {
     text-align: left;
 } */
 
-.popup-content {
+.content-vendor {
     margin: auto;
     background: rgb(255, 255, 255);
     width: 50%;
@@ -163,20 +163,20 @@ td {
     overflow-x: auto;
 }
 
-.close {
+.close_cross {
     float: right;
 }
 
-.btn-btn{
-    
+.btn-btn {
 
-        background-color: #091644;
-        color: white;
-        padding: 5px 5px;
-        margin: 5px 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        font-size:24px
-    }
+
+    background-color: #091644;
+    color: white;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 24px
+}
