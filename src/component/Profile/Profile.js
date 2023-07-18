@@ -1,27 +1,10 @@
-// import React from 'react'
-// import DataContext from '../../DataContext/DataContext';
-// import { useContext } from 'react';
-
-
-// function Profile() {
-//     const { role, id, mail, phonenumber } = useContext(DataContext)
-
-//     return (
-//         <div>
-//             <p>{role}</p>
-//             <p>{id}</p>
-//             <p>{mail}</p>
-//             <p>{phonenumber}</p>
-//         </div>
-//     )
-// }
-
-// export default Profile
 import React, { useContext, useState } from 'react';
 import DataContext from '../../DataContext/DataContext';
+import Popup from 'reactjs-popup'
+
 
 function Profile() {
-    const { role, id, name, mail, phonenumber } = useContext(DataContext);
+    const { role, id, name, mail, phonenumber, setUser, setEmail, setPhoneNumber } = useContext(DataContext);
     const [isEditing, setIsEditing] = useState(false);
     const [editedName, setEditedName] = useState(name);
     const [editedEmail, setEditedEmail] = useState(mail);
@@ -37,7 +20,6 @@ function Profile() {
         };
         console.log(editedName, editedEmail, editedPhoneNumber);
 
-        // Replace 'your-server-url' with the actual endpoint to update user details
         const url = `https://localhost:7017/api/User/${id}`;
 
         fetch(url, {
@@ -50,7 +32,10 @@ function Profile() {
             .then((response) => response.json())
             .then((data) => {
                 console.log('User details updated successfully:', data);
-                setIsEditing(false); // Hide the update form after updating
+                setUser(data.name)
+                setEmail(data.email)
+                setPhoneNumber(data.phoneNumber)
+                setIsEditing(false);
             })
             .catch((error) => {
                 console.error('Error updating user details:', error);

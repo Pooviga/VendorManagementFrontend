@@ -11,8 +11,8 @@
 .menu-bars {
 	/* margin-left: 2rem; */
 	display: flex;
-    align-items: center;
-    margin-left: 4px;
+	align-items: center;
+	margin-left: 4px;
 	font-size: 2rem;
 	background: none;
 	place-content: center;
@@ -68,6 +68,26 @@
 	text-align: center;
 	color: white;
 	margin-right: 10px;
+}
+
+.popup_content {
+	padding: 30px;
+	background-color: aqua;
+}
+
+.whole_div {
+	border-radius: 10px;
+	background-color: rgb(23, 22, 21);
+
+}
+
+.contents {
+	max-width: 600px;
+	margin: 5px auto;
+	padding: 30px;
+	background: #f4f7f8;
+	border-radius: 5px;
+	height: 600px;
 }
 
 .nav-menu-items {

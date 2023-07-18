@@ -80,7 +80,7 @@ function Addvendors() {
         </div>
         <div className="formdetails">
           <input type="hidden" id="userId"></input>
-          <div class="sidefields">
+          <div className="sidefields">
             {/* <label for="vendorName">Vendor Name:</label> */}
             <input
               placeholder="Billing Adress"

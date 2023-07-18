@@ -51,26 +51,33 @@ export const DataProvider = ({ children }) => {
 
     function postVendor(dataSet) {
 
+        axios.post('https://localhost:7017/api/VendorDetails', dataSet)
+            .then((response) => {
+                navigate('/viewvendors')
+
+            }).catch((error) => {
+                console.log(error);
+
+            })
 
 
+        // console.log("console:::", dataSet);
 
-        console.log("console:::", dataSet);
+        // const requestOptions = {
 
-        const requestOptions = {
+        //     method: 'POST',
 
-            method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
 
-            headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(dataSet)
 
-            body: JSON.stringify(dataSet)
+        // };
 
-        };
+        // fetch('https://localhost:7017/api/VendorDetails', requestOptions)
 
-        fetch('https://localhost:7017/api/VendorDetails', requestOptions)
+        //     .then(response => response.json())
 
-            .then(response => response.json())
-
-            .then(data => console.log(data));
+        //     .then(data => console.log(data));
 
 
 

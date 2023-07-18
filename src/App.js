@@ -17,6 +17,7 @@ import ViewUserApproval from './component/ViewUserApproval/ViewUserApproval';
 import ViewUsers from './component/ViewUsers/ViewUsers';
 import EditVendors from './component/EditVendor/EditVendor';
 import Profile from './component/Profile/Profile';
+import ViewPurchaseTable from './component/ViewPurchaseTable/ViewPurchaseTable';
 
 // import PurchaseOrder from './component/PurchaseOrder/PurchaseOrder';
 
@@ -38,7 +39,8 @@ function App() {
           <Route path="/viewapproval" element={<ViewApproval />} />
           <Route path="/viewuserapproval" element={<ViewUserApproval />} />
           <Route path="/editvendor" element={<EditVendors />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} /> 
+          <Route path="/viewpurchasetable" element={<ViewPurchaseTable/>}/>
 
 
 
