@@ -1,13 +1,34 @@
 import { React, useContext, useEffect, useState } from 'react'
-import "../Login/Login.css"
+import './Login.css'
 import DataContext from '../../DataContext/DataContext'
 import axios from 'axios'
 import { colors } from '@mui/material';
-
+import { useFormik } from "formik";
+import { basicSchema } from '../../schemas';
 
 function Login() {
 
-
+    const {
+        values,
+        errors,
+        setErrors,
+        touched,
+        isSubmitting,
+        handleBlur,
+        handleChange,
+        handleSubmit,
+      } = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            username: '',
+            emailRegister: '',
+            passwordRegister: '',
+            passwordConfirm: '',
+            mobile: ''
+        },
+        validationSchema: basicSchema
+    })
     const [email, setUsername] = useState("");
 
     const [password, setPassword] = useState("");
@@ -35,14 +56,28 @@ function Login() {
 
     }, []);
 
+    function resetErrors() {
+        let reset = {
+            email: '',
+            emailRegister: '',
+            username: '',
+            password: '',
+            passwordRegister: '',
+            passwordConfirm: '',
+            mobile: ''
+           };
+       setErrors({reset})
+    }
+
     function loginHandler(params) {
 
+        const loginRequest = {
+            email: values.email,
+            password: values.password
+        }
 
-
-        const loginRequest = { email, password };
-
-
-        axios.post("https://localhost:7017/login", loginRequest)
+        if(!errors.email && !errors.password){
+            axios.post("https://localhost:7017/login", loginRequest)
             .then((response) => {
                 setIslogin(true)
                 const roleName = response.data.user.role.name.toLowerCase();
@@ -61,20 +96,29 @@ function Login() {
                 setLoginError(true);
 
             });
+        }
 
     }
-    function registerHandler(params) {
-        const signUpRequest = { email, password, phoneNumber, role, name }
-        axios.post("https://localhost:7017/api/User", signUpRequest)
+    function registerHandler() {
+        const signUpRequest = {
+            email: values.emailRegister,
+            name: values.username,
+            password: values.passwordRegister,
+            phoneNumber: values.mobile.toString()
+        }
+        if(!errors.emailRegister && !errors.username && !errors.passwordRegister && !errors.passwordConfirm && !errors.mobile){
+            axios.post("https://localhost:7017/api/User", signUpRequest)
             .then((response) => {
 
                 console.log(response.data);
+                setStat(!stat)
 
             }).catch((error) => {
 
                 setLoginError(true);
 
             });
+        }
 
     }
 
@@ -104,7 +148,6 @@ function Login() {
 
     };
 
-
     return (
         <div>
             <div className="main">
@@ -112,18 +155,24 @@ function Login() {
                     {stat ? <div>
                         <h1>Login Page</h1>
                         <div >
-                            <input type="text" placeholder="Email Address" className="name" value={email} onChange={handleUsernameChange} required></input>
+                            <input type="email" placeholder="Email Address" value={values.email} 
+                             id="email" onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                             className = {errors.email && touched.email? 'input-error': ''}></input>
+                            {errors.email && touched.email && <p className='error'>{errors.email}</p>}
                         </div>
                         <div className="second-input">
-                            <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                            <input type="password" placeholder="Password" value={values.password} 
+                             id="password" onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                             className = {errors.password && touched.password? 'input-error': ''} />
+                             {errors.password && touched.password && <p className='error'>{errors.password}</p>}
                         </div>
                         <div >
-                            <button className="login-button" onClick={() => loginHandler()}>Login</button>
+                            <button className="login-button" onClick={(e) => {handleSubmit(e);loginHandler()}}>Login</button>
                             {loginError && <p className='error-color'>Invalid credentials</p>}
 
                         </div>
                         <div >
-                            <button className="sign-button" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "SignIn"}</button>
+                            <button className="sign-button" onClick={() => {resetErrors();setStat(!stat)}}>{stat ? "SignUp" : "SignIn"}</button>
                         </div>
 
                     </div>
@@ -132,42 +181,49 @@ function Login() {
                             <h1>Register Page</h1>
                             <div className='sidediv'>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Username" className="name" onChange={(e) => { setName(e.target.value) }} />
+                                    <input type="text" placeholder="Username" value={values.username} id="username"
+                                      onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                                      className = {errors.username && touched.username? 'input-error': ''}  />
+                                    {errors.username && touched.username && <p className='error'>{errors.username}</p>}
                                 </div>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Email" className="name" value={email} onChange={handleUsernameChange} />
-
+                                    <input type="email" placeholder="Email" value={values.emailRegister} id="emailRegister"
+                                      onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                                      className = {errors.emailRegister && touched.emailRegister? 'input-error': ''} />
+                                    {errors.emailRegister && touched.emailRegister && <p className='error'>{errors.emailRegister}</p>}
                                 </div>
 
                             </div>
                             <div className='sidediv'>
                                 <div className="second-input">
-                                    <input type="password" placeholder="Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                                    <input type="password" placeholder="Password" value={values.passwordRegister} id="passwordRegister"
+                                      onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                                      className = {errors.passwordRegister && touched.passwordRegister? 'input-error': ''} />
+                                      {errors.passwordRegister && touched.passwordRegister && <p className='error'>{errors.passwordRegister}</p>}
                                 </div>
                                 <div className="second-input">
-                                    <input type="password" placeholder="Confirm Password" className="name" onChange={(e) => { setPassword(e.target.value) }} />
+                                    <input type="password" placeholder="Confirm Password" value={values.passwordConfirm} id="passwordConfirm"
+                                      onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                                      className = {errors.passwordConfirm && touched.passwordConfirm? 'input-error': ''} />
+                                      {errors.passwordConfirm && touched.passwordConfirm && <p className='error'>{errors.passwordConfirm}</p>}
                                 </div>
                             </div>
                             <div className='sidediv'>
-                                <div className="second-input">
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
-                                </div>
-                                <div className="second-input">
-                                    <select className="name" placeholder="Role" name="role" value={role} onChange={handleRoleChange}>
-                                        <option className="name" value="Approver">Approver</option>
-                                        <option className="name" value="User">User</option>
-                                        <option className="name" value="Readonly">General User</option>
-                                    </select>
+                                <div className="second-input mobile-container">
+                                    <input type="number" placeholder="Mobile No" value={values.mobile} id="mobile"
+                                      onChange = {(e)=>{handleChange(e);setLoginError(false)}} onBlur={handleBlur}
+                                      style={{width: '100%'}}
+                                      className = {errors.mobile && touched.mobile? 'input-error': ''} />
+                                      {errors.mobile && touched.mobile && <p className='error'>{errors.mobile}</p>}
                                 </div>
                             </div>
 
                             <div>
                                 <div >
-                                    <button className="login-button_signup" onClick={() => registerHandler()}>SignUp</button>
+                                    <button className="login-button_signup" onClick={(e) => {handleSubmit(e);registerHandler()}}>SignUp</button>
                                 </div>
                                 <div >
-                                    <button className="sign-button_signup" onClick={() => setStat(!stat)}>{stat ? "SignUp" : "LogIn"}</button>
+                                    <button className="sign-button_signup" onClick={() => {resetErrors();setStat(!stat);}}>{stat ? "SignUp" : "LogIn"}</button>
                                 </div>
                             </div>
 
