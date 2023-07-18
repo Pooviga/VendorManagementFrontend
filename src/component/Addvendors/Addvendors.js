@@ -27,7 +27,7 @@ function Addvendors() {
     };
     const removeInputFields = (index) => {
         const rows = [...inputFields];
-        rows.splice(index + 1, 1);
+        rows.splice(index, 1);
         setInputFields(rows);
     };
     const handleChange = (index, evnt) => {
@@ -107,7 +107,7 @@ function Addvendors() {
                                             <input type="email" onChange={(evnt) => handleChange(index, evnt)} value={ProductDescription} name="ProductDescription" className="form-control" placeholder="Product Description" />
                                             <input type="text" onChange={(evnt) => handleChange(index, (evnt))} value={price} name="price" className="form-control" placeholder="Price" />
                                             <div>
-                                                {(inputFields.length !== 1) ? <button className="removevendors" onClick={removeInputFields}>X</button> : ''}
+                                                {(inputFields.length !== 1) ? <button className="removevendors" id={index} onClick={(e) => { removeInputFields(e.target.id); }}>X</button> : ''}
                                             </div>
                                         </div>
                                     </div>
