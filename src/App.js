@@ -16,6 +16,7 @@ import ViewApproval from './component/ViewApproval/ViewApproval';
 import ViewUserApproval from './component/ViewUserApproval/ViewUserApproval';
 import ViewUsers from './component/ViewUsers/ViewUsers';
 import EditVendors from './component/EditVendor/EditVendor';
+import Profile from './component/Profile/Profile';
 
 // import PurchaseOrder from './component/PurchaseOrder/PurchaseOrder';
 
@@ -36,7 +37,9 @@ function App() {
           <Route path="/purchaseorders" element={<PurchaseOrder />} />
           <Route path="/viewapproval" element={<ViewApproval />} />
           <Route path="/viewuserapproval" element={<ViewUserApproval />} />
-          <Route path="/editvendor" element={<EditVendors/>}/>
+          <Route path="/editvendor" element={<EditVendors />} />
+          <Route path="/profile" element={<Profile />} />
+
 
 
           {/* <Route path="/purchaseorder" element={<PurchaseOrder />} /> */}

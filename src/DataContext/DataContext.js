@@ -18,16 +18,21 @@ export const DataProvider = ({ children }) => {
 
     const [islogin, setIslogin] = useState(false);
 
-    const [username,setUsername]=useState('');
+    const [username, setUsername] = useState('');
 
-    
+
     const [role, setRole] = useState(null);
-    
+
     const navigate = useNavigate()
 
     const [vendorDetails, setVendorDetails] = useState([]);
 
     const [productDetails, setProductDetails] = useState([]);
+    const [id, setId] = useState(0);
+    const [mail, setEmail] = useState('');
+    const [phonenumber, setPhoneNumber] = useState('');
+    const [name, setUser] = useState('');
+
 
 
 
@@ -86,18 +91,21 @@ export const DataProvider = ({ children }) => {
 
             islogin, setIslogin,
 
-            username,setUsername,
+            username, setUsername,
 
             postVendor,
 
             role, setRole,
-
+            id, setId,
+            mail, setEmail,
+            name, setUser,
+            phonenumber, setPhoneNumber,
             productDetails, setProductDetails,
 
             vendorDetails, setVendorDetails,
 
             navigate
-            
+
 
 
 

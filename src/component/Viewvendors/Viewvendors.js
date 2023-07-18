@@ -67,17 +67,9 @@ function Viewvendors() {
 
           });
 
-
-
           console.log("changed", vdata);
 
           console.log("changed", pdata);
-
-
-
-          // console.log('here:',response.data.vendorDetails);
-
-          // setVendorDetails(response.data.vendorDetails)
 
         });
 
@@ -96,9 +88,6 @@ function Viewvendors() {
     <div class="viewvendorswholediv">
       <div className="topics">
         <h2 className="rh2">Registered Vendors</h2>
-        {/* <Popup trigger={<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>} position="left center">
-                    <div><Addvendors /></div>
-                </Popup> */}
         <Popup trigger=
           {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>}
           modal nested>
@@ -119,23 +108,8 @@ function Viewvendors() {
             )
           }
         </Popup>
-        {/* <button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button> */}
       </div>
-      {/* <div class="table_overflow">
-                <table id="vendorTable">
-                    <tr>
-                        <th>Vendor Name</th>
-                        <th>Vendor Type</th>
-                        <th>Contact</th>
-                        <th>Vendor Email</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-            </div> */}
 
-      {/* <div class="container">
-      <div class="row">
-        <div class="col-12"> */}
       <div className='table_overflow'>
 
         <table>
@@ -174,10 +148,6 @@ function Viewvendors() {
         </table>
       </div>
     </div>
-    //   </div>
-    // </div>
-
-    //     </div>
   )
 }
 

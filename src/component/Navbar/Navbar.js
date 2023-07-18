@@ -8,13 +8,19 @@ import { IconContext } from 'react-icons';
 import DataContext from '../../DataContext/DataContext';
 import Addvendors from '../Addvendors/Addvendors';
 import Viewvendors from '../Viewvendors/Viewvendors';
+import {  useNavigate } from 'react-router-dom';
+import Profile from '../Profile/Profile';
 
 function Navbar() {
     const { role } = useContext(DataContext)
+    const navigate = useNavigate();
 
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
+    const navigateProfile = () => {
+        navigate('/profile')
+    }
 
     return (
         <div>
@@ -25,7 +31,7 @@ function Navbar() {
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
                     <h1 className='heading'>VENDOR MANAGEMENT SYSTEM</h1>
-
+                    <button className='profile_icon' onClick={navigateProfile}><i class="fa fa-user" aria-hidden="true"></i></button>
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSidebar}>

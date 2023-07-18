@@ -53,6 +53,10 @@
 	border-radius: 4px;
 }
 
+.profile_icon {
+	font-size: 24px;
+}
+
 .nav-text a:hover {
 	background-color: #3B6CCF;
 }
