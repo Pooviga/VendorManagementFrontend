@@ -90,7 +90,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="tel"],
-select,
+input[type="number"] select,
 textarea {
     width: 100%;
     padding: 12px 20px;
@@ -139,6 +139,11 @@ input[type="submit"] {
 }
 
 input[type="text"] {
+    border-radius: 5px;
+    border: 1px solid #777676;
+}
+
+input[type="number"] {
     border-radius: 5px;
     border: 1px solid #777676;
 }

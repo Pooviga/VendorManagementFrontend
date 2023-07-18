@@ -67,17 +67,9 @@ function Viewvendors() {
 
           });
 
-
-
           console.log("changed", vdata);
 
           console.log("changed", pdata);
-
-
-
-          // console.log('here:',response.data.vendorDetails);
-
-          // setVendorDetails(response.data.vendorDetails)
 
         });
 
@@ -104,14 +96,14 @@ function Viewvendors() {
           modal nested>
           {
             close => (
-              <div className='modal'>
+              <div className='modals'>
                 <div>
-                  <button className="close" onClick=
+                  <button className="close_cross" onClick=
                     {() => close()}>
                     X
                   </button>
                 </div>
-                <div className='content'>
+                <div className='content-vendor'>
                   <Addvendors />
                 </div>
 
@@ -119,23 +111,8 @@ function Viewvendors() {
             )
           }
         </Popup>
-        {/* <button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button> */}
       </div>
-      {/* <div class="table_overflow">
-                <table id="vendorTable">
-                    <tr>
-                        <th>Vendor Name</th>
-                        <th>Vendor Type</th>
-                        <th>Contact</th>
-                        <th>Vendor Email</th>
-                        <th>Action</th>
-                    </tr>
-                </table>
-            </div> */}
 
-      {/* <div class="container">
-      <div class="row">
-        <div class="col-12"> */}
       <div className='table_overflow'>
 
         <table>
@@ -157,9 +134,135 @@ function Viewvendors() {
                   <td>Product</td>
                   <td>{x.isActive ? 'active' : 'inactive'}</td>
                   <td>
-                    <button style={{ fontSize: '24px' }} type="button" class="btn-btn">
-                      <i class="far fa-eye"></i>
-                    </button>
+
+                    <Popup trigger=
+
+                      {
+
+                        <button type="button" class="btn-btn">
+
+                          <i class="far fa-eye"></i>
+
+                        </button>
+
+                      }
+
+                      modal nested>
+
+                      {
+
+                        close => (
+
+                          <div className='modal'>
+
+                            <div>
+
+                              <button className="btn-btn" style={{ float: 'right' }} onClick={() => close()}>
+
+                                <i class="fa-regular fa-rectangle-xmark"></i>
+
+                              </button>
+
+                            </div>
+
+                            <div className='vendor-details'>
+
+                              vendorDetails<br /><br />
+
+                            </div>
+
+                            <p>
+
+                              id : {index}
+
+
+
+
+                              "id": {x.id}
+
+
+
+                              "vendorName": {x.vendorName},
+
+
+
+
+                              "isActive": {x.isActive},
+
+
+
+
+                              "vendorType": {x.vendorType},
+
+
+
+
+                              "addressLine1": {x.addressLine1},
+
+
+
+                              "addressLine2": {x.addressLine2},
+
+
+
+                              "city": {x.city},
+
+
+
+                              "state": {x.state},
+
+
+
+                              "postalCode": {x.postalCode},
+
+
+
+                              "country": {x.country},
+
+
+
+                              "telePhone1": {x.telePhone1},
+
+
+
+                              "telePhone2": {x.telePhone2},
+
+
+
+                              "vendorEmail": {x.vendorEmail},
+
+
+
+                              "vendorWebsite": {x.vendorWebsite},
+
+
+
+                              "createdOn": null,
+
+
+
+                              "updatedOn": null,
+
+
+
+                              "deletedOn": null
+
+                            </p>
+
+                            productDetails<br /><br />
+
+                            <p>{productDetails[index].id}</p>
+
+                          </div>
+
+                        )
+
+                      }
+
+                    </Popup>
+
+
+
                     <button style={{ fontSize: '24px' }} type="button" class="btn-btn">
                       <i class="fas fa-edit"></i>
                     </button>
@@ -174,10 +277,6 @@ function Viewvendors() {
         </table>
       </div>
     </div>
-    //   </div>
-    // </div>
-
-    //     </div>
   )
 }
 

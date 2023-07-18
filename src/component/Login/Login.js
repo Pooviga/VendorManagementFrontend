@@ -20,7 +20,7 @@ function Login() {
 
     const [stat, setStat] = useState(true)
 
-    const { id, setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
+    const { username, setUser, phonenumber, setPhoneNumber, mail, setEmail, id, setId, role, setRole, islogin, setIslogin, navigate } = useContext(DataContext);
     const [loginError, setLoginError] = useState(false);
 
 
@@ -50,6 +50,12 @@ function Login() {
                 setRole(roleName)
                 const id = response.data.user.id
                 setId(id)
+                const mail = response.data.user.email
+                setEmail(mail)
+                const username = response.data.user.name
+                setUser(username)
+                const phonenumber = response.data.user.phoneNumber
+                setPhoneNumber(phonenumber)
                 console.log(id)
                 console.log(roleName)
                 navigate("/dashboard")
@@ -64,7 +70,7 @@ function Login() {
 
     }
     function registerHandler(params) {
-        const signUpRequest = { email, password, phoneNumber, role, name }
+        const signUpRequest = { email, password, phoneNumber, name }
         axios.post("https://localhost:7017/api/User", signUpRequest)
             .then((response) => {
 
@@ -150,15 +156,11 @@ function Login() {
                             </div>
                             <div className='sidediv'>
                                 <div className="second-input">
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
-                                    <input type="text" placeholder="Mobile No" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
+                                    <input type="text" placeholder="Mobile No1" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
+
                                 </div>
                                 <div className="second-input">
-                                    <select className="name" placeholder="Role" name="role" value={role} onChange={handleRoleChange}>
-                                        <option className="name" value="Approver">Approver</option>
-                                        <option className="name" value="User">User</option>
-                                        <option className="name" value="Readonly">General User</option>
-                                    </select>
+                                    <input type="text" placeholder="Mobile No2" className="name" onChange={(e) => { setMobileNumber(e.target.value) }} />
                                 </div>
                             </div>
 

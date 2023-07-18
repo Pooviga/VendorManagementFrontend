@@ -1,11 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import DataContext from '../../DataContext/DataContext'
 import './ViewUsers.css'
+
 
 function ViewUsers() {
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
+    const { id } = useContext(DataContext)
+
 
     useEffect(() => {
         axios
@@ -14,11 +18,14 @@ function ViewUsers() {
             .catch(er => console.log(er));
     }, []);
 
-    const handleDelete = (id) => {
+    const handleDelete = (userid) => {
         axios
-            .delete(`https://localhost:7017/api/User/${id}/4`)
+            .delete(`https://localhost:7017/api/User/${userid}/${id}`)
             .then(res => {
                 console.log(res);
+                axios
+                    .get('https://localhost:7017/api/User')
+                    .then(res => setData(res.data))
                 // location.reload();
             })
             .catch(er => console.log(er));
@@ -36,7 +43,7 @@ function ViewUsers() {
         // Perform your PUT request here using axios
         // Example:
         axios
-            .put(`https://localhost:7017/api/User/${user.id}`, {
+            .put(`https://localhost:7017/update/${user.id}/${user.role.name}`, {
                 name: user.name,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
@@ -46,17 +53,14 @@ function ViewUsers() {
             })
             .then(res => {
                 console.log(res);
-                // If needed, you can reset the editing flag after successful update
                 const newData = [...data];
                 newData[index].editing = false;
                 setData(newData);
             })
             .catch(er => console.log(er));
     };
-    // Filter the users based on the selected filter option
-    const filteredData = filter === 'all' ? data : data.filter((user) => user.approvalStatus === filter);
+    const filteredData = filter === 'all' ? data : data.filter((user) => user.role.name === filter);
 
-    // Search for users based on the search term
     const searchedData = filteredData.filter(
         (user) =>
             user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -67,7 +71,7 @@ function ViewUsers() {
     return (
         <div className='body-content'>
             <label htmlFor="filter">Filter by Role</label>
-            <div  className='searches'>
+            <div className='searches'>
                 <div className="filter-container">
                     <select
                         id="filter"
@@ -75,8 +79,10 @@ function ViewUsers() {
                         onChange={(e) => setFilter(e.target.value)}
                     >
                         <option value="all">All</option>
-                        <option value="Approved">Approved</option>
-                        <option value="Pending">Pending</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                        <option value="Approver">Approver</option>
+                        <option value="Readonly">Readonly</option>
                         {/* Add more filter options if needed */}
                     </select>
                 </div>
@@ -90,93 +96,64 @@ function ViewUsers() {
                 </div>
             </div>
             <div className='table_overflow'>
-            <table >
-                <thead>
-                    <tr>
-                        <th>User Id</th>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>IsActive</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {searchedData.map((user, index) => (
-                        <tr key={index}>
-                            <td>{user.id}</td>
-                            <td>
-                                {user.editing ? (
-                                    <input
-                                        type="text"
-                                        value={user.name}
-                                        onChange={(e) => {
-                                            const newData = [...data];
-                                            newData[index].name = e.target.value;
-                                            setData(newData);
-                                        }}
-                                    />
-                                ) : (
-                                    user.name
-                                )}
-                            </td>
-                            <td>
-                                {user.editing ? (
-                                    <input
-                                        type="text"
-                                        value={user.email}
-                                        onChange={(e) => {
-                                            const newData = [...data];
-                                            newData[index].email = e.target.value;
-                                            setData(newData);
-                                        }}
-                                    />
-                                ) : (
-                                    user.email
-                                )}
-                            </td>
-                            <td>
-                                {user.editing ? (
-                                    <input
-                                        type="text"
-                                        value={user.phoneNumber}
-                                        onChange={(e) => {
-                                            const newData = [...data];
-                                            newData[index].phoneNumber = e.target.value;
-                                            setData(newData);
-                                        }}
-                                    />
-                                ) : (
-                                    user.phoneNumber
-                                )}
-                            </td>
-
-                            <td>{user.role.name}</td>
-                            <td>{user.approvalStatus}</td>
-                            <td>{user.isActive ? 'true' : 'false'}</td>
-
-                            <td>
-                                {user.editing ? (
-                                    <button onClick={() => handleSave(index)}>Update</button>
-                                ) : (
-                                    <>
-                                        <button onClick={() => handleEdit(index)}>
-                                            <i className="fas fa-edit"></i>
-                                        </button>
-                                        <button onClick={() => handleDelete(user.id)}>
-                                            <i className="far fa-trash-alt"></i>
-                                        </button>
-                                    </>
-                                )}
-                            </td>
+                <table >
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Role</th>
+                            {/* <th>Status</th>
+                            <th>IsActive</th> */}
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {searchedData.map((user, index) => (
+                            <tr key={index}>
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.phoneNumber}</td>
+                                <td>
+                                    {user.editing ? (
+                                        <input
+                                            type="text"
+                                            value={user.role.name}
+                                            onChange={(e) => {
+                                                const newData = [...data];
+                                                newData[index].role.name = e.target.value;
+                                                setData(newData);
+                                            }}
+                                        />
+                                    ) : (
+                                        user.role.name
+                                    )}
+                                </td>
+                                {/* <td>{user.approvalStatus}</td>
+                                <td>{user.isActive ? 'true' : 'false'}</td> */}
+
+                                <td>
+                                    {user.editing ? (
+                                        <button onClick={() => handleSave(index)}>Update</button>
+                                    ) : (
+                                        <>
+                                            <button onClick={() => handleEdit(index)}>
+                                                <i className="fas fa-edit"></i>
+                                            </button>
+                                            <button onClick={() => handleDelete(user.id)}>
+                                                <i className="far fa-trash-alt"></i>
+                                            </button>
+                                        </>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            
+
         </div>
     );
 }
