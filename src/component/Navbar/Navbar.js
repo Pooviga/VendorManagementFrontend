@@ -14,7 +14,7 @@ import Popup from 'reactjs-popup'
 
 
 function Navbar() {
-    const { role } = useContext(DataContext)
+    const { role, setIslogin, islogin } = useContext(DataContext)
     const navigate = useNavigate();
 
     const [sidebar, setSidebar] = useState(false);
@@ -34,6 +34,7 @@ function Navbar() {
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
                     <h5 className='heading'>VENDOR MANAGEMENT SYSTEM</h5>
+                    {/* <button onClick={() => { setIslogin(false); navigate('/') }}>Logout</button> */}
                     {/* <button className='profile_icon' onClick={() => setIsOpen(true)}><i class="fa fa-user" aria-hidden="true"></i></button> */}
                     <div className='whole_div'>
                         <Popup trigger=
@@ -85,9 +86,6 @@ function Navbar() {
                                 <li className='nav-text'>
                                     <Link to='/viewapproval' ><span>PO Approval</span></Link>
                                 </li>
-                                {/* <li className='nav-text'>
-                                    <Link to='/viewuserapproval' ><span>User Approval</span></Link>
-                                </li> */}
 
                             </div> : <></>
                         }
@@ -97,9 +95,6 @@ function Navbar() {
                             <div>
                                 <li className='nav-text'>
                                     <Link to='/dashboard'><span>Dashboard</span></Link>
-                                </li>
-                                <li className='nav-text'>
-                                    <Link to='/viewvendors'><span>View Vendors</span></Link>
                                 </li>
                                 <li className='nav-text'>
                                     <Link to='/purchaseorders' ><span>Purchase Orders</span></Link>

@@ -2,23 +2,90 @@ import React, { useContext, useState } from 'react';
 import ViewApprovalCard from '../ViewApprovalCard/ViewApprovalCard';
 import Popup from 'reactjs-popup';
 import './ViewPurchaseTable.css';
+import DataContext from '../../DataContext/DataContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const ViewPurchaseTable = (props) => {
+    const { allData, setAllData } = useContext(DataContext)
+    console.log(props.data)
     const status = props.data.purchaseOrderWithUsersName.status;
     const [isOpen, setIsOpen] = useState(false);
+    const { id } = useContext(DataContext);
+    const navigate = useNavigate();
 
+    const handleApprove = (poId) => {
+
+        console.log(id)
+        // console.log(props.data.id)
+        const apiEndpoint = `https://localhost:7017/status/${poId}/${id}/${"Approved"}`;
+        fetch(apiEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(),
+        })
+            .then((response) => {
+                console.log("props", props)
+                console.log(response)
+
+                // data.filter((nd)=>{
+                //     nd
+                // })
+                // props.setData((prevData) => { return prevData.filter(x => x.purchaseOrderWithUsersName.Id !== poId) })
+                setAllData(allData.filter(x => x.purchaseOrderWithUsersName.id !== poId))
+                
+
+                console.log('User approved successfully', allData);
+                // console.log(data)
+            })
+            .catch((error) => {
+                console.error('Error while approving user:', error);
+            });
+
+        // axios.get("https://localhost:7017/api/User").then((res) => setData(res.data));
+
+
+    }
+    const handleDecline = (poId) => {
+
+        console.log(id)
+        // console.log(props.data.id)
+        const apiEndpoint = `https://localhost:7017/status/${poId}/${id}/${"Declined"}`;
+        fetch(apiEndpoint, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(),
+        })
+            .then((response) => {
+                console.log("props", props)
+                console.log(response)
+
+                // data.filter((nd)=>{
+                //     nd
+                // })
+                // props.setData((prevData) => { return prevData.filter(x => x.purchaseOrderWithUsersName.Id !== poId) })
+                setAllData(allData.filter(x => x.purchaseOrderWithUsersName.id !== poId))
+
+
+                console.log('User approved successfully', allData);
+                // console.log(data)
+            })
+            .catch((error) => {
+                console.error('Error while approving user:', error);
+            });
+
+        // axios.get("https://localhost:7017/api/User").then((res) => setData(res.data));
+
+
+    }
     console.log(props.data);
     const data = props.data;
     if (status === "Pending") {
         return (
-            // <th>PO Id</th>
-            // <th>User Id</th>
-            // <th>Order Placed By</th>
-            // <th>Ordered On</th>
-            // <th>Total Amount</th>
-            // <th>Vendor Name</th>
-            // <th>Action</th
             <tr>
                 <td>{data.purchaseOrderWithUsersName.id}</td>
                 <td>{data.purchaseOrderWithUsersName.createdBy.id}</td>
@@ -104,8 +171,8 @@ const ViewPurchaseTable = (props) => {
 
                                             <p><b>Terms and Conditions</b>: {props.data.purchaseOrderWithUsersName.termsAndConditions}</p>
                                             <div className="buttons">
-                                                <button className="btn">Approve</button>
-                                                <button className="btn">Decline</button>
+                                                <button className="btn" onClick={() => handleApprove(props.data.purchaseOrderWithUsersName.id)}>Approve</button>
+                                                <button className="btn" onClick={() => handleDecline(props.data.purchaseOrderWithUsersName.id)}>Decline</button>
                                             </div>
                                         </div>
 

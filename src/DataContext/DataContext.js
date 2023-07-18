@@ -33,6 +33,11 @@ export const DataProvider = ({ children }) => {
     const [phonenumber, setPhoneNumber] = useState('');
     const [name, setUser] = useState('');
 
+    const [allData, setAllData] = useState([])
+    useEffect(() => {
+        axios.get("https://localhost:7017/PurchaseOrder").then((res) => setAllData(res.data.filter(e => e.purchaseOrderWithUsersName.status === 'Pending')));
+        console.log(allData)
+    }, [])
 
 
 
@@ -110,6 +115,7 @@ export const DataProvider = ({ children }) => {
             productDetails, setProductDetails,
 
             vendorDetails, setVendorDetails,
+            allData, setAllData,
 
             navigate
 

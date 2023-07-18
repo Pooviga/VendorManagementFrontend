@@ -13,9 +13,6 @@ function Login() {
     const [password, setPassword] = useState("");
     const [phoneNumber, setMobileNumber] = useState("");
     const [name, setName] = useState("");
-    //const[role,setRoles]=useState("");
-
-
     const [transaction, setTransaction] = useState([]);
 
     const [stat, setStat] = useState(true)
@@ -29,6 +26,7 @@ function Login() {
         axios.get("https://localhost:7017/api/User").then((response) => {
 
             setTransaction(response.data);
+            // setIslogin(true);
 
             console.log(response.data)
         });

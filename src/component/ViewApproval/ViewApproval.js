@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ViewApprovalCard from '../ViewApprovalCard/ViewApprovalCard'
 import axios from "axios";
 import './ViewApproval.css'
 import ViewPurchaseTable from '../ViewPurchaseTable/ViewPurchaseTable';
+import DataContext from '../../DataContext/DataContext';
 
 
 
 const ViewApproval = () => {
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
+    const { allData, setAllData } = useContext(DataContext)
 
-    useEffect(() => {
-        axios.get("https://localhost:7017/PurchaseOrder").then((res) => setData(res.data.filter(e => e.purchaseOrderWithUsersName.status === 'Pending')));
-    }, [])
-    console.log(data)
+
+    console.log(allData)
 
     return (
         <div className="container">
@@ -29,7 +29,8 @@ const ViewApproval = () => {
                     </tr>
                 </thead>
 
-                {data.map((d) => {
+                {allData.map((d) => {
+                    console.log(allData)
                     return <ViewPurchaseTable key={d.id} data={d} />
                 })}
             </table>

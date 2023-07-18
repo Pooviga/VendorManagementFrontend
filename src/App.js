@@ -31,7 +31,7 @@ function App() {
       <div className="App">
         <Home />
         <Routes>
-          <Route path="/" element={<></>} />
+          <Route path="/" exact element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/viewusers" element={<ViewUsers />} />
           <Route path="/viewvendors" element={<Viewvendors />} />
@@ -39,8 +39,8 @@ function App() {
           <Route path="/viewapproval" element={<ViewApproval />} />
           <Route path="/viewuserapproval" element={<ViewUserApproval />} />
           <Route path="/editvendor" element={<EditVendors />} />
-          <Route path="/profile" element={<Profile />} /> 
-          <Route path="/viewpurchasetable" element={<ViewPurchaseTable/>}/>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/viewpurchasetable" element={<ViewPurchaseTable />} />
 
 
 
