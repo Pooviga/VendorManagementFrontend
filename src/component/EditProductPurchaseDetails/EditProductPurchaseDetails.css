@@ -1,0 +1,17 @@
+.options-vendor {
+    height: 20px;
+}
+
+.selectVendor {
+    margin-bottom: 50px;
+}
+.purchaseForm {
+    overflow-y: scroll;
+    height: 500px;
+    padding: 10px;
+}
+
+.error-color {
+    color: red;
+    text-align: center;
+}

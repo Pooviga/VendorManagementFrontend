@@ -1,6 +1,6 @@
 import { React, useContext, useEffect, useState } from "react";
 
-import "../AddProductPurchaseDetails/AddProductPurchaseDetails.css";
+import "../EditProductPurchaseDetails/EditProductPurchaseDetails.css";
 
 import DataContext from "../../DataContext/DataContext";
 
@@ -12,19 +12,69 @@ import Popup from "reactjs-popup";
 
 import axios from "axios";
 
-function AddProductPurchaseDetails(props) {
-  const userData = JSON.parse(localStorage.getItem("User"));
-  const userid = userData.id;
+function EditProductPurchaseDetails(props) {
+  const [purchaseOrderWithUsersName, setPurchaseOrderWithUsersName] = useState({
+    ...props.purchaseOrderWithUsersName,
+  });
+
+  const [purchaseProducts, setPurchaseProducts] = useState(
+    props.purchaseProducts
+  );
+
+  const [vendor, setVendor] = useState({ ...props.vendorForPurchaseOrder });
   const [total, setTotal] = useState(0);
 
-  const { postPurchaseOrder } = useContext(DataContext);
-
-  const [purchasedProducts, setPurchasedProducts] = useState([]);
+  const { navigate, postVendor, postPurchaseOrder, id } =
+    useContext(DataContext);
 
   const { vendorDetails, setVendorDetails, productDetails, setProductDetails } =
     useContext(DataContext);
 
+  const [showError, setShowError] = useState(false);
+
+  const updatePurchaseOrder = () => {
+    let values = purchaseProducts.filter((data) => Number(data.quantity) > 0);
+    if (values.length == 0) {
+      setShowError(true);
+    }
+    let updateValues = {
+      createdBy: purchaseOrderWithUsersName.createdBy.id,
+      billingAddress: purchaseOrderWithUsersName.billingAddress,
+      billingAddressCity: purchaseOrderWithUsersName.billingAddressCity,
+      billingAddressState: purchaseOrderWithUsersName.billingAddressState,
+      billingAddressCountry: purchaseOrderWithUsersName.billingAddressCountry,
+      billingAddressZipcode: purchaseOrderWithUsersName.billingAddressZipcode,
+      shippingAddress: purchaseOrderWithUsersName.shippingAddress,
+      shippingAddressCity: purchaseOrderWithUsersName.shippingAddressCity,
+      shippingAddressState: purchaseOrderWithUsersName.shippingAddressState,
+      shippingAddressCountry: purchaseOrderWithUsersName.shippingAddressCountry,
+      shippingAddressZipcode: purchaseOrderWithUsersName.shippingAddressZipcode,
+      termsAndConditions: purchaseOrderWithUsersName.termsAndConditions,
+      description: purchaseOrderWithUsersName.description,
+      productsPurchased: values.map((data) => {
+        return {
+          vendorId: vendor.id,
+          purchaseOrderId: purchaseOrderWithUsersName.id,
+          productId: data.productId,
+          quantity: Number(data.quantity),
+        };
+      }),
+    };
+    if (values.length > 0) {
+      axios
+        .put(
+          `https://localhost:7017/PurchaseOrder/${purchaseOrderWithUsersName.id}`,
+          updateValues
+        )
+        .then((response) => {
+          console.log(response);
+        });
+    }
+  };
+
   var count = 0;
+
+  const user = JSON.parse(localStorage.getItem("User"));
 
   //to extract all vendor ids
 
@@ -54,6 +104,7 @@ function AddProductPurchaseDetails(props) {
         pData.push(newData.productDetails);
 
         setProductDetails(pData);
+        productFilter(vendor.id);
       });
     });
   }, []);
@@ -68,7 +119,30 @@ function AddProductPurchaseDetails(props) {
       .get("https://localhost:7017/api/VendorDetails/" + id)
 
       .then((response) => {
-        console.log(response.data);
+        let values = response.data.productDetails;
+        let finalProducts = [...purchaseProducts];
+        values = values.map((data) => {
+          return {
+            productId: data.id,
+            price: Number(data.price),
+            productDescription: data.productDescription,
+            productName: data.productName,
+            quantity: 0,
+          };
+        });
+        let prodIds = [];
+        values.forEach((value) => prodIds.push(value.productId));
+        finalProducts.forEach((prod) => {
+          if (prodIds.includes(prod.productId)) {
+            prodIds.splice(prodIds.indexOf(prod.productId), 1);
+          }
+        });
+        values.forEach((val) => {
+          if (prodIds.includes(val.productId)) {
+            finalProducts.push(val);
+          }
+        });
+        setPurchaseProducts(finalProducts);
 
         setFilteredProducts(response.data.productDetails);
       });
@@ -101,14 +175,15 @@ function AddProductPurchaseDetails(props) {
   };
 
   const removeObjectsWithZeroQuantity = () => {
-
-    const filteredArray = orderedProducts.filter(object => object.quantity !== 0);
+    const filteredArray = orderedProducts.filter(
+      (object) => object.quantity !== 0
+    );
 
     setOrderedProducts(filteredArray);
   };
 
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
-    createdBy: userid,
+    createdBy: user.id,
 
     billingAddress: " ",
 
@@ -139,7 +214,7 @@ function AddProductPurchaseDetails(props) {
 
   return (
     <form className="purchaseForm">
-      <h1>Purchase order</h1>
+      <h1>Edit Purchase Order</h1>
 
       <div>
         <div class="sidefields">
@@ -148,11 +223,10 @@ function AddProductPurchaseDetails(props) {
             type="text"
             id="description"
             name="description"
-            required
+            value={purchaseOrderWithUsersName.description}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 description: e.target.value,
               });
             }}
@@ -165,15 +239,12 @@ function AddProductPurchaseDetails(props) {
             type="text"
             id="billingAddress"
             name="billingAddress"
-            required
+            value={purchaseOrderWithUsersName.billingAddress}
             onChange={(e) => {
-              {
-                setNewPurchaseOrder({
-                  ...newPurchaseOrder,
-
-                  billingAddress: e.target.value,
-                });
-              }
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
+                billingAddress: e.target.value,
+              });
             }}
           ></input>
 
@@ -182,15 +253,12 @@ function AddProductPurchaseDetails(props) {
             type="text"
             id="billingAddressCity"
             name="billingAddressCity"
-            required
+            value={purchaseOrderWithUsersName.billingAddressCity}
             onChange={(e) => {
-              {
-                setNewPurchaseOrder({
-                  ...newPurchaseOrder,
-
-                  billingAddressCity: e.target.value,
-                });
-              }
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
+                billingAddressCity: e.target.value,
+              });
             }}
           ></input>
         </div>
@@ -203,11 +271,10 @@ function AddProductPurchaseDetails(props) {
             type="text"
             id="billingAddressState"
             name="billingAddressState"
-            required
+            value={purchaseOrderWithUsersName.billingAddressState}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 billingAddressState: e.target.value,
               });
             }}
@@ -219,11 +286,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="Billing Address Country"
             type="text"
             id="billingAddressCountry"
-            name="addresbillingAddressCountrysLine2"
+            value={purchaseOrderWithUsersName.billingAddressCountry}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 billingAddressCountry: e.target.value,
               });
             }}
@@ -237,12 +303,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="Shipping Address"
             type="text"
             id="shippingAddress"
-            name="shippingAddress"
-            required
+            value={purchaseOrderWithUsersName.shippingAddress}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 shippingAddress: e.target.value,
               });
             }}
@@ -254,12 +318,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="shippingAddressCity"
             type="text"
             id="shippingAddressCity"
-            name="shippingAddressCity"
-            required
+            value={purchaseOrderWithUsersName.shippingAddressCity}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 shippingAddressCity: e.target.value,
               });
             }}
@@ -273,12 +335,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="Shipping Address State"
             type="text"
             id="shippingAddressState"
-            name="shippingAddressState"
-            required
+            value={purchaseOrderWithUsersName.shippingAddressState}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 shippingAddressState: e.target.value,
               });
             }}
@@ -290,12 +350,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="Shipping Address Country"
             type="text"
             id="shippingAddressCountry"
-            name="shippingAddressCountry"
-            required
+            value={purchaseOrderWithUsersName.shippingAddressCountry}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 shippingAddressCountry: e.target.value,
               });
             }}
@@ -307,14 +365,12 @@ function AddProductPurchaseDetails(props) {
 
           <input
             placeholder="Shipping Address Zipcode "
-            type="tel"
+            type="number"
             id="shippingAddressZipcode"
-            name="shippingAddressZipcode"
-            required
+            value={purchaseOrderWithUsersName.shippingAddressZipcode}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 shippingAddressZipcode: e.target.value,
               });
             }}
@@ -324,14 +380,12 @@ function AddProductPurchaseDetails(props) {
 
           <input
             placeholder="billing Address Zipcode "
-            type="tel"
+            type="number"
             id="billingAddressZipcode"
-            name="billingAddressZipcode"
-            required
+            value={purchaseOrderWithUsersName.billingAddressZipcode}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 billingAddressZipcode: e.target.value,
               });
             }}
@@ -345,11 +399,10 @@ function AddProductPurchaseDetails(props) {
             placeholder="Terms and Conditions"
             type="tel"
             id="termsAndConditions"
-            name="termsAndConditions"
+            value={purchaseOrderWithUsersName.termsAndConditions}
             onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
+              setPurchaseOrderWithUsersName({
+                ...purchaseOrderWithUsersName,
                 termsAndConditions: e.target.value,
               });
             }}
@@ -367,25 +420,20 @@ function AddProductPurchaseDetails(props) {
               style={{ margin: "10px", fontSize: "24px" }}
               for="productDetails"
             >
-              Select Vendor:
+              Selected Vendor:
             </label>
           </div>
 
-          <select
-            id="colours"
-            onChange={(e) => {
-              {
-                console.log(e.target.value);
-
-                productFilter(e.target.value);
+          <select id="colours" disabled>
+            {vendorDetails.map((v) => {
+              if (vendor.id == v.id) {
+                return (
+                  <option selected value={v.id}>
+                    {v.vendorName}
+                  </option>
+                );
               }
-            }}
-          >
-            <option></option>
-
-            {vendorDetails.map((v) => (
-              <option value={v.id}>{v.vendorName}</option>
-            ))}
+            })}
           </select>
         </div>
 
@@ -416,7 +464,7 @@ function AddProductPurchaseDetails(props) {
             </thead>
 
             <tbody>
-              {filteredProducts.map((x, index) => {
+              {purchaseProducts.map((x, index) => {
                 return (
                   <tr>
                     <td>{x.productName}</td>
@@ -426,23 +474,16 @@ function AddProductPurchaseDetails(props) {
                     <td>
                       <input
                         type="number"
+                        value={x.quantity}
                         onChange={(e) => {
-                          if (e.target.value >= 0) {
-                            updateObjectAtIndex(
-                              index,
-
-                              {
-                                vendorId: x.vendorId,
-
-                                purchaseOrderId:
-                                  "00000000-0000-0000-0000-000000000000",
-
-                                productId: x.id,
-
-                                quantity: Number(e.target.value),
-                              }
-                            );
-                          }
+                          let val = {
+                            ...x,
+                            quantity: e.target.value,
+                          };
+                          let li = [...purchaseProducts];
+                          li[index] = val;
+                          setPurchaseProducts(li);
+                          setShowError(false);
                         }}
                       ></input>
                     </td>
@@ -453,51 +494,24 @@ function AddProductPurchaseDetails(props) {
           </table>
         </div>
       </div>
-
+      {showError && (
+        <p className="error-color">Atleast get a quantity of product</p>
+      )}
       <button
         className="addvendors"
         onClick={(e) => {
           {
-            console.log("before:", orderedProducts);
-
-            const filteredArray = orderedProducts.filter(
-              (object) => object.quantity !== 0
-            );
-
-            console.log("after", filteredArray);
-
-            console.log("after", filteredArray);
-
-            if (filteredArray.length === 0) {
-              console.log("empty");
-
-              status = true;
-
-              console.log(status);
-            } else {
-              console.log("filled");
-
-              postPurchaseOrder(
-                {
-                  ...newPurchaseOrder,
-                  productsPurchased: filteredArray,
-                },
-                props.close()
-              );
-            }
-
+            updatePurchaseOrder();
             e.preventDefault();
           }
         }}
       >
-        Add Purchase Order
+        Submit
       </button>
-
-      {status && <p className="error-color">Invalid credentials</p>}
     </form>
 
     // </div>
   );
 }
 
-export default AddProductPurchaseDetails;
+export default EditProductPurchaseDetails;
