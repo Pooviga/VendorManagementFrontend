@@ -11,6 +11,8 @@ import TextField from "@mui/material/TextField";
 import Popup from "reactjs-popup";
 
 import axios from "axios";
+import { useFormik } from "formik";
+import { purchaseOrderSchema } from "../../schemas";
 
 function AddProductPurchaseDetails() {
   const [total, setTotal] = useState(0);
@@ -43,7 +45,32 @@ function AddProductPurchaseDetails() {
 
   var pData = [];
 
-  //fetch vendor details
+  const {
+    values,
+    errors,
+    setErrors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      billingAddress: "",
+      billingAddressCity: "",
+      billingAddressState: "",
+      billingAddressCountry: "",
+      billingAddressZipcode: "",
+      shippingAddress: "",
+      shippingAddressCity: "",
+      shippingAddressState: "",
+      shippingAddressCountry: "",
+      shippingAddressZipcode: "",
+      termsAndConditions: "",
+      description: "",
+    },
+    validationSchema: purchaseOrderSchema,
+  });
 
   useEffect(() => {
     axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
@@ -75,7 +102,28 @@ function AddProductPurchaseDetails() {
       });
   }
 
-  let status = false;
+  const addPurchaseOrder = () => {
+    setNewPurchaseOrder({ ...newPurchaseOrder, ...values });
+    const filteredArray = orderedProducts.filter(
+      (object) => object.quantity !== 0
+    );
+
+    if (filteredArray.length === 0) {
+      console.log("empty");
+      setStatus(true);
+    } else {
+      setStatus(false);
+      console.log("po", {
+        ...newPurchaseOrder,
+        productsPurchased: filteredArray,
+      });
+      postPurchaseOrder({
+        ...newPurchaseOrder,
+        productsPurchased: filteredArray,
+      });
+    }
+  };
+  const [status, setStatus] = useState(false);
 
   // { vendorId:(s.vendorId),
 
@@ -112,25 +160,25 @@ function AddProductPurchaseDetails() {
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
     createdBy: user.id,
 
-    billingAddress: " ",
+    billingAddress: "",
 
-    billingAddressCity: " ",
+    billingAddressCity: "",
 
-    billingAddressState: " ",
+    billingAddressState: "",
 
-    billingAddressCountry: " ",
+    billingAddressCountry: "",
 
-    billingAddressZipcode: " ",
+    billingAddressZipcode: "",
 
-    shippingAddress: " ",
+    shippingAddress: "",
 
-    shippingAddressCity: " ",
+    shippingAddressCity: "",
 
-    shippingAddressState: " ",
+    shippingAddressState: "",
 
-    shippingAddressCountry: " ",
+    shippingAddressCountry: "",
 
-    shippingAddressZipcode: " ",
+    shippingAddressZipcode: "",
 
     termsAndConditions: " ",
 
@@ -145,217 +193,259 @@ function AddProductPurchaseDetails() {
 
       <div>
         <div class="sidefields">
-          <input
-            placeholder="Enter title"
-            type="text"
-            id="description"
-            name="description"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                description: e.target.value,
-              });
-            }}
-          ></input>
+          <div style={{ width: "100%" }}>
+            <input
+              placeholder="Enter Title"
+              type="text"
+              id="description"
+              value={values.description}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.description && touched.description ? "input-error" : ""
+              }
+            ></input>
+            {errors.description && touched.description && (
+              <p className="error">{errors.description}</p>
+            )}
+          </div>
         </div>
 
         <div class="sidefields">
-          <input
-            placeholder="Billing Adress"
-            type="text"
-            id="billingAddress"
-            name="billingAddress"
-            required
-            onChange={(e) => {
-              {
-                setNewPurchaseOrder({
-                  ...newPurchaseOrder,
-
-                  billingAddress: e.target.value,
-                });
+          <div className="side1">
+            <input
+              placeholder="Billing Address"
+              type="text"
+              id="billingAddress"
+              value={values.billingAddress}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.billingAddress && touched.billingAddress
+                  ? "input-error"
+                  : ""
               }
-            }}
-          ></input>
-
-          <input
-            placeholder="Billing Adress City"
-            type="text"
-            id="billingAddressCity"
-            name="billingAddressCity"
-            required
-            onChange={(e) => {
-              {
-                setNewPurchaseOrder({
-                  ...newPurchaseOrder,
-
-                  billingAddressCity: e.target.value,
-                });
+            ></input>
+            {errors.billingAddress && touched.billingAddress && (
+              <p className="error">{errors.billingAddress}</p>
+            )}
+          </div>
+          <div className="side2">
+            <input
+              placeholder="Billing Adress City"
+              type="text"
+              id="billingAddressCity"
+              value={values.billingAddressCity}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.billingAddressCity && touched.billingAddressCity
+                  ? "input-error"
+                  : ""
               }
-            }}
-          ></input>
+            ></input>
+            {errors.billingAddressCity && touched.billingAddressCity && (
+              <p className="error">{errors.billingAddressCity}</p>
+            )}
+          </div>
         </div>
 
         <div class="sidefields">
           {/* <label htmlFor="addressLine1">Address-Line 1:</label> */}
 
-          <input
-            placeholder="Billing Address State"
-            type="text"
-            id="billingAddressState"
-            name="billingAddressState"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                billingAddressState: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side1">
+            <input
+              placeholder="Billing Address State"
+              type="text"
+              id="billingAddressState"
+              value={values.billingAddressState}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.billingAddressState && touched.billingAddressState
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.billingAddressState && touched.billingAddressState && (
+              <p className="error">{errors.billingAddressState}</p>
+            )}
+          </div>
 
           {/* <label htmlFor="addressLine2">Address-Line 2:</label> */}
-
-          <input
-            placeholder="Billing Address Country"
-            type="text"
-            id="billingAddressCountry"
-            name="addresbillingAddressCountrysLine2"
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                billingAddressCountry: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side2">
+            <input
+              placeholder="Billing Address Country"
+              type="text"
+              id="billingAddressCountry"
+              value={values.billingAddressCountry}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.billingAddressCountry && touched.billingAddressCountry
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.billingAddressCountry && touched.billingAddressCountry && (
+              <p className="error">{errors.billingAddressCountry}</p>
+            )}
+          </div>
         </div>
 
         <div class="sidefields">
           {/* <label htmlFor="city">City:</label> */}
 
-          <input
-            placeholder="Shipping Address"
-            type="text"
-            id="shippingAddress"
-            name="shippingAddress"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                shippingAddress: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side1">
+            <input
+              placeholder="Shipping Address"
+              type="text"
+              id="shippingAddress"
+              value={values.shippingAddress}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.shippingAddress && touched.shippingAddress
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.shippingAddress && touched.shippingAddress && (
+              <p className="error">{errors.shippingAddress}</p>
+            )}
+          </div>
 
           {/* <label htmlFor="state">State:</label> */}
-
-          <input
-            placeholder="shippingAddressCity"
-            type="text"
-            id="shippingAddressCity"
-            name="shippingAddressCity"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                shippingAddressCity: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side2">
+            <input
+              placeholder="shippingAddressCity"
+              type="text"
+              id="shippingAddressCity"
+              value={values.shippingAddressCity}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.shippingAddressCity && touched.shippingAddressCity
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.shippingAddressCity && touched.shippingAddressCity && (
+              <p className="error">{errors.shippingAddressCity}</p>
+            )}
+          </div>
         </div>
 
         <div class="sidefields">
           {/* <label htmlFor="pinCode">Pin Code:</label> */}
 
-          <input
-            placeholder="Shipping Address State"
-            type="text"
-            id="shippingAddressState"
-            name="shippingAddressState"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                shippingAddressState: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side1">
+            <input
+              placeholder="Shipping Address State"
+              type="text"
+              id="shippingAddressState"
+              value={values.shippingAddressState}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.shippingAddressState && touched.shippingAddressState
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.shippingAddressState && touched.shippingAddressState && (
+              <p className="error">{errors.shippingAddressState}</p>
+            )}
+          </div>
 
           {/* <label htmlFor="country">Country:</label> */}
-
-          <input
-            placeholder="Shipping Address Country"
-            type="text"
-            id="shippingAddressCountry"
-            name="shippingAddressCountry"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                shippingAddressCountry: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side2">
+            <input
+              placeholder="Shipping Address Country"
+              type="text"
+              id="shippingAddressCountry"
+              value={values.shippingAddressCountry}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.shippingAddressCountry && touched.shippingAddressCountry
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.shippingAddressCountry &&
+              touched.shippingAddressCountry && (
+                <p className="error">{errors.shippingAddressCountry}</p>
+              )}
+          </div>
         </div>
 
         <div class="sidefields">
           {/* <label htmlFor="telephone1">Telephone 1:</label> */}
 
-          <input
-            placeholder="Shipping Address Zipcode "
-            type="tel"
-            id="shippingAddressZipcode"
-            name="shippingAddressZipcode"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                shippingAddressZipcode: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side1">
+            <input
+              placeholder="Shipping Address Zipcode "
+              type="tel"
+              id="shippingAddressZipcode"
+              value={values.shippingAddressZipcode}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.shippingAddressZipcode && touched.shippingAddressZipcode
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.shippingAddressZipcode &&
+              touched.shippingAddressZipcode && (
+                <p className="error">{errors.shippingAddressZipcode}</p>
+              )}
+          </div>
 
           {/* <label htmlFor="telephone2">Telephone 2:</label> */}
 
-          <input
-            placeholder="billing Address Zipcode "
-            type="tel"
-            id="billingAddressZipcode"
-            name="billingAddressZipcode"
-            required
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                billingAddressZipcode: e.target.value,
-              });
-            }}
-          ></input>
+          <div className="side2">
+            <input
+              placeholder="billing Address Zipcode "
+              type="tel"
+              id="billingAddressZipcode"
+              value={values.billingAddressZipcode}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.billingAddressZipcode && touched.billingAddressZipcode
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.billingAddressZipcode && touched.billingAddressZipcode && (
+              <p className="error">{errors.billingAddressZipcode}</p>
+            )}
+          </div>
         </div>
 
         <div class="sidefields">
           {/* <label htmlFor="vendorEmail">Vendor Email:</label> */}
 
-          <input
-            placeholder="Terms and Conditions"
-            type="tel"
-            id="termsAndConditions"
-            name="termsAndConditions"
-            onChange={(e) => {
-              setNewPurchaseOrder({
-                ...newPurchaseOrder,
-
-                termsAndConditions: e.target.value,
-              });
-            }}
-          ></input>
+          <div style={{ width: "100%" }}>
+            <input
+              placeholder="Terms and Conditions"
+              type="tel"
+              id="termsAndConditions"
+              value={values.termsAndConditions}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={
+                errors.termsAndConditions && touched.termsAndConditions
+                  ? "input-error"
+                  : ""
+              }
+            ></input>
+            {errors.termsAndConditions && touched.termsAndConditions && (
+              <p className="error">{errors.termsAndConditions}</p>
+            )}
+          </div>
 
           {/* <label htmlFor="vendorWebsite">Vendor Web Site:</label> */}
 
@@ -390,8 +480,6 @@ function AddProductPurchaseDetails() {
             ))}
           </select>
         </div>
-
-        {status ? <p className="error-color">Invalid credentials</p> : <></>}
 
         <div className="row">
           <div className="sidefield">
@@ -429,6 +517,7 @@ function AddProductPurchaseDetails() {
                       <input
                         type="number"
                         onChange={(e) => {
+                          setStatus(false);
                           if (e.target.value >= 0) {
                             updateObjectAtIndex(
                               index,
@@ -456,46 +545,21 @@ function AddProductPurchaseDetails() {
         </div>
       </div>
 
+      {status && (
+        <p className="error-color">Atleast 1 product should be purchased</p>
+      )}
       <button
         className="addvendors"
         onClick={(e) => {
           {
-            console.log("before:", orderedProducts);
-
-            const filteredArray = orderedProducts.filter(
-              (object) => object.quantity !== 0
-            );
-
-            console.log("after", filteredArray);
-
-            console.log("after", filteredArray);
-
-            if (filteredArray.length === 0) {
-              console.log("empty");
-
-              status = true;
-
-              console.log(status);
-            } else {
-              console.log("filled");
-              console.log("po", {
-                ...newPurchaseOrder,
-                productsPurchased: filteredArray,
-              });
-              postPurchaseOrder({
-                ...newPurchaseOrder,
-                productsPurchased: filteredArray,
-              });
-            }
-
             e.preventDefault();
+            handleSubmit(e);
+            addPurchaseOrder();
           }
         }}
       >
         Add Purchase Order
       </button>
-
-      {status && <p className="error-color">Invalid credentials</p>}
     </form>
 
     // </div>

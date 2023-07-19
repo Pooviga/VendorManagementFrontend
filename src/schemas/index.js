@@ -73,3 +73,28 @@ export const addVendorSchema = yup.object().shape({
     .required("Required")
     .matches(quantityregex, { message: "Quantity should be atleast 1" }),
 });
+
+export const purchaseOrderSchema = yup.object().shape({
+  billingAddress: yup.string().required("Required"),
+  billingAddressCity: yup.string().required("Required"),
+  billingAddressState: yup.string().required("Required"),
+  billingAddressCountry: yup.string().required("Required"),
+  billingAddressZipcode: yup
+    .string()
+    .required("Required")
+    .matches(pincoderegex, { message: "Enter 6 digits of pincode" }),
+  shippingAddress: yup.string().required("Required"),
+  shippingAddressCity: yup.string().required("Required"),
+  shippingAddressState: yup.string().required("Required"),
+  shippingAddressCountry: yup.string().required("Required"),
+  shippingAddressZipcode: yup
+    .string()
+    .required("Required")
+    .matches(pincoderegex, { message: "Enter 6 digits of pincode" }),
+  termsAndConditions: yup.string().required("Required"),
+  description: yup.string().required("Required"),
+  quantity: yup
+    .string()
+    .required("Required")
+    .matches(quantityregex, { message: "Quantity should be atleast 1" })
+});
