@@ -12,7 +12,8 @@ const ViewApproval = () => {
   console.log(allData);
 
   return (
-    <div className="container">
+    <div style={{ padding: 24, overflowX: "hidden" }} className="container">
+      <h2>Pending Approval</h2>
       <table>
         <thead>
           <tr>

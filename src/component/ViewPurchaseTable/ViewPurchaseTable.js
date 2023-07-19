@@ -12,7 +12,7 @@ const ViewPurchaseTable = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { id, setId } = useContext(DataContext);
   const navigate = useNavigate();
-  
+
   const userData = JSON.parse(localStorage.getItem("User"));
   const userid = userData.id;
 
