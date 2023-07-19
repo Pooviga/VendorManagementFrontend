@@ -46,10 +46,10 @@ function Addvendors() {
       inputFields.forEach((val) => {
         if (val.ProductName && val.ProductDescription && val.price > 0) {
           values.push(val);
-        } 
+        }
       });
       if (values.length > 0) {
-        setShowError(false)
+        setShowError(false);
         setInputFields(values);
         newVendor.productDetailsRequest = [...inputFields];
         console.log("newvvv", newVendor);
@@ -178,7 +178,7 @@ function Addvendors() {
             </div>
             <div div className="side2">
               <input
-                placeholder="Adress-Line 2"
+                placeholder="Address-Line 2"
                 type="text"
                 id="addressLine2"
                 value={values.addressLine2}
