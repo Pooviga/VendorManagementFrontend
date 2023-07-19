@@ -5,4 +5,8 @@
 .selectVendor {
     margin-bottom: 50px;
 }
-
+.purchaseForm {
+    overflow-y: scroll;
+    height: 500px;
+    padding: 10px;
+}
