@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import DataContext, { DataProvider } from "../../DataContext/DataContext";
 import { logDOM } from "@testing-library/react";
 import axios from "axios";
+import EditProductPurchaseDetails from "../EditProductPurchaseDetails/EditProductPurchaseDetails";
 
 function ViewPurchaseOrder() {
   const { role } = useContext(DataContext);
@@ -17,14 +18,13 @@ function ViewPurchaseOrder() {
     axios.get("https://localhost:7017/PurchaseOrder").then((response) => {
       console.log(response.data);
       let data = response.data;
-      setData (data);
+      setData(data);
     });
   }, []);
 
-function deletePO(id) {
+  function deletePO(id) {
     console.log(id);
-    
-}
+  }
 
   const navigate = useNavigate("/");
   return (
@@ -100,67 +100,156 @@ function deletePO(id) {
                               >
                                 x
                               </button>
-                              <h4>{d.purchaseOrderWithUsersName.description}</h4>
+                              <h4>
+                                {d.purchaseOrderWithUsersName.description}
+                              </h4>
                             </div>
                             <div className="viewvendordetail">
                               <p>
-                                <p><b>Id :</b> {d.purchaseOrderWithUsersName.id}</p>
-                                <p><b>Created by :</b>  {d.purchaseOrderWithUsersName.createdBy.name}</p>
-                                <p><b>time of creation :</b> {d.purchaseOrderWithUsersName.orderDateTime}</p>
-                                <p><b>status :</b>  {d.purchaseOrderWithUsersName.status}</p>
-                                <p><b>Tracking Number :</b>  {d.purchaseOrderWithUsersName.trackingNumber}</p>
-                                <p><b>Total amount of purchase :</b>  {d.purchaseOrderWithUsersName.total}</p>
-                                <p><b>Billing Address :</b> 
-                                {d.purchaseOrderWithUsersName.billingAddressCity},{d.purchaseOrderWithUsersName.billingAddressCity},{d.purchaseOrderWithUsersName.billingAddressState},{d.purchaseOrderWithUsersName.billingAddressCountry}-{d.purchaseOrderWithUsersName.billingAddressZipcode}</p>
-                                <p><b>Shipping Address :</b>   
-                                {d.purchaseOrderWithUsersName.shippingAddressCity},{d.purchaseOrderWithUsersName.shippingAddressCity},{d.purchaseOrderWithUsersName.shippingAddressState},{d.purchaseOrderWithUsersName.shippingAddressCountry}-{d.purchaseOrderWithUsersName.shippingAddressZipcode}</p>
-                               <table>
-                                <thead>
-                                <th>Product Id</th>
-                                <th>Quantity</th>
-                                <th>Product Name</th>
-                                <th>Product Description</th>
-                                <th>Price</th>
-                                </thead>
-                                <tbody>
-                                    {d.purchaseProducts.map((p,index)=>{
-                                    return(
-                                        <tr>
-                                            <td>{p.productId}</td>
-                                            <td>{p.quantity}</td>
-                                            <td>{p.productName}</td>
-                                            <td>{p.productDescription}</td>
-                                            <td>{p.price}</td>
-                                        </tr>
-                                    )
-                                    })}
-                                </tbody>
-                               </table>
-
-                                
+                                <p>
+                                  <b>Id :</b> {d.purchaseOrderWithUsersName.id}
                                 </p>
+                                <p>
+                                  <b>Created by :</b>{" "}
+                                  {d.purchaseOrderWithUsersName.createdBy.name}
+                                </p>
+                                <p>
+                                  <b>time of creation :</b>{" "}
+                                  {d.purchaseOrderWithUsersName.orderDateTime}
+                                </p>
+                                <p>
+                                  <b>status :</b>{" "}
+                                  {d.purchaseOrderWithUsersName.status}
+                                </p>
+                                <p>
+                                  <b>Tracking Number :</b>{" "}
+                                  {d.purchaseOrderWithUsersName.trackingNumber}
+                                </p>
+                                <p>
+                                  <b>Total amount of purchase :</b>{" "}
+                                  {d.purchaseOrderWithUsersName.total}
+                                </p>
+                                <p>
+                                  <b>Billing Address :</b>
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .billingAddressCity
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .billingAddressCity
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .billingAddressState
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .billingAddressCountry
+                                  }
+                                  -
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .billingAddressZipcode
+                                  }
+                                </p>
+                                <p>
+                                  <b>Shipping Address :</b>
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .shippingAddressCity
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .shippingAddressCity
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .shippingAddressState
+                                  }
+                                  ,
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .shippingAddressCountry
+                                  }
+                                  -
+                                  {
+                                    d.purchaseOrderWithUsersName
+                                      .shippingAddressZipcode
+                                  }
+                                </p>
+                                <table>
+                                  <thead>
+                                    <th>Product Id</th>
+                                    <th>Quantity</th>
+                                    <th>Product Name</th>
+                                    <th>Product Description</th>
+                                    <th>Price</th>
+                                  </thead>
+                                  <tbody>
+                                    {d.purchaseProducts.map((p, index) => {
+                                      return (
+                                        <tr>
+                                          <td>{p.productId}</td>
+                                          <td>{p.quantity}</td>
+                                          <td>{p.productName}</td>
+                                          <td>{p.productDescription}</td>
+                                          <td>{p.price}</td>
+                                        </tr>
+                                      );
+                                    })}
+                                  </tbody>
+                                </table>
+                              </p>
                             </div>
                           </div>
                         )}
                       </Popup>
-                      <button
-                        style={{ fontSize: "24px" }}
-                        type="button"
-                        class="btn-btn"
+                      <Popup
+                        trigger={
+                          <button
+                            style={{ fontSize: "24px" }}
+                            type="button"
+                            class="btn-btn"
+                          >
+                            <i class="fas fa-edit"></i>
+                          </button>
+                        }
+                        modal
+                        nested
                       >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      {role=='admin'?
-                      <button
-                        style={{ fontSize: "24px" }}
-                        type="button"
-                        class="btn-btn"
-                        onClick={() => deletePO(d.purchaseOrderWithUsersName.id)}
+                        {(close) => (
+                          <div>
+                            <div>
+                              <button className="close" onClick={() => close()}>
+                                X
+                              </button>
+                            </div>
+                            <div className="productform">
+                              <EditProductPurchaseDetails {...data[index]} />
+                            </div>
+                          </div>
+                        )}
+                      </Popup>
+                      {role == "admin" ? (
+                        <button
+                          style={{ fontSize: "24px" }}
+                          type="button"
+                          class="btn-btn"
+                          onClick={() =>
+                            deletePO(d.purchaseOrderWithUsersName.id)
+                          }
                         >
-                        <i class="far fa-trash-alt"></i>
-                      </button>
-                      :<></>}
-
+                          <i class="far fa-trash-alt"></i>
+                        </button>
+                      ) : (
+                        <></>
+                      )}
                     </td>
                   </td>
                 </tr>
