@@ -23,12 +23,13 @@ function Profile() {
   const user = JSON.parse(localStorage.getItem("User"));
 
   useEffect(() => {
-    setRole(user.role.name);
+    console.log(user.role.name.toLowerCase());
+    setRole(user.role.name.toLowerCase());
     setId(user.id);
     setEmail(user.email);
     setUser(user.name);
     setPhoneNumber(user.phoneNumber);
-  });
+  }, []);
 
   // Function to handle the partial update of user details
   const handleUpdateUserDetails = () => {
@@ -36,7 +37,6 @@ function Profile() {
       name: editedName,
       email: editedEmail,
       phoneNumber: editedPhoneNumber,
-      password: "",
     };
     console.log(editedName, editedEmail, editedPhoneNumber);
 
@@ -56,6 +56,11 @@ function Profile() {
         setEmail(data.email);
         setPhoneNumber(data.phoneNumber);
         setIsEditing(false);
+        // var user = JSON.parse(localStorage.getItem("User"));
+        // user.name = data.name;
+        // user.email = data.email;
+        // user.phoneNumber = data.phoneNumber;
+        // localStorage.setItem("User", JSON.stringify(...user, user));
       })
       .catch((error) => {
         console.error("Error updating user details:", error);
@@ -75,9 +80,9 @@ function Profile() {
         <p>ID: {id}</p>
         {!isEditing ? (
           <>
-            <p>Name: {name}</p>
-            <p>Email: {mail}</p>
-            <p>Phone Number: {phonenumber}</p>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Phone Number: {user.phoneNumber}</p>
             <button className="add_button" onClick={() => setIsEditing(true)}>
               Edit Details
             </button>

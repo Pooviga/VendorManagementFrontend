@@ -5,7 +5,7 @@ import axios from "axios";
 import { colors } from "@mui/material";
 import { useFormik } from "formik";
 import { basicSchema } from "../../schemas";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 function Login() {
   const {
@@ -91,15 +91,17 @@ function Login() {
           localStorage.setItem("token", JSON.stringify(response.data.token));
           const roleName = response.data.user.role.name.toLowerCase();
           console.log(response.data.user.role.name);
-          setRole(roleName);
+          const userData = JSON.parse(localStorage.getItem("User"));
+          console.log("userData", userData);
+          setRole(userData.role.name.toLowerCase());
           const id = response.data.user.id;
-          setId(id);
+          setId(userData.id);
           const mail = response.data.user.email;
-          setEmail(mail);
+          setEmail(userData.email);
           const username = response.data.user.name;
-          setUser(username);
+          setUser(userData.name);
           const phonenumber = response.data.user.phoneNumber;
-          setPhoneNumber(phonenumber);
+          setPhoneNumber(userData.phoneNumber);
           console.log(id);
           console.log(roleName);
           navigate("/dashboard");
