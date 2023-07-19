@@ -47,6 +47,7 @@ export const DataProvider = ({ children }) => {
         axios.post("https://localhost:7017/PurchaseOrder", prop).then((response) => {
 
             console.log(response.data)
+            navigate("/purchaseorders")
 
         })
 

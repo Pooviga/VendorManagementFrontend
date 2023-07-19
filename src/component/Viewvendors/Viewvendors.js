@@ -39,9 +39,6 @@ function Viewvendors() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log("new", details);
-  }, []);
 
   function deleteVendor(id) {
 
@@ -193,7 +190,33 @@ function Viewvendors() {
                                 <p><b>Vendor Website</b>:  {x.vendorWebsite} </p>
                               </p>
                               productDetails<br /><br />
-                              <p>{productDetails[index].id}</p></div>
+                              <table>
+                                <thead>
+                                  <th>Id</th>
+                                  <th>Name</th>
+                                  <th>Description</th>
+                                  <th>Price</th>
+                                </thead>
+                                <tbody>
+                                   {productDetails.map((p,i)=>{
+                                   if(p[i].vendorId=== x.id){
+                                    return(
+
+                                      <tr>
+                                        <td>{p[i].id}</td>
+                                        <td>{p[i].productName}</td>
+                                        <td>{p[i].productDescription}</td>
+                                        <td>{p[i].price}</td>
+                                      </tr>
+                                    )
+                                    }
+                                 
+
+                                   }
+                                   )}
+                                </tbody>
+                                </table>
+                              </div>
 
 
                           </div>

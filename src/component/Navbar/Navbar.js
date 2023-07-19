@@ -42,7 +42,7 @@ function Navbar() {
                             modal nested>
                             {
                                 close => (
-                                    <div>
+                                    <div className=''>
                                         <div>
                                             <button className="close" onClick=
                                                 {() => close()}>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import DataContext from '../../DataContext/DataContext';
 import Popup from 'reactjs-popup'
+import '../Profile/Profile.css'
 
 
 function Profile() {
