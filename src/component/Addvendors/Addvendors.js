@@ -1,63 +1,39 @@
 import { React, useContext, useState } from "react";
-
 import "../Addvendors/addvendors.css";
-
 import DataContext from "../../DataContext/DataContext";
-
 import { useFormik } from "formik";
-
 import { addVendorSchema } from "../../schemas";
 
 function Addvendors() {
   const {
     values,
-
     errors,
-
     setErrors,
-
     touched,
-
     isSubmitting,
-
     handleBlur,
-
     handleChange,
-
     handleSubmit,
   } = useFormik({
     initialValues: {
       vendorName: "",
-
       vendorType: "",
-
       addressLine1: "",
-
       addressLine2: "",
-
       city: "",
-
       state: "",
-
       postalCode: "",
-
       country: "",
-
       telePhone1: "",
-
       telePhone2: "",
-
       vendorEmail: "",
-
       vendorWebsite: "",
     },
-
     validationSchema: addVendorSchema,
   });
 
   const addVendor = () => {
     setNewVendor({ ...newVendor, ...values });
-
     if (
       inputFields.length === 1 &&
       (!inputFields[0].ProductName ||
@@ -67,129 +43,86 @@ function Addvendors() {
       setShowError(true);
     } else {
       let values = [];
-
       inputFields.forEach((val) => {
         if (val.ProductName && val.ProductDescription && val.price > 0) {
           values.push(val);
-        }
+        } 
       });
-
       if (values.length > 0) {
-        setShowError(false);
-
+        setShowError(false)
         setInputFields(values);
-
         newVendor.productDetailsRequest = [...inputFields];
-
         console.log("newvvv", newVendor);
-
         postVendor(newVendor);
       } else {
         setShowError(true);
       }
     }
   };
-
   const { navigate, postVendor } = useContext(DataContext);
-
   const [inputFields, setInputFields] = useState([
     {
       vendorId: "00000000-0000-0000-0000-000000000000",
-
       ProductName: "",
-
       ProductDescription: "",
-
       price: 0,
     },
   ]);
 
   const [showError, setShowError] = useState(false);
-
   const addInputField = (e) => {
     e.preventDefault();
-
     setInputFields([
       ...inputFields,
-
       {
         vendorId: "00000000-0000-0000-0000-000000000000",
-
         ProductName: "",
-
         ProductDescription: "",
-
         price: 0,
       },
     ]);
   };
-
   const removeInputFields = (index) => {
     const rows = [...inputFields];
-
     rows.splice(index, 1);
-
     setInputFields(rows);
   };
-
   const handleChange1 = (index, evnt) => {
     const { name, value } = evnt.target;
-
     const list = [...inputFields];
-
     list[index][name] = value;
-
     setInputFields(list);
-
     console.log(...list);
   };
-
   const [newVendor, setNewVendor] = useState({
     vendorName: "",
-
     isActive: true,
-
     vendorType: "",
-
     addressLine1: "",
-
     addressLine2: "",
-
     city: "",
-
     state: "",
-
     postalCode: "",
-
     country: "",
-
     telePhone1: "",
-
     telePhone2: "",
-
     vendorEmail: "",
-
     vendorWebsite: "",
-
     productDetailsRequest: [],
   });
-
   function filter() {
     for (let i = 0; i < inputFields.length; i++) {
       inputFields[i].price = parseInt(inputFields[i].price);
     }
   }
-
   return (
     <div>
       <form>
         <div className="top">
           <h1>Add Vendor</h1>
         </div>
-
         <div className="formdetails">
           <input type="hidden" id="vendorId"></input>
-
           <div class="sidefields">
             <div className="side1">
               <input
@@ -203,12 +136,10 @@ function Addvendors() {
                   errors.vendorName && touched.vendorName ? "input-error" : ""
                 }
               ></input>
-
               {errors.vendorName && touched.vendorName && (
                 <p className="error">{errors.vendorName}</p>
               )}
             </div>
-
             <div className="side2">
               <input
                 placeholder="Vendor Type"
@@ -221,13 +152,11 @@ function Addvendors() {
                   errors.vendorType && touched.vendorType ? "input-error" : ""
                 }
               ></input>
-
               {errors.vendorType && touched.vendorType && (
                 <p className="error">{errors.vendorType}</p>
               )}
             </div>
           </div>
-
           <div class="sidefields">
             <div div className="side1">
               <input
@@ -243,12 +172,10 @@ function Addvendors() {
                     : ""
                 }
               ></input>
-
               {errors.addressLine1 && touched.addressLine1 && (
                 <p className="error">{errors.addressLine1}</p>
               )}
             </div>
-
             <div div className="side2">
               <input
                 placeholder="Adress-Line 2"
@@ -260,7 +187,6 @@ function Addvendors() {
               ></input>
             </div>
           </div>
-
           <div class="sidefields">
             <div div className="side1">
               <input
@@ -272,12 +198,10 @@ function Addvendors() {
                 onBlur={handleBlur}
                 className={errors.city && touched.city ? "input-error" : ""}
               ></input>
-
               {errors.city && touched.city && (
                 <p className="error">{errors.city}</p>
               )}
             </div>
-
             <div div className="side2">
               <input
                 placeholder="State"
@@ -288,13 +212,11 @@ function Addvendors() {
                 onBlur={handleBlur}
                 className={errors.state && touched.state ? "input-error" : ""}
               ></input>
-
               {errors.state && touched.state && (
                 <p className="error">{errors.state}</p>
               )}
             </div>
           </div>
-
           <div class="sidefields">
             <div className="side1" style={{ width: "50%" }}>
               <input
@@ -308,12 +230,10 @@ function Addvendors() {
                   errors.postalCode && touched.postalCode ? "input-error" : ""
                 }
               ></input>
-
               {errors.postalCode && touched.postalCode && (
                 <p className="error">{errors.postalCode}</p>
               )}
             </div>
-
             <div className="side2">
               <input
                 placeholder="Country"
@@ -326,13 +246,11 @@ function Addvendors() {
                   errors.country && touched.country ? "input-error" : ""
                 }
               ></input>
-
               {errors.country && touched.country && (
                 <p className="error">{errors.country}</p>
               )}
             </div>
           </div>
-
           <div class="sidefields">
             <div className="side1">
               <input
@@ -346,12 +264,10 @@ function Addvendors() {
                   errors.telePhone1 && touched.telePhone1 ? "input-error" : ""
                 }
               ></input>
-
               {errors.telePhone1 && touched.telePhone1 && (
                 <p className="error">{errors.telePhone1}</p>
               )}
             </div>
-
             <div className="side2">
               <input
                 placeholder="Telephone 2"
@@ -363,7 +279,6 @@ function Addvendors() {
               ></input>
             </div>
           </div>
-
           <div class="sidefields">
             <div className="side1">
               <input
@@ -377,12 +292,10 @@ function Addvendors() {
                   errors.vendorEmail && touched.vendorEmail ? "input-error" : ""
                 }
               ></input>
-
               {errors.vendorEmail && touched.vendorEmail && (
                 <p className="error">{errors.vendorEmail}</p>
               )}
             </div>
-
             <div className="side2">
               <input
                 placeholder="Website Link"
@@ -394,18 +307,15 @@ function Addvendors() {
               ></input>
             </div>
           </div>
-
           <div className="sidefield">
             <label className="pdlabel" for="productDetails">
               Product Details:
             </label>
-
             <div>
               <button
                 className="removevendors"
                 onClick={(e) => {
                   addInputField(e);
-
                   handleSubmit(e);
                 }}
               >
@@ -413,11 +323,9 @@ function Addvendors() {
               </button>
             </div>
           </div>
-
           <div>
             {inputFields.map((data, index) => {
               const { ProductName, ProductDescription, price } = data;
-
               return (
                 <div>
                   <div class="sidefield">
@@ -429,15 +337,10 @@ function Addvendors() {
                         id="productName"
                         onChange={(evnt) => {
                           handleChange(evnt);
-
                           let val = { ...data, ProductName: evnt.target.value };
-
                           let li = [...inputFields];
-
                           li[index] = val;
-
                           setInputFields(li);
-
                           //   handleChange1(index, evnt);
                         }}
                         onBlur={handleBlur}
@@ -447,12 +350,10 @@ function Addvendors() {
                             : ""
                         }
                       />
-
                       {errors.productName && touched.productName && (
                         <p className="error">{errors.productName}</p>
                       )}
                     </div>
-
                     <div>
                       <input
                         type="text"
@@ -461,17 +362,12 @@ function Addvendors() {
                         id="productDescription"
                         onChange={(evnt) => {
                           handleChange(evnt);
-
                           let val = {
                             ...data,
-
                             ProductDescription: evnt.target.value,
                           };
-
                           let li = [...inputFields];
-
                           li[index] = val;
-
                           setInputFields(li);
                         }}
                         onBlur={handleBlur}
@@ -482,13 +378,11 @@ function Addvendors() {
                             : ""
                         }
                       />
-
                       {errors.productDescription &&
                         touched.productDescription && (
                           <p className="error">{errors.productDescription}</p>
                         )}
                     </div>
-
                     <div>
                       <input
                         type="text"
@@ -497,17 +391,12 @@ function Addvendors() {
                         id="price"
                         onChange={(evnt) => {
                           handleChange(evnt);
-
                           let val = {
                             ...data,
-
                             price: evnt.target.value,
                           };
-
                           let li = [...inputFields];
-
                           li[index] = val;
-
                           setInputFields(li);
                         }}
                         onBlur={handleBlur}
@@ -515,12 +404,10 @@ function Addvendors() {
                           errors.price && touched.price ? "input-error" : ""
                         }
                       />
-
                       {errors.price && touched.price && (
                         <p className="error">{errors.price}</p>
                       )}
                     </div>
-
                     <div>
                       {inputFields.length !== 1 ? (
                         <button
@@ -541,24 +428,18 @@ function Addvendors() {
               );
             })}
           </div>
-
           {showError && (
             <p className="error">
               Atleast you should provide a product details
             </p>
           )}
-
           <button
             className="addvendors"
             onClick={(e) => {
               e.preventDefault();
-
               handleSubmit(e);
-
               filter();
-
               newVendor.productDetailsRequest = [...inputFields];
-
               addVendor();
             }}
           >
@@ -569,5 +450,4 @@ function Addvendors() {
     </div>
   );
 }
-
 export default Addvendors;
