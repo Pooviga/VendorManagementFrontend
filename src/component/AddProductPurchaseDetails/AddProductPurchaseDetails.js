@@ -12,11 +12,12 @@ import Popup from "reactjs-popup";
 
 import axios from "axios";
 
-function AddProductPurchaseDetails() {
+function AddProductPurchaseDetails(props) {
+  const userData = JSON.parse(localStorage.getItem("User"));
+  const userid = userData.id;
   const [total, setTotal] = useState(0);
 
-  const { navigate, postVendor, postPurchaseOrder, id } =
-    useContext(DataContext);
+  const { postPurchaseOrder } = useContext(DataContext);
 
   const [purchasedProducts, setPurchasedProducts] = useState([]);
 
@@ -24,8 +25,6 @@ function AddProductPurchaseDetails() {
     useContext(DataContext);
 
   var count = 0;
-
-  const user = JSON.parse(localStorage.getItem("User"));
 
   //to extract all vendor ids
 
@@ -102,15 +101,14 @@ function AddProductPurchaseDetails() {
   };
 
   const removeObjectsWithZeroQuantity = () => {
-    const filteredArray = orderedProducts.filter(
-      (object) => object.quantity !== 0
-    );
+
+    const filteredArray = orderedProducts.filter(object => object.quantity !== 0);
 
     setOrderedProducts(filteredArray);
   };
 
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
-    createdBy: user.id,
+    createdBy: userid,
 
     billingAddress: " ",
 
@@ -478,14 +476,14 @@ function AddProductPurchaseDetails() {
               console.log(status);
             } else {
               console.log("filled");
-              console.log("po", {
-                ...newPurchaseOrder,
-                productsPurchased: filteredArray,
-              });
-              postPurchaseOrder({
-                ...newPurchaseOrder,
-                productsPurchased: filteredArray,
-              });
+
+              postPurchaseOrder(
+                {
+                  ...newPurchaseOrder,
+                  productsPurchased: filteredArray,
+                },
+                props.close()
+              );
             }
 
             e.preventDefault();

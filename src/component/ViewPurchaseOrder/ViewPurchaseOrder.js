@@ -12,8 +12,11 @@ import axios from "axios";
 import EditProductPurchaseDetails from "../EditProductPurchaseDetails/EditProductPurchaseDetails";
 
 function ViewPurchaseOrder() {
-  const { role } = useContext(DataContext);
-  const [data, setData] = useState([]);
+  const userData = JSON.parse(localStorage.getItem("User"));
+  const userid = userData.id;
+  console.log(userid);
+  const { role, id, setData, data } = useContext(DataContext);
+  //   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get("https://localhost:7017/PurchaseOrder").then((response) => {
       console.log(response.data);
@@ -22,8 +25,13 @@ function ViewPurchaseOrder() {
     });
   }, []);
 
-  function deletePO(id) {
+  function deletePO(poid) {
     console.log(id);
+    axios
+      .delete("https://localhost:7017/PurchaseOrder/" + poid)
+      .then((response) => {
+        setData(data.filter((x) => x.purchaseOrderWithUsersName.id !== poid));
+      });
   }
 
   const navigate = useNavigate("/");
@@ -52,8 +60,8 @@ function ViewPurchaseOrder() {
                   X
                 </button>
               </div>
-              <div className="productform">
-                <AddProductPurchaseDetails />
+              <div>
+                <AddProductPurchaseDetails close={close} />
               </div>
             </div>
           )}
@@ -84,7 +92,7 @@ function ViewPurchaseOrder() {
                     <td>
                       <Popup
                         trigger={
-                          <button type="button" class="btn-btn">
+                          <button>
                             <i class="far fa-eye"></i>
                           </button>
                         }
@@ -104,7 +112,7 @@ function ViewPurchaseOrder() {
                                 {d.purchaseOrderWithUsersName.description}
                               </h4>
                             </div>
-                            <div className="viewvendordetail">
+                            <div className="viewpurchasedetail">
                               <p>
                                 <p>
                                   <b>Id :</b> {d.purchaseOrderWithUsersName.id}
@@ -210,45 +218,55 @@ function ViewPurchaseOrder() {
                           </div>
                         )}
                       </Popup>
-                      <Popup
-                        trigger={
-                          <button
-                            style={{ fontSize: "24px" }}
-                            type="button"
-                            class="btn-btn"
+                      {d.purchaseOrderWithUsersName.createdBy.id === userid && (
+                        <>
+                          <Popup
+                            trigger={
+                              <button
+                                style={{ fontSize: "24px" }}
+                                type="button"
+                                class="btn-btn"
+                              >
+                                <i class="fas fa-edit"></i>
+                              </button>
+                            }
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <div>
+                                <div>
+                                  <button
+                                    className="close"
+                                    onClick={() => close()}
+                                  >
+                                    X
+                                  </button>
+                                </div>
+                                <div className="productform">
+                                  <EditProductPurchaseDetails
+                                    {...data[index]}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </Popup>
+
+                          {/* <button
+                          // style={{ fontSize: "24px" }}
                           >
                             <i class="fas fa-edit"></i>
+                          </button> */}
+                          <button
+                            // style={{ fontSize: "24px" }}
+
+                            onClick={() =>
+                              deletePO(d.purchaseOrderWithUsersName.id)
+                            }
+                          >
+                            <i class="far fa-trash-alt"></i>
                           </button>
-                        }
-                        modal
-                        nested
-                      >
-                        {(close) => (
-                          <div>
-                            <div>
-                              <button className="close" onClick={() => close()}>
-                                X
-                              </button>
-                            </div>
-                            <div className="productform">
-                              <EditProductPurchaseDetails {...data[index]} />
-                            </div>
-                          </div>
-                        )}
-                      </Popup>
-                      {role == "admin" ? (
-                        <button
-                          style={{ fontSize: "24px" }}
-                          type="button"
-                          class="btn-btn"
-                          onClick={() =>
-                            deletePO(d.purchaseOrderWithUsersName.id)
-                          }
-                        >
-                          <i class="far fa-trash-alt"></i>
-                        </button>
-                      ) : (
-                        <></>
+                        </>
                       )}
                     </td>
                   </td>
