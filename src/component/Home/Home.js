@@ -1,17 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
-import Login from '../Login/Login';
-import Navbar from '../Navbar/Navbar';
-import DataContext from '../../DataContext/DataContext';
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Login from "../Login/Login";
+import Navbar from "../Navbar/Navbar";
+import DataContext from "../../DataContext/DataContext";
 
-const Home = () => {
+const Home = (props) => {
+    console.log(props.islogin)
+  return <>{!props.islogin ? <Login /> : <Navbar />}</>;
+};
 
-
-
-    const { islogin } = useContext(DataContext);
-    return (
-        <>{!islogin ? <Login /> : <Navbar />}</>
-    )
-}
-
-export default Home
+export default Home;
