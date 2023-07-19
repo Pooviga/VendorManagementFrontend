@@ -198,25 +198,26 @@ function Viewvendors() {
                                   <th>Price</th>
                                 </thead>
                                 <tbody>
-                                   {productDetails.map((p,i)=>{
-                                   if(p[i].vendorId=== x.id){
-                                    return(
+                                  {productDetails.map((p, i) => {
+                                    { }
+                                    if (p[i]?.vendorId === x.id) {
+                                      return (
 
-                                      <tr>
-                                        <td>{p[i].id}</td>
-                                        <td>{p[i].productName}</td>
-                                        <td>{p[i].productDescription}</td>
-                                        <td>{p[i].price}</td>
-                                      </tr>
-                                    )
+                                        <tr>
+                                          <td>{p[i].id}</td>
+                                          <td>{p[i].productName}</td>
+                                          <td>{p[i].productDescription}</td>
+                                          <td>{p[i].price}</td>
+                                        </tr>
+                                      )
                                     }
-                                 
 
-                                   }
-                                   )}
+
+                                  }
+                                  )}
                                 </tbody>
-                                </table>
-                              </div>
+                              </table>
+                            </div>
 
 
                           </div>

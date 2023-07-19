@@ -44,48 +44,54 @@ function Profile() {
     };
 
     return (
-        <div className='userdetails'>
-            <h2>User Details</h2>
-            <p>{role}</p>
-            <p>ID: {id}</p>
-            {!isEditing ? (
-                <>
-                    <p>Name: {name}</p>
-                    <p>Email: {mail}</p>
-                    <p>Phone Number: {phonenumber}</p>
-                    <button className="add_button" onClick={() => setIsEditing(true)}>Edit Details</button>
-                </>
-            ) : (
-                <div>
-                    <label>
-                        Name:
-                        <input
-                            type="text"
-                            value={editedName}
-                            onChange={(e) => setEditedName(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        Email:
-                        <input
-                            type="text"
-                            value={editedEmail}
-                            onChange={(e) => setEditedEmail(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        Phone Number:
-                        <input
-                            type="text"
-                            value={editedPhoneNumber}
-                            onChange={(e) => setEditedPhoneNumber(e.target.value)}
-                        />
-                    </label>
-                    <button className="add_button" onClick={handleUpdateUserDetails}>Update Details</button>
-                    <button className="add_button" onClick={() => setIsEditing(false)}>Cancel</button>
-                </div>
-            )}
-        </div>
+        <div>
+            <div style={{
+                justifyContent: "center",
+                textAlign: "center"
+            }}>
+                <h2>My Profile</h2>
+                <p>{role}</p>
+                <p>ID: {id}</p>
+                {!isEditing ? (
+                    <>
+                        <p>Name: {name}</p>
+                        <p>Email: {mail}</p>
+                        <p>Phone Number: {phonenumber}</p>
+                        <button className="add_button" onClick={() => setIsEditing(true)}>Edit Details</button>
+                    </>
+                ) : (
+                    <div>
+                        <label>
+                            Name:
+                            <input
+                                type="text"
+                                value={editedName}
+                                onChange={(e) => setEditedName(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Email:
+                            <input
+                                type="text"
+                                value={editedEmail}
+                                onChange={(e) => setEditedEmail(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            Phone Number:
+                            <input
+                                type="text"
+                                value={editedPhoneNumber}
+                                onChange={(e) => setEditedPhoneNumber(e.target.value)}
+                            />
+                        </label>
+                        <button className="add_button" onClick={handleUpdateUserDetails}>Update Details</button>
+                        <button className="add_button" onClick={() => setIsEditing(false)}>Cancel</button>
+                    </div>
+                )}
+            </div>
+
+        </div >
     );
 }
 
