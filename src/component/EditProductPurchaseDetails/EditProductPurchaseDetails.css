@@ -14,3 +14,11 @@
     color: red;
     text-align: center;
 }
+
+.side1 {
+    width: 50% !important;
+}
+
+.side2 {
+    flex: 1;
+}
