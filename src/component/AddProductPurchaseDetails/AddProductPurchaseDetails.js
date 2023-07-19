@@ -14,11 +14,12 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { purchaseOrderSchema } from "../../schemas";
 
-function AddProductPurchaseDetails() {
+function AddProductPurchaseDetails(props) {
+  const userData = JSON.parse(localStorage.getItem("User"));
+  const userid = userData.id;
   const [total, setTotal] = useState(0);
 
-  const { navigate, postVendor, postPurchaseOrder, id } =
-    useContext(DataContext);
+  const { postPurchaseOrder } = useContext(DataContext);
 
   const [purchasedProducts, setPurchasedProducts] = useState([]);
 
@@ -26,8 +27,6 @@ function AddProductPurchaseDetails() {
     useContext(DataContext);
 
   var count = 0;
-
-  const user = JSON.parse(localStorage.getItem("User"));
 
   //to extract all vendor ids
 
@@ -150,15 +149,14 @@ function AddProductPurchaseDetails() {
   };
 
   const removeObjectsWithZeroQuantity = () => {
-    const filteredArray = orderedProducts.filter(
-      (object) => object.quantity !== 0
-    );
+
+    const filteredArray = orderedProducts.filter(object => object.quantity !== 0);
 
     setOrderedProducts(filteredArray);
   };
 
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
-    createdBy: user.id,
+    createdBy: userid,
 
     billingAddress: "",
 

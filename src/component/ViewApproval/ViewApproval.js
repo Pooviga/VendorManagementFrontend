@@ -1,41 +1,38 @@
-import React, { useState, useEffect, useContext } from 'react'
-import ViewApprovalCard from '../ViewApprovalCard/ViewApprovalCard'
+import React, { useState, useEffect, useContext } from "react";
+import ViewApprovalCard from "../ViewApprovalCard/ViewApprovalCard";
 import axios from "axios";
-import './ViewApproval.css'
-import ViewPurchaseTable from '../ViewPurchaseTable/ViewPurchaseTable';
-import DataContext from '../../DataContext/DataContext';
-
-
+import "./ViewApproval.css";
+import ViewPurchaseTable from "../ViewPurchaseTable/ViewPurchaseTable";
+import DataContext from "../../DataContext/DataContext";
 
 const ViewApproval = () => {
-    // const [data, setData] = useState([]);
-    const { allData, setAllData } = useContext(DataContext)
+  // const [data, setData] = useState([]);
+  const { allData, setAllData } = useContext(DataContext);
 
+  console.log(allData);
 
-    console.log(allData)
+  return (
+    <div className="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Purchase Order Id</th>
+            <th>User Id</th>
+            <th>Order Placed By</th>
+            <th>Ordered On</th>
+            <th>Total Amount</th>
+            <th>Vendor Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-    return (
-        <div className="container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>PO Id</th>
-                        <th>User Id</th>
-                        <th>Order Placed By</th>
-                        <th>Ordered On</th>
-                        <th>Total Amount</th>
-                        <th>Vendor Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
+        {allData.map((d) => {
+          console.log(allData);
+          return <ViewPurchaseTable key={d.id} data={d} />;
+        })}
+      </table>
+    </div>
+  );
+};
 
-                {allData.map((d) => {
-                    console.log(allData)
-                    return <ViewPurchaseTable key={d.id} data={d} />
-                })}
-            </table>
-        </div>
-    )
-}
-
-export default ViewApproval
+export default ViewApproval;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaAlignRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import "../Viewvendors/Viewvendors.css";
@@ -7,12 +7,16 @@ import "reactjs-popup/dist/index.css";
 import Popup from "reactjs-popup";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import DataContext from "../../DataContext/DataContext";
 import EditVendor from "../EditVendor/EditVendor";
 
 function Viewvendors() {
   const navigate = useNavigate("/");
-  const [vendorDetails, setVendorDetails] = useState([]);
-  const [productDetails, setProductDetails] = useState([]);
+  const userData = JSON.parse(localStorage.getItem("User"));
+  const role = userData.role.name.toLowerCase();
+  console.log(role);
+  const { vendorDetails, productDetails, setVendorDetails, setProductDetails } =
+    useContext(DataContext);
 
   const [details, setDetails] = useState([]);
   var data = [];
@@ -99,7 +103,7 @@ function Viewvendors() {
                 </button>
               </div>
               <div>
-                <Addvendors />
+                <Addvendors close={close} />
               </div>
             </div>
           )}
@@ -200,7 +204,19 @@ function Viewvendors() {
                                 <th>Price</th>
                               </thead>
                               <tbody>
-                                {productDetails.map((p, i) => {
+                                {console.log(productDetails)}
+                                {productDetails[index].map((data) => {
+                                  return (
+                                    <tr>
+                                      <td>{data.id}</td>
+                                      <td>{data.productName}</td>
+                                      <td>{data.productDescription}</td>
+                                      <td>{data.price}</td>
+                                    </tr>
+                                  );
+                                })}
+
+                                {/* {productDetails.map((p, i) => {
                                   {
                                   }
                                   if (p[i]?.vendorId === x.id) {
@@ -213,52 +229,62 @@ function Viewvendors() {
                                       </tr>
                                     );
                                   }
-                                })}
+                                })} */}
                               </tbody>
                             </table>
                           </div>
                         </div>
                       )}
                     </Popup>
+                    {role === "admin" && (
+                      <>
+                        <Popup
+                          trigger={
+                            <button
+                              style={{ fontSize: "24px" }}
+                              type="button"
+                              class="btn-btn"
+                            >
+                              <i class="fas fa-edit"></i>
+                            </button>
+                          }
+                          modal
+                          nested
+                        >
+                          {(close) => (
+                            <div className="modals">
+                              <div>
+                                <button
+                                  className="close_cross"
+                                  onClick={() => close()}
+                                >
+                                  X
+                                </button>
+                              </div>
+                              <div>
+                                <EditVendor {...details[index]} close={close} />
+                              </div>
+                            </div>
+                          )}
+                        </Popup>
 
-                    <Popup
-                      trigger={
-                        <button
+                        {/* <button
                           style={{ fontSize: "24px" }}
                           type="button"
                           class="btn-btn"
                         >
                           <i class="fas fa-edit"></i>
+                        </button> */}
+                        <button
+                          style={{ fontSize: "24px" }}
+                          type="button"
+                          class="btn-btn"
+                          onClick={() => deleteVendor(x.id)}
+                        >
+                          <i class="far fa-trash-alt"></i>
                         </button>
-                      }
-                      modal
-                      nested
-                    >
-                      {(close) => (
-                        <div className="modals">
-                          <div>
-                            <button
-                              className="close_cross"
-                              onClick={() => close()}
-                            >
-                              X
-                            </button>
-                          </div>
-                          <div>
-                            <EditVendor {...details[index]} />
-                          </div>
-                        </div>
-                      )}
-                    </Popup>
-
-                    <button
-                      style={{ fontSize: "24px" }}
-                      type="button"
-                      class="btn-btn"
-                      onClick={() => deleteVendor(x.id)}
-                    >
-                      <i class="far fa-trash-alt"></i>
-                    </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               );
