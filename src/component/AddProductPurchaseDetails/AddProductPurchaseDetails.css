@@ -6,3 +6,8 @@
     margin-bottom: 50px;
 }
 
+.purchaseorderview {
+    height: 500px !important;
+    overflow-y: scroll !important;
+    padding: 20px !important;
+}
