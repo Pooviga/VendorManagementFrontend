@@ -14,6 +14,7 @@ function Dashboard() {
     const [monthlyexpense,setMonthlyexpense] = useState(5000);
     const [yearlyexpense,setYearlyexpense] = useState(2000);
     let barData=[];
+    let pieData=[];
     
       useEffect(() => {
         axios.get('https://localhost:7017/get/count/vendors').then((response) => {
@@ -32,6 +33,10 @@ function Dashboard() {
         barData =(response.data);
         console.log(response.data)  
     });
+      axios.get("https://localhost:7017/PurchaseOrder/get/currentYear/list-expenses").then((response) => {
+      pieData =(response.data);
+      console.log(response.data)  
+  });
     }, []);
 
     let barChartData = {
@@ -56,6 +61,28 @@ function Dashboard() {
         }
          ]
          };
+         let pieChartData = {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug',"Sep",'Oct','Nov','dec'],
+          datasets: [
+           {
+              backgroundColor: 'rgba(255,99,132,0.2)',
+              backgroundColor: [
+                "rgba(75,192,192,1)",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0",
+              ],
+            borderWidth: 1,
+            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+            hoverBorderColor: 'rgba(255,99,132,1)',
+            data: [10,20,40,20,40,30,20,60,40,30,20,60],//barData here
+            options: {
+             responsive: true
+            }
+          }
+           ]
+           };
     
       // IF YOU SEE THIS COMMENT: I HAVE GOOD EYESIGHT
     
@@ -88,7 +115,7 @@ function Dashboard() {
             <BarChart chartData={barChartData}  className="bar-chart"/>
             </div>
             <div className="pie-chart">
-            <PieChart chartData={barChartData} className="pie-chart"/>
+            <PieChart chartData={pieChartData} className="pie-chart"/>
             </div>
           </div>
         </div>

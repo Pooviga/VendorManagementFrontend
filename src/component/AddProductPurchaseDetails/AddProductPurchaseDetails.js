@@ -1,14 +1,14 @@
 import { React, useContext, useEffect, useState } from "react";
-import "../Addvendors/addvendors.css";
+import "../AddProductPurchaseDetails/AddProductPurchaseDetails.css";
 import DataContext from "../../DataContext/DataContext";
 import AddProduct from "../AddProduct/AddProduct";
 import TextField from "@mui/material/TextField";
 import Popup from "reactjs-popup";
 import axios from "axios";
 
-function Addvendors() {
+function AddProductPurchaseDetails() {
   const [total, setTotal] = useState(0);
-  const { navigate, postVendor, postPurchaseOrder } = useContext(DataContext);
+  const { navigate, postVendor, postPurchaseOrder,id } = useContext(DataContext);
   const [purchasedProducts, setPurchasedProducts] = useState([]);
   const { vendorDetails, setVendorDetails, productDetails, setProductDetails } =
     useContext(DataContext);
@@ -44,7 +44,7 @@ function Addvendors() {
     axios
       .get("https://localhost:7017/api/VendorDetails/" + id)
       .then((response) => {
-
+        console.log(response.data);
         setFilteredProducts(response.data.productDetails);
       });
   }
@@ -79,7 +79,7 @@ function Addvendors() {
   };
 
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
-    createdBy: 0,
+    createdBy: id,
     billingAddress: " ",
     billingAddressCity: " ",
     billingAddressState: " ",
@@ -96,14 +96,12 @@ function Addvendors() {
   });
 
   return (
-    // <div className="wholevendors">
 
-    <form>
-      <div className="top">
-        <h1>Purchase order</h1>
-      </div>
+
+    <form className="purchaseForm">
+              <h1>Purchase order</h1>
+      
       <div>
-        <input type="hidden" id="userId"></input>
         <div class="sidefields">
 
           <input
@@ -309,7 +307,7 @@ function Addvendors() {
             id="colours"
             onChange={(e) => {
               {
-
+                console.log(e.target.value);
                 productFilter(e.target.value);
               }
             }}
@@ -409,4 +407,4 @@ function Addvendors() {
   );
 }
 
-export default Addvendors;
+export default AddProductPurchaseDetails;
