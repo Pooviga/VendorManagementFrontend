@@ -17,6 +17,13 @@
 	background: none;
 	place-content: center;
 }
+.navbarright{
+	display: flex;
+	align-items: center;
+	height: 50px;
+	gap:10px;
+margin-right: 20px;
+}
 
 .nav-menu {
 	background-color: #091644;
@@ -58,6 +65,9 @@
 
 .profile_icon {
 	font-size: 24px;
+	border-radius: 50px;
+	background-color: white;
+	color: #091644;
 }
 
 .nav-text a:hover {
@@ -65,9 +75,7 @@
 }
 
 .heading {
-	text-align: center;
 	color: white;
-	margin-right: 10px;
 }
 
 .popup_content {
