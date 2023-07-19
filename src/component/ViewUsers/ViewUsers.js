@@ -8,7 +8,7 @@ function ViewUsers() {
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
-    const { id } = useContext(DataContext)
+    const { id, role } = useContext(DataContext)
 
 
     useEffect(() => {
@@ -104,8 +104,7 @@ function ViewUsers() {
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>Role</th>
-                            {/* <th>Status</th>
-                            <th>IsActive</th> */}
+                            <th>IsActive</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -131,23 +130,32 @@ function ViewUsers() {
                                         user.role.name
                                     )}
                                 </td>
-                                {/* <td>{user.approvalStatus}</td>
-                                <td>{user.isActive ? 'true' : 'false'}</td> */}
+                                <td>{user.isActive ? 'true' : 'false'}</td>
+                                        
+                                {user.isActive  &&
+                                    <>
+                                        <td> 
+                                            {user.editing ? (
+                                                <button onClick={() => handleSave(index)}>Update</button>
+                                            ) : (
 
-                                <td>
-                                    {user.editing ? (
-                                        <button onClick={() => handleSave(index)}>Update</button>
-                                    ) : (
-                                        <>
-                                            <button onClick={() => handleEdit(index)}>
-                                                <i className="fas fa-edit"></i>
-                                            </button>
-                                            <button onClick={() => handleDelete(user.id)}>
-                                                <i className="far fa-trash-alt"></i>
-                                            </button>
-                                        </>
-                                    )}
-                                </td>
+                                                <>
+
+                                                    <button onClick={() => handleEdit(index)}>
+                                                        <i className="fas fa-edit"></i>
+                                                    </button>
+                                                    <button onClick={() => handleDelete(user.id)}>
+                                                        <i className="far fa-trash-alt"></i>
+                                                    </button>
+                                                </>
+
+                                            )}
+                                        </td>
+                                    </>
+
+                                }
+
+
                             </tr>
                         ))}
                     </tbody>

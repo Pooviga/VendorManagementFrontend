@@ -35,7 +35,7 @@ const ViewPurchaseTable = (props) => {
                 // })
                 // props.setData((prevData) => { return prevData.filter(x => x.purchaseOrderWithUsersName.Id !== poId) })
                 setAllData(allData.filter(x => x.purchaseOrderWithUsersName.id !== poId))
-                
+
 
                 console.log('User approved successfully', allData);
                 // console.log(data)
@@ -94,10 +94,6 @@ const ViewPurchaseTable = (props) => {
                 <td>{data.purchaseOrderWithUsersName.total}</td>
                 <td>{data.vendorForPurchaseOrder.vendorName}</td>
                 <td>
-                    {/* <button type="button" class="btn-btn" onClick={() => setIsOpen(true)}>
-                        <i class="far fa-eye"></i>
-                    </button> */}
-
                     <Popup className='popmodal' trigger=
 
                         {<button type="button" class="btn-btn" onClick={() => { }}>
@@ -110,7 +106,7 @@ const ViewPurchaseTable = (props) => {
 
                             close => (
 
-                                <div className='modal'>
+                                <div>
 
                                     <div>
 
@@ -124,10 +120,10 @@ const ViewPurchaseTable = (props) => {
 
                                     </div>
 
-                                    <div className='content'>
+                                    <div>
 
-                                        <div className="Cards">
-                                            <div className='viewdetails'>
+                                        <div >
+                                            <div >
                                                 <p><b>Purchased Order Id</b>: {props.data.purchaseOrderWithUsersName.id}</p>
                                             </div>
                                             <p><b>Status</b>: {status}</p>

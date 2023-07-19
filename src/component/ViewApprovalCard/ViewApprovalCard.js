@@ -1,17 +1,17 @@
-
-import React from 'react';
+import React, { useContext } from 'react';
 import './ViewApprovalCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Popup from 'reactjs-popup';
+import DataContext, { DataProvider } from "../../DataContext/DataContext";
 
 const ViewApprovalCard = (props) => {
     const status = props.data.purchaseOrderWithUsersName.status;
     console.log(props.data.purchaseOrderWithUsersName);
-
+    const { role, id } = useContext(DataContext);
     if (status === 'Pending') {
         return (
-            <div className="Card">
-                <div className='viewdetails'>
+            <div>
+                <div >
                     <p><b>Purchased Order Id</b>: {props.data.purchaseOrderWithUsersName.id}</p>
                 </div>
                 <p><b>Status</b>: {status}</p>
@@ -54,10 +54,13 @@ const ViewApprovalCard = (props) => {
                 </div>
 
                 <p><b>Terms and Conditions</b>: {props.data.purchaseOrderWithUsersName.termsAndConditions}</p>
-                <div className="buttons">
-                    <button className="btn">Approve</button>
-                    <button className="btn">Decline</button>
-                </div>
+                {(role === 'admin' || role == 'approver') &&
+                    <div className="buttons">
+                        <button className="btn">Approve</button>
+                        <button className="btn">Decline</button>
+                    </div>
+                }
+
             </div>
         );
     } else {

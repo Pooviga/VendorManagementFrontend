@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaAlignRight } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import '../Viewvendors/Viewvendors.css'
@@ -7,14 +7,15 @@ import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup'
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import DataContext from '../../DataContext/DataContext'
 
 
 function Viewvendors() {
   const navigate = useNavigate("/")
   const [vendorDetails, setVendorDetails] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
-
-
+  const { id, role } = useContext(DataContext)
+  console.log(role)
   const [details, setDetails] = useState([]);
   var data = [];
   var vdata = [];
@@ -85,29 +86,29 @@ function Viewvendors() {
     <div class="viewvendorswholediv">
       <div className="topics">
         <h3 className="rh2">Vendors</h3>
-        {/* <Popup trigger={<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>} position="left center">
-                    <div><Addvendors /></div>
-                </Popup> */}
-        <Popup trigger=
-          {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>}
-          modal nested>
-          {
-            close => (
-              <div className='modals'>
-                <div>
-                  <button className="close_cross" onClick=
-                    {() => close()}>
-                    X
-                  </button>
-                </div>
-                <div>
-                  <Addvendors />
-                </div>
+        {role === 'admin' &&
+          <Popup trigger=
+            {<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>}
+            modal nested>
+            {
+              close => (
+                <div className='modals'>
+                  <div>
+                    <button className="close_cross" onClick=
+                      {() => close()}>
+                      X
+                    </button>
+                  </div>
+                  <div>
+                    <Addvendors />
+                  </div>
 
-              </div>
-            )
-          }
-        </Popup>
+                </div>
+              )
+            }
+          </Popup>
+        }
+
       </div>
 
       <div className='table_overflow'>
@@ -229,13 +230,17 @@ function Viewvendors() {
                     </Popup>
 
 
+                    {role === 'admin' &&
+                      <>
+                        <button style={{ fontSize: '24px' }} type="button" class="btn-btn">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button style={{ fontSize: '24px' }} type="button" class="btn-btn" onClick={() => deleteVendor(x.id)}>
+                          <i class="far fa-trash-alt"></i>
+                        </button>
+                      </>
+                    }
 
-                    <button style={{ fontSize: '24px' }} type="button" class="btn-btn">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button style={{ fontSize: '24px' }} type="button" class="btn-btn" onClick={() => deleteVendor(x.id)}>
-                      <i class="far fa-trash-alt"></i>
-                    </button>
                   </td>
                 </tr>
               );

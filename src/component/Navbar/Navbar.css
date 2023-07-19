@@ -85,11 +85,13 @@
 } */
 .popup-content {
 	background: none !important;
-	height: 550px !important;
-	/* overflow-y: scroll !important; */
+	height: 500px !important;
+	overflow-y: scroll !important;
 	padding: 30px !important;
 	background-color: white !important;
 	border-radius: 12px !important;
+	width: max-content !important;
+
 }
 
 .nav-menu-items {

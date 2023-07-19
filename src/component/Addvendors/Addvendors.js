@@ -64,7 +64,7 @@ function Addvendors() {
                 <div className="top">
                     <h1>Add Vendor</h1>
                 </div>
-                <div className='formdetails'>
+                <div>
                     <input type="hidden" id="vendorId"></input>
                     <div class="sidefields">
                         <input placeholder="Vendor Name" type="text" id="vendorName" name="vendorName" required onChange={(e) => { setNewVendor({ ...newVendor, vendorName: e.target.value }) }}></input>
