@@ -48,6 +48,7 @@ function EditVendor(props) {
       )
       .then((response) => {
         console.log(response);
+        props.close();
       });
   };
 

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import DataContext, { DataProvider } from "../../DataContext/DataContext";
 import { logDOM } from "@testing-library/react";
 import axios from "axios";
+import EditProductPurchaseDetails from "../EditProductPurchaseDetails/EditProductPurchaseDetails";
 
 function ViewPurchaseOrder() {
   const userData = JSON.parse(localStorage.getItem("User"));
@@ -219,11 +220,43 @@ function ViewPurchaseOrder() {
                       </Popup>
                       {d.purchaseOrderWithUsersName.createdBy.id === userid && (
                         <>
-                          <button
+                          <Popup
+                            trigger={
+                              <button
+                                style={{ fontSize: "24px" }}
+                                type="button"
+                                class="btn-btn"
+                              >
+                                <i class="fas fa-edit"></i>
+                              </button>
+                            }
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <div>
+                                <div>
+                                  <button
+                                    className="close"
+                                    onClick={() => close()}
+                                  >
+                                    X
+                                  </button>
+                                </div>
+                                <div className="productform">
+                                  <EditProductPurchaseDetails
+                                    {...data[index]}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </Popup>
+
+                          {/* <button
                           // style={{ fontSize: "24px" }}
                           >
                             <i class="fas fa-edit"></i>
-                          </button>
+                          </button> */}
                           <button
                             // style={{ fontSize: "24px" }}
 

@@ -8,6 +8,7 @@ import Popup from "reactjs-popup";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DataContext from "../../DataContext/DataContext";
+import EditVendor from "../EditVendor/EditVendor";
 
 function Viewvendors() {
   const navigate = useNavigate("/");
@@ -237,13 +238,43 @@ function Viewvendors() {
                     </Popup>
                     {role === "admin" && (
                       <>
-                        <button
+                        <Popup
+                          trigger={
+                            <button
+                              style={{ fontSize: "24px" }}
+                              type="button"
+                              class="btn-btn"
+                            >
+                              <i class="fas fa-edit"></i>
+                            </button>
+                          }
+                          modal
+                          nested
+                        >
+                          {(close) => (
+                            <div className="modals">
+                              <div>
+                                <button
+                                  className="close_cross"
+                                  onClick={() => close()}
+                                >
+                                  X
+                                </button>
+                              </div>
+                              <div>
+                                <EditVendor {...details[index]} close={close} />
+                              </div>
+                            </div>
+                          )}
+                        </Popup>
+
+                        {/* <button
                           style={{ fontSize: "24px" }}
                           type="button"
                           class="btn-btn"
                         >
                           <i class="fas fa-edit"></i>
-                        </button>
+                        </button> */}
                         <button
                           style={{ fontSize: "24px" }}
                           type="button"
