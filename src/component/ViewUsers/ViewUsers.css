@@ -14,3 +14,14 @@
 .search-container {
     width: 40%;
 }
+.update_button{
+    font-family: 'Poppins', sans-serif;
+    background-color: #091644;
+    color: white;
+    padding: 5px 5px;
+    margin: 35px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+}

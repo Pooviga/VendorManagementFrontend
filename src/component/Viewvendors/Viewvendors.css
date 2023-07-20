@@ -71,7 +71,31 @@ input[type="submit"] {
     width: auto;
 }
 
+.viewvendorcross{
+    font-size: 15px;
+width: 30px;
+height: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+    /* padding: 10px; */
+    position:absolute;
+    top: -9px;
+    right: 19px;
 
+    border-radius: 50%;
+
+    border: none;
+
+    background-color: #091644;
+
+    color: white;
+
+    float: right;
+
+    line-height: 0;
+    cursor: pointer;
+}
 
 /* .back_button {
     width: 100px;
@@ -186,7 +210,29 @@ td {
 }
 
 .close_cross {
-    float: right;
+    font-size: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        /* padding: 10px; */
+        position:absolute;
+        top: -9px;
+        right: -3px;
+    
+        border-radius: 50%;
+    
+        border: none;
+    
+        background-color: #091644;
+    
+        color: white;
+    
+        float: right;
+    
+        line-height: 0;
+        cursor: pointer;
 }
 
 .btn-btn {

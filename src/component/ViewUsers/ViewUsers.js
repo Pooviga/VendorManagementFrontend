@@ -3,6 +3,9 @@ import React, { useEffect, useState, useContext } from "react";
 import DataContext from "../../DataContext/DataContext";
 import "./ViewUsers.css";
 
+import { Tooltip } from "@mui/material";
+
+import Button from "@mui/material/Button";
 function ViewUsers() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -137,23 +140,32 @@ function ViewUsers() {
                 {user.isActive ? (
                   <td>
                     {user.editing ? (
-                      <button onClick={() => handleSave(index)}>Update</button>
+                      <button
+                        class="update_button"
+                        onClick={() => handleSave(index)}
+                      >
+                        Update
+                      </button>
                     ) : (
                       <>
-                        <button
-                          type="button"
-                          class="btn-btn"
-                          onClick={() => handleEdit(index)}
-                        >
-                          <i className="fas fa-edit"></i>
-                        </button>
-                        <button
-                          type="button"
-                          class="btn-btn"
-                          onClick={() => handleDelete(user.id)}
-                        >
-                          <i className="far fa-trash-alt"></i>
-                        </button>
+                        <Tooltip title="Edit">
+                          <Button
+                            type="button"
+                            class="btn-btn"
+                            onClick={() => handleEdit(index)}
+                          >
+                            <i className="fas fa-edit"></i>
+                          </Button>
+                        </Tooltip>
+                        <Tooltip title="Delete">
+                          <Button
+                            type="button"
+                            class="btn-btn"
+                            onClick={() => handleDelete(user.id)}
+                          >
+                            <i className="far fa-trash-alt"></i>
+                          </Button>
+                        </Tooltip>
                       </>
                     )}
                   </td>

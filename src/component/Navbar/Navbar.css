@@ -88,10 +88,6 @@ color: white;
 	letter-spacing: 1px;
 }
 
-.popup_content {
-	padding: 30px;
-}
-
 
 /* .contents {
 	max-width: 600px;
@@ -102,6 +98,8 @@ color: white;
 	height: 600px;
 } */
 .popup-content {
+	padding: 30px;
+
 	background: none !important;
 	/* height: 500px !important; */
 	/* overflow-y: scroll !important; */

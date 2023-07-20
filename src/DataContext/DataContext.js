@@ -55,6 +55,7 @@ export const DataProvider = ({ children }) => {
         setData(data);
       });
       alert("Your purchase order placed successfully");
+      closing.close();
     });
   }
 

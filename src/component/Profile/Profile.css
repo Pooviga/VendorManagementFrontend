@@ -4,3 +4,39 @@
     justify-content: center !important;
     align-items: center !important;
 }
+.closeprofile{
+    font-size: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        /* padding: 10px; */
+        position:absolute;
+        top: -9px;
+        right: -3px;
+    
+        border-radius: 50%;
+    
+        border: none;
+    
+        background-color: #091644;
+    
+        color: white;
+    
+        float: right;
+    
+        line-height: 0;
+        cursor: pointer;
+}
+.profileicon{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    font-size: 50px;
+    background-color: #091644;
+    color: white;
+}
+.profile_icon{
+    cursor: pointer;
+}

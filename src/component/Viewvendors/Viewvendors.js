@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import DataContext from "../../DataContext/DataContext";
 import EditVendor from "../EditVendor/EditVendor";
+import { Tooltip } from "@mui/material";
+import Button from "@mui/material/Button";
 
 function Viewvendors() {
   const navigate = useNavigate("/");
@@ -80,33 +82,37 @@ function Viewvendors() {
         {/* <Popup trigger={<button className="add_button" onClick={() => { navigate('/addvendor') }}>Add Vendor</button>} position="left center">
                     <div><Addvendors /></div>
                 </Popup> */}
-        <Popup
-          trigger={
-            <button
-              className="add_button"
-              onClick={() => {
-                navigate("/addvendor");
-              }}
-            >
-              Add Vendor
-            </button>
-          }
-          modal
-          nested
-        >
-          {(close) => (
-            <div className="modals">
-              <div>
-                <button className="close_cross" onClick={() => close()}>
-                  X
+        {role === "admin" && (
+          <>
+            <Popup
+              trigger={
+                <button
+                  className="add_button"
+                  onClick={() => {
+                    navigate("/addvendor");
+                  }}
+                >
+                  Add Vendor
                 </button>
-              </div>
-              <div>
-                <Addvendors close={close} />
-              </div>
-            </div>
-          )}
-        </Popup>
+              }
+              modal
+              nested
+            >
+              {(close) => (
+                <div className="modals">
+                  <div>
+                    <button className="close_cross" onClick={() => close()}>
+                      X
+                    </button>
+                  </div>
+                  <div>
+                    <Addvendors close={close} />
+                  </div>
+                </div>
+              )}
+            </Popup>
+          </>
+        )}
       </div>
 
       <div className="table_overflow">
@@ -137,9 +143,9 @@ function Viewvendors() {
                   <td>
                     <Popup
                       trigger={
-                        <button type="button" class="btn-btn">
+                        <Button type="button" class="btn-btn">
                           <i class="far fa-eye"></i>
-                        </button>
+                        </Button>
                       }
                       modal
                       nested
@@ -156,6 +162,7 @@ function Viewvendors() {
                         >
                           <div>
                             <button
+                              className="viewvendorcross"
                               style={{ float: "right" }}
                               onClick={() => close()}
                             >
@@ -248,13 +255,15 @@ function Viewvendors() {
                       <>
                         <Popup
                           trigger={
-                            <button
-                              style={{ fontSize: "24px" }}
-                              type="button"
-                              class="btn-btn"
-                            >
-                              <i class="fas fa-edit"></i>
-                            </button>
+                            <Tooltip title="Edit">
+                              <Button
+                                style={{ fontSize: "24px" }}
+                                type="button"
+                                class="btn-btn"
+                              >
+                                <i class="fas fa-edit"></i>
+                              </Button>
+                            </Tooltip>
                           }
                           modal
                           nested
@@ -275,14 +284,16 @@ function Viewvendors() {
                             </div>
                           )}
                         </Popup>
-                        <button
-                          style={{ fontSize: "24px" }}
-                          type="button"
-                          class="btn-btn"
-                          onClick={() => deleteVendor(x.id)}
-                        >
-                          <i class="far fa-trash-alt"></i>
-                        </button>
+                        <Tooltip title="Delete">
+                          <Button
+                            style={{ fontSize: "24px" }}
+                            type="button"
+                            class="btn-btn"
+                            onClick={() => deleteVendor(x.id)}
+                          >
+                            <i class="far fa-trash-alt"></i>
+                          </Button>
+                        </Tooltip>
                       </>
                     )}
                   </td>
