@@ -116,7 +116,14 @@ function Addvendors() {
     }
   }
   return (
-    <div>
+    <div
+      style={{
+        height: "450px",
+        overflowY: "scroll",
+        backgroundColor: "white",
+        padding: "40px",
+      }}
+    >
       <form>
         <div className="top">
           <h1>Add Vendor</h1>

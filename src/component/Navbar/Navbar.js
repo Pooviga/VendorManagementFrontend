@@ -40,16 +40,22 @@ function Navbar(props) {
   };
 
   const [isOpen, setIsOpen] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("User"));
+  const username = userData.name;
 
   return (
     <div>
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
+          <div className="Username">
+            <Link className="menu-bars">
+              <FaIcons.FaBars onClick={showSidebar} />
+            </Link>
+            <h4 className="heading">VENDOR MANAGEMENT SYSTEM</h4>
+          </div>
+
           <div className="navbarright">
-            <h3 className="heading">VENDOR MANAGEMENT SYSTEM</h3>
+            <p>Welcome, {username}</p>
 
             {/* <button onClick={() => { setIslogin(false); navigate('/') }}>Logout</button> */}
 
@@ -68,7 +74,11 @@ function Navbar(props) {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-
+            <div></div>
+            <h2 style={{ marginLeft: "15px" }}>
+              <span style={{ color: "white", marginRight: "2px" }}>&naf</span>
+              <span style={{ color: "#00B0F0", margin: "0" }}>vms</span>
+            </h2>
             {role == "admin" ? (
               <div>
                 <li className="nav-text">
