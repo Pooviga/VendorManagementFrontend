@@ -56,29 +56,7 @@ function Navbar(props) {
             {/* <button className='profile_icon' onClick={() => setIsOpen(true)}><i class="fa fa-user" aria-hidden="true"></i></button> */}
 
             <div>
-              <Popup
-                trigger={
-                  <button className="profile_icon" onClick={() => {}}>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  </button>
-                }
-                modal
-                nested
-              >
-                {(close) => (
-                  <div className="">
-                    <div>
-                      <button className="close" onClick={() => close()}>
-                        X
-                      </button>
-                    </div>
-
-                    <div>
-                      <Profile />
-                    </div>
-                  </div>
-                )}
-              </Popup>
+              <Profile />
             </div>
           </div>
         </div>
