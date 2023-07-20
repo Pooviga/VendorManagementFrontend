@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import DataContext from "../../DataContext/DataContext";
 import Popup from "reactjs-popup";
 import "../Profile/Profile.css";
+import { Tooltip } from "@mui/material";
+import Icon from "@mui/material/Icon";
+import IconButton from "@mui/material/IconButton";
 
 function Profile() {
   const {
@@ -31,12 +34,16 @@ function Profile() {
     setPhoneNumber(user.phoneNumber);
   }, []);
 
+  let Ename = user.name;
+  let Eemail = user.email;
+  let EphoneNumber = user.phoneNumber;
+
   // Function to handle the partial update of user details
   const handleUpdateUserDetails = () => {
     const updatedUserData = {
-      name: editedName,
-      email: editedEmail,
-      phoneNumber: editedPhoneNumber,
+      name: name,
+      email: mail,
+      phoneNumber: phonenumber,
     };
     console.log(editedName, editedEmail, editedPhoneNumber);
 
@@ -55,12 +62,18 @@ function Profile() {
         setUser(data.name);
         setEmail(data.email);
         setPhoneNumber(data.phoneNumber);
+        Ename = data.name;
+        Eemail = data.email;
+        EphoneNumber = data.phoneNumber;
         setIsEditing(false);
-        // var user = JSON.parse(localStorage.getItem("User"));
-        // user.name = data.name;
-        // user.email = data.email;
-        // user.phoneNumber = data.phoneNumber;
-        // localStorage.setItem("User", JSON.stringify(...user, user));
+        var localData = JSON.parse(localStorage.getItem("User"));
+        localData = {
+          ...localData,
+          email: data.email,
+          name: data.name,
+          phoneNumber: data.phoneNumber,
+        };
+        localStorage.setItem("User", JSON.stringify(localData));
       })
       .catch((error) => {
         console.error("Error updating user details:", error);
@@ -70,9 +83,11 @@ function Profile() {
   return (
     <Popup
       trigger={
-        <button className="profile_icon" onClick={() => {}}>
-          <i class="fa fa-user" aria-hidden="true"></i>
-        </button>
+        <Tooltip title="View Profile">
+          <button className="profile_icon" onClick={() => {}}>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </button>
+        </Tooltip>
       }
       modal
       nested
@@ -80,7 +95,7 @@ function Profile() {
       {(close) => (
         <div className="">
           <div>
-            <button className="close" onClick={() => close()}>
+            <button className="closeprofile" onClick={() => close()}>
               X
             </button>
           </div>
@@ -98,13 +113,18 @@ function Profile() {
             >
               <div>
                 <h2>My Profile</h2>
-                <p>{role}</p>
-                <p>ID: {id}</p>
+                <button className="profileicon" onClick={() => {}}>
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </button>
+
+                <p>ID : {id}</p>
+                <p>Role : {role}</p>
                 {!isEditing ? (
                   <>
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Phone Number: {user.phoneNumber}</p>
+                    <p>Name: {name}</p>
+                    <p>Phone Number: {phonenumber}</p>
+                    <p>Email: {mail}</p>
+
                     <button
                       className="add_button"
                       onClick={() => setIsEditing(true)}
@@ -118,24 +138,28 @@ function Profile() {
                       Name:
                       <input
                         type="text"
-                        value={editedName}
-                        onChange={(e) => setEditedName(e.target.value)}
+                        value={name}
+                        onChange={(e) => {
+                          setUser(e.target.value);
+                        }}
                       />
                     </label>
                     <label>
                       Email:
                       <input
                         type="text"
-                        value={editedEmail}
-                        onChange={(e) => setEditedEmail(e.target.value)}
+                        value={mail}
+                        onChange={(e) => setEmail((Eemail = e.target.value))}
                       />
                     </label>
                     <label>
                       Phone Number:
                       <input
                         type="text"
-                        value={editedPhoneNumber}
-                        onChange={(e) => setEditedPhoneNumber(e.target.value)}
+                        value={phonenumber}
+                        onChange={(e) =>
+                          setPhoneNumber((EphoneNumber = e.target.value))
+                        }
                       />
                     </label>
                     <button

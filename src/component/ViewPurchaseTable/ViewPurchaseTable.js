@@ -4,6 +4,8 @@ import Popup from "reactjs-popup";
 import "./ViewPurchaseTable.css";
 import DataContext from "../../DataContext/DataContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Tooltip } from "@mui/material";
+import Button from "@mui/material/Button";
 
 const ViewPurchaseTable = (props) => {
   const { allData, setAllData } = useContext(DataContext);
@@ -94,7 +96,6 @@ const ViewPurchaseTable = (props) => {
   if (status === "Pending") {
     return (
       <tr>
-        <td>{data.purchaseOrderWithUsersName.id}</td>
         <td>{data.purchaseOrderWithUsersName.createdBy.id}</td>
         <td>{data.purchaseOrderWithUsersName.createdBy.name}</td>
         <td>{data.purchaseOrderWithUsersName.orderDateTime}</td>
@@ -104,9 +105,9 @@ const ViewPurchaseTable = (props) => {
           <Popup
             className="popmodal"
             trigger={
-              <button type="button" class="btn-btn" onClick={() => {}}>
-                <i class="far fa-eye"></i>
-              </button>
+                <Button type="button" class="btn-btn" onClick={() => {}}>
+                  <i class="far fa-eye"></i>
+                </Button>
             }
             modal
             nested
@@ -114,7 +115,7 @@ const ViewPurchaseTable = (props) => {
             {(close) => (
               <div>
                 <div>
-                  <button className="close" onClick={() => close()}>
+                  <button className="closeapproval" onClick={() => close()}>
                     X
                   </button>
                 </div>

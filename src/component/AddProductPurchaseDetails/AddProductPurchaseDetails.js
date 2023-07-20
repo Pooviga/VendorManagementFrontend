@@ -101,8 +101,8 @@ function AddProductPurchaseDetails(props) {
       });
   }
 
-  const addPurchaseOrder = () => {
-    const temp= { ...newPurchaseOrder, ...values }
+  const addPurchaseOrder = (popupclose) => {
+    const temp = { ...newPurchaseOrder, ...values };
     setNewPurchaseOrder({ ...newPurchaseOrder, ...values });
     const filteredArray = orderedProducts.filter(
       (object) => object.quantity !== 0
@@ -117,10 +117,13 @@ function AddProductPurchaseDetails(props) {
         ...newPurchaseOrder,
         productsPurchased: filteredArray,
       });
-      postPurchaseOrder({
-        ...temp,
-        productsPurchased: filteredArray,
-      });
+      postPurchaseOrder(
+        {
+          ...temp,
+          productsPurchased: filteredArray,
+        },
+        popupclose
+      );
     }
   };
   const [status, setStatus] = useState(false);
@@ -566,7 +569,7 @@ function AddProductPurchaseDetails(props) {
             {
               e.preventDefault();
               handleSubmit(e);
-              addPurchaseOrder();
+              addPurchaseOrder(props);
             }
           }}
         >

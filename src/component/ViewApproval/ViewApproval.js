@@ -17,7 +17,6 @@ const ViewApproval = () => {
       <table>
         <thead>
           <tr>
-            <th>Purchase Order Id</th>
             <th>User Id</th>
             <th>Order Placed By</th>
             <th>Ordered On</th>

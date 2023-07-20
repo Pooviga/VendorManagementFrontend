@@ -40,7 +40,6 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #091644;
-    border-radius: 10px;
 }
 
 /* Handle on hover */

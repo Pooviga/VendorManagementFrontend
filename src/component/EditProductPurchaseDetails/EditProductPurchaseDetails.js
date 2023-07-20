@@ -22,6 +22,7 @@ function EditProductPurchaseDetails(props) {
   const [purchaseProducts, setPurchaseProducts] = useState(
     props.purchaseProducts
   );
+  const { setData, data } = useContext(DataContext);
 
   const [vendor, setVendor] = useState({ ...props.vendorForPurchaseOrder });
 
@@ -137,7 +138,13 @@ function EditProductPurchaseDetails(props) {
         )
 
         .then((response) => {
-          console.log(response);
+          axios.get("https://localhost:7017/PurchaseOrder").then((response) => {
+            console.log(response.data);
+            let data = response.data;
+            setData(data);
+          });
+          alert("Purchase Order Details are updated successfully ✔");
+          props.close();
         });
     }
   };

@@ -4,7 +4,7 @@ import DataContext from "../../DataContext/DataContext";
 import { useFormik } from "formik";
 import { addVendorSchema } from "../../schemas";
 
-function Addvendors() {
+function Addvendors(props) {
   const {
     values,
     errors,
@@ -33,6 +33,7 @@ function Addvendors() {
   });
 
   const addVendor = () => {
+    let vendorValue = { ...newVendor, ...values };
     setNewVendor({ ...newVendor, ...values });
     if (
       inputFields.length === 1 &&
@@ -51,9 +52,9 @@ function Addvendors() {
       if (values.length > 0) {
         setShowError(false);
         setInputFields(values);
-        newVendor.productDetailsRequest = [...inputFields];
-        console.log("newvvv", newVendor);
-        postVendor(newVendor);
+        vendorValue.productDetailsRequest = [...inputFields];
+        console.log("newvvv", vendorValue);
+        postVendor(vendorValue);
       } else {
         setShowError(true);
       }
@@ -447,7 +448,7 @@ function Addvendors() {
               handleSubmit(e);
               filter();
               newVendor.productDetailsRequest = [...inputFields];
-              addVendor();
+              addVendor(props.close());
             }}
           >
             Add Vendors

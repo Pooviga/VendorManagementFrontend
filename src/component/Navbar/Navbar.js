@@ -122,7 +122,11 @@ function Navbar(props) {
                     <span>Dashboard</span>
                   </Link>
                 </li>
-
+                <li className="nav-text">
+                  <Link to="/viewvendors">
+                    <span>View Vendors</span>
+                  </Link>
+                </li>
                 <li className="nav-text">
                   <Link to="/purchaseorders">
                     <span>Purchase Orders</span>
