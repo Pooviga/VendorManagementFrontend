@@ -108,7 +108,6 @@ function ViewUsers() {
               <th>Email</th>
               <th>Phone Number</th>
               <th>Role</th>
-              <th>IsActive</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -134,27 +133,32 @@ function ViewUsers() {
                     user.role.name
                   )}
                 </td>
-                <td>{user.isActive ? "true" : "false"}</td>
 
-                {user.isActive && (
-                  <>
-                    <td>
-                      {user.editing ? (
-                        <button onClick={() => handleSave(index)}>
-                          Update
+                {user.isActive ? (
+                  <td>
+                    {user.editing ? (
+                      <button onClick={() => handleSave(index)}>Update</button>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          class="btn-btn"
+                          onClick={() => handleEdit(index)}
+                        >
+                          <i className="fas fa-edit"></i>
                         </button>
-                      ) : (
-                        <>
-                          <button onClick={() => handleEdit(index)}>
-                            <i className="fas fa-edit"></i>
-                          </button>
-                          <button onClick={() => handleDelete(user.id)}>
-                            <i className="far fa-trash-alt"></i>
-                          </button>
-                        </>
-                      )}
-                    </td>
-                  </>
+                        <button
+                          type="button"
+                          class="btn-btn"
+                          onClick={() => handleDelete(user.id)}
+                        >
+                          <i className="far fa-trash-alt"></i>
+                        </button>
+                      </>
+                    )}
+                  </td>
+                ) : (
+                  <td style={{ color: "red" }}>Inactive</td>
                 )}
               </tr>
             ))}

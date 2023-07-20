@@ -104,7 +104,7 @@ const ViewPurchaseTable = (props) => {
           <Popup
             className="popmodal"
             trigger={
-              <button type="button" onClick={() => {}}>
+              <button type="button" class="btn-btn" onClick={() => {}}>
                 <i class="far fa-eye"></i>
               </button>
             }

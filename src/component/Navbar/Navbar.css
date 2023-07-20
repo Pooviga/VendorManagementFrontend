@@ -93,12 +93,12 @@ margin-right: 20px;
 } */
 .popup-content {
 	background: none !important;
-	height: 500px !important;
-	overflow-y: scroll !important;
-	padding: 30px !important;
-	background-color: white !important;
-	border-radius: 12px !important;
-	width: max-content !important;
+	/* height: 500px !important; */
+	/* overflow-y: scroll !important; */
+	/* padding: 30px !important; */
+	/* width: 0 !important; */
+	/* background-color: white !important; */
+	width: 600px !important;
 
 }
 
