@@ -1,0 +1,11 @@
+.side1 {
+    width: 50% !important;
+}
+
+.side2 {
+    flex: 1;
+}
+
+.sidefield {
+    align-items: center;
+}
