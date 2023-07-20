@@ -22,7 +22,6 @@ function Viewvendors() {
   var data = [];
   var vdata = [];
   var pdata = [];
-  // const navigate = useNavigate("/");
 
   useEffect(() => {
     axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
@@ -111,6 +110,7 @@ function Viewvendors() {
       </div>
 
       <div className="table_overflow">
+        <br></br>
         <table>
           <thead>
             <tr>
@@ -127,7 +127,7 @@ function Viewvendors() {
             {vendorDetails.map((x, index) => {
               return (
                 <tr>
-                  <th scope="row">{index + 1}</th>
+                  <td scope="row">{index + 1}</td>
                   <td>{x.id}</td>
                   <td>{x.vendorName}</td>
                   <td>{x.vendorType}</td>
@@ -145,7 +145,15 @@ function Viewvendors() {
                       nested
                     >
                       {(close) => (
-                        <div>
+                        <div
+                          style={{
+                            height: "450px",
+                            overflowY: "scroll",
+                            backgroundColor: "white",
+                            padding: "40px",
+                            width: "500px",
+                          }}
+                        >
                           <div>
                             <button
                               style={{ float: "right" }}
@@ -267,14 +275,6 @@ function Viewvendors() {
                             </div>
                           )}
                         </Popup>
-
-                        {/* <button
-                          style={{ fontSize: "24px" }}
-                          type="button"
-                          class="btn-btn"
-                        >
-                          <i class="fas fa-edit"></i>
-                        </button> */}
                         <button
                           style={{ fontSize: "24px" }}
                           type="button"

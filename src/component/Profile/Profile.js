@@ -68,7 +68,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div style={{ width: "300px" }}>
       <div
         style={{
           justifyContent: "center",

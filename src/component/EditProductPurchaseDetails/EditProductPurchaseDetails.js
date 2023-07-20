@@ -24,6 +24,7 @@ function EditProductPurchaseDetails(props) {
   );
 
   const [vendor, setVendor] = useState({ ...props.vendorForPurchaseOrder });
+
   const [total, setTotal] = useState(0);
 
   const { navigate, postVendor, postPurchaseOrder, id } =
@@ -33,6 +34,52 @@ function EditProductPurchaseDetails(props) {
     useContext(DataContext);
 
   const [showError, setShowError] = useState(false);
+
+  const {
+    values,
+
+    errors,
+
+    setErrors,
+
+    touched,
+
+    isSubmitting,
+
+    handleBlur,
+
+    handleChange,
+
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      billingAddress: "",
+
+      billingAddressCity: "",
+
+      billingAddressState: "",
+
+      billingAddressCountry: "",
+
+      billingAddressZipcode: "",
+
+      shippingAddress: "",
+
+      shippingAddressCity: "",
+
+      shippingAddressState: "",
+
+      shippingAddressCountry: "",
+
+      shippingAddressZipcode: "",
+
+      termsAndConditions: "",
+
+      description: "",
+    },
+
+    validationSchema: purchaseOrderSchema,
+  });
 
   const {
     values,
@@ -62,38 +109,60 @@ function EditProductPurchaseDetails(props) {
   });
   const updatePurchaseOrder = () => {
     let values = purchaseProducts.filter((data) => Number(data.quantity) > 0);
+
     if (values.length == 0) {
       setShowError(true);
     }
+
     let updateValues = {
       createdBy: purchaseOrderWithUsersName.createdBy.id,
+
       billingAddress: purchaseOrderWithUsersName.billingAddress,
+
       billingAddressCity: purchaseOrderWithUsersName.billingAddressCity,
+
       billingAddressState: purchaseOrderWithUsersName.billingAddressState,
+
       billingAddressCountry: purchaseOrderWithUsersName.billingAddressCountry,
+
       billingAddressZipcode: purchaseOrderWithUsersName.billingAddressZipcode,
+
       shippingAddress: purchaseOrderWithUsersName.shippingAddress,
+
       shippingAddressCity: purchaseOrderWithUsersName.shippingAddressCity,
+
       shippingAddressState: purchaseOrderWithUsersName.shippingAddressState,
+
       shippingAddressCountry: purchaseOrderWithUsersName.shippingAddressCountry,
+
       shippingAddressZipcode: purchaseOrderWithUsersName.shippingAddressZipcode,
+
       termsAndConditions: purchaseOrderWithUsersName.termsAndConditions,
+
       description: purchaseOrderWithUsersName.description,
+
       productsPurchased: values.map((data) => {
         return {
           vendorId: vendor.id,
+
           purchaseOrderId: purchaseOrderWithUsersName.id,
+
           productId: data.productId,
+
           quantity: Number(data.quantity),
         };
       }),
     };
+
     if (values.length > 0) {
       axios
+
         .put(
           `https://localhost:7017/PurchaseOrder/${purchaseOrderWithUsersName.id}`,
+
           updateValues
         )
+
         .then((response) => {
           console.log(response);
         });
@@ -132,6 +201,7 @@ function EditProductPurchaseDetails(props) {
         pData.push(newData.productDetails);
 
         setProductDetails(pData);
+
         productFilter(vendor.id);
       });
     });
@@ -148,28 +218,39 @@ function EditProductPurchaseDetails(props) {
 
       .then((response) => {
         let values = response.data.productDetails;
+
         let finalProducts = [...purchaseProducts];
+
         values = values.map((data) => {
           return {
             productId: data.id,
+
             price: Number(data.price),
+
             productDescription: data.productDescription,
+
             productName: data.productName,
+
             quantity: 0,
           };
         });
+
         let prodIds = [];
+
         values.forEach((value) => prodIds.push(value.productId));
+
         finalProducts.forEach((prod) => {
           if (prodIds.includes(prod.productId)) {
             prodIds.splice(prodIds.indexOf(prod.productId), 1);
           }
         });
+
         values.forEach((val) => {
           if (prodIds.includes(val.productId)) {
             finalProducts.push(val);
           }
         });
+
         setPurchaseProducts(finalProducts);
 
         setFilteredProducts(response.data.productDetails);
@@ -241,8 +322,16 @@ function EditProductPurchaseDetails(props) {
   });
 
   return (
-    <form className="purchaseForm">
-      <h1>Edit Purchase Order</h1>
+    <div
+      style={{
+        height: "450px",
+        overflowY: "scroll",
+        backgroundColor: "white",
+        padding: "40px",
+      }}
+    >
+      <form className="purchaseForm">
+        <h1>Edit Purchase Order</h1>
 
       <div>
         <div class="sidefields">
@@ -553,107 +642,114 @@ function EditProductPurchaseDetails(props) {
           </div>
           {/* <label htmlFor="vendorWebsite">Vendor Web Site:</label> */}
 
-          {/* <input placeholder="Website Link" type="text" id="vendorWebsite" name="vendorWebsite" onChange={(e) => { setNewPurchaseOrder({ ...newPurchaseOrder, vendorWebsite: e.target.value }) }}></input> */}
-        </div>
-
-        <div className="second-input">
-          <div className="sidefield">
-            <label
-              className="pdlabel"
-              style={{ margin: "10px", fontSize: "24px" }}
-              for="productDetails"
-            >
-              Selected Vendor:
-            </label>
+            {/* <input placeholder="Website Link" type="text" id="vendorWebsite" name="vendorWebsite" onChange={(e) => { setNewPurchaseOrder({ ...newPurchaseOrder, vendorWebsite: e.target.value }) }}></input> */}
           </div>
 
-          <select id="colours" disabled>
-            {vendorDetails.map((v) => {
-              if (vendor.id == v.id) {
-                return (
-                  <option selected value={v.id}>
-                    {v.vendorName}
-                  </option>
-                );
-              }
-            })}
-          </select>
-        </div>
+          <div className="second-input">
+            <div className="sidefield">
+              <label
+                className="pdlabel"
+                style={{ margin: "10px", fontSize: "24px" }}
+                for="productDetails"
+              >
+                Selected Vendor:
+              </label>
+            </div>
 
-        {status ? <p className="error-color">Invalid credentials</p> : <></>}
-
-        <div className="row">
-          <div className="sidefield">
-            <label
-              className="pdlabel"
-              style={{ margin: "10px", fontSize: "24px" }}
-              for="productDetails"
-            >
-              Product Details:
-            </label>
-          </div>
-        </div>
-
-        <div className="col-sm-8">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-
-                <th scope="col"> unit price</th>
-
-                <th scope="col">quantity</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {purchaseProducts.map((x, index) => {
-                return (
-                  <tr>
-                    <td>{x.productName}</td>
-
-                    <td>₹{x.price}</td>
-
-                    <td>
-                      <input
-                        type="number"
-                        value={x.quantity}
-                        onChange={(e) => {
-                          let val = {
-                            ...x,
-                            quantity: e.target.value,
-                          };
-                          let li = [...purchaseProducts];
-                          li[index] = val;
-                          setPurchaseProducts(li);
-                          setShowError(false);
-                        }}
-                      ></input>
-                    </td>
-                  </tr>
-                );
+            <select id="colours" disabled>
+              {vendorDetails.map((v) => {
+                if (vendor.id == v.id) {
+                  return (
+                    <option selected value={v.id}>
+                      {v.vendorName}
+                    </option>
+                  );
+                }
               })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {showError && (
-        <p className="error-color">Atleast get a quantity of product</p>
-      )}
-      <button
-        className="addvendors"
-        onClick={(e) => {
-          {
-            updatePurchaseOrder();
-            e.preventDefault();
-          }
-        }}
-      >
-        Submit
-      </button>
-    </form>
+            </select>
+          </div>
 
-    // </div>
+          {status ? <p className="error-color">Invalid credentials</p> : <></>}
+
+          <div className="row">
+            <div className="sidefield">
+              <label
+                className="pdlabel"
+                style={{ margin: "10px", fontSize: "24px" }}
+                for="productDetails"
+              >
+                Product Details:
+              </label>
+            </div>
+          </div>
+
+          <div className="col-sm-8">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+
+                  <th scope="col"> unit price</th>
+
+                  <th scope="col">quantity</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {purchaseProducts.map((x, index) => {
+                  return (
+                    <tr>
+                      <td>{x.productName}</td>
+
+                      <td>₹{x.price}</td>
+
+                      <td>
+                        <input
+                          type="number"
+                          value={x.quantity}
+                          onChange={(e) => {
+                            let val = {
+                              ...x,
+
+                              quantity: e.target.value,
+                            };
+
+                            let li = [...purchaseProducts];
+
+                            li[index] = val;
+
+                            setPurchaseProducts(li);
+
+                            setShowError(false);
+                          }}
+                        ></input>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {showError && (
+          <p className="error-color">Atleast get a quantity of product</p>
+        )}
+
+        <button
+          className="addvendors"
+          onClick={(e) => {
+            {
+              updatePurchaseOrder();
+
+              e.preventDefault();
+            }
+          }}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 
