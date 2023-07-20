@@ -102,6 +102,7 @@ function AddProductPurchaseDetails(props) {
   }
 
   const addPurchaseOrder = () => {
+    const temp= { ...newPurchaseOrder, ...values }
     setNewPurchaseOrder({ ...newPurchaseOrder, ...values });
     const filteredArray = orderedProducts.filter(
       (object) => object.quantity !== 0
@@ -117,7 +118,7 @@ function AddProductPurchaseDetails(props) {
         productsPurchased: filteredArray,
       });
       postPurchaseOrder({
-        ...newPurchaseOrder,
+        ...temp,
         productsPurchased: filteredArray,
       });
     }

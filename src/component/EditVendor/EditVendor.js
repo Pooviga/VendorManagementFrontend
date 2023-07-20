@@ -7,7 +7,13 @@ import { addVendorSchema } from "../../schemas";
 
 function EditVendor(props) {
   const [vendors, setVendors] = useState({ ...props.vendorDetails });
-  const [productDetails, setProductDetails] = useState(props.productDetails);
+  const [productVendorDetails, setProductVendorDetails] = useState(props.productDetails);
+  var vdata = [];
+  var pdata = [];
+
+  const { vendorDetails, productDetails, setVendorDetails, setProductDetails } =
+    useContext(DataContext); 
+    const [details, setDetails] = useState([]);
   useEffect(() => {
     // setDetails(detail);
     // console.log(details);
@@ -66,7 +72,7 @@ function EditVendor(props) {
       telePhone2: vendors.telePhone2,
       vendorEmail: vendors.vendorEmail,
       vendorWebsite: vendors.vendorWebsite,
-      productDetailsRequest: [...productDetails],
+      productDetailsRequest: [...productVendorDetails],
     };
 
     if (
@@ -95,7 +101,22 @@ function EditVendor(props) {
             vendorDetail
           )
           .then((response) => {
+            axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
+              setDetails(response.data);
+              response.data.map((newdata) => {
+                vdata.push(newdata.vendorDetails);
+                setVendorDetails(vdata);
+                pdata.push(newdata.productDetails);
+                setProductDetails(pdata);
+              });
+        
+              console.log("asigned", vdata);
+              console.log("asigned", pdata);
+        
+             
+            });
             console.log(response);
+            alert("Vendor Details Update Successfully ✔")
             props.close();
           });
       } else {
@@ -106,8 +127,8 @@ function EditVendor(props) {
 
   const addInputField = (e) => {
     e.preventDefault();
-    setProductDetails([
-      ...productDetails,
+    setProductVendorDetails([
+      ...productVendorDetails,
       {
         id: "00000000-0000-0000-0000-000000000000",
         productName: "",
@@ -118,9 +139,9 @@ function EditVendor(props) {
     ]);
   };
   const removeInputFields = (e, index) => {
-    const rows = [...productDetails];
+    const rows = [...productVendorDetails];
     rows.splice(index, 1);
-    setProductDetails(rows);
+    setProductVendorDetails(rows);
     e.preventDefault();
   };
 
@@ -141,10 +162,10 @@ function EditVendor(props) {
     productDetailsRequest: [],
   });
   function filter() {
-    for (let i = 0; i < productDetails.length; i++) {
-      productDetails[i].price = Number(productDetails[i].price);
-      delete productDetails[i].vendorDetails;
-      delete productDetails[i]?.vendorId;
+    for (let i = 0; i < productVendorDetails.length; i++) {
+      productVendorDetails[i].price = Number(productVendorDetails[i].price);
+      delete productVendorDetails[i].vendorDetails;
+      delete productVendorDetails[i]?.vendorId;
     }
   }
   return (
@@ -394,7 +415,7 @@ function EditVendor(props) {
             </div>
           </div>
           <div>
-            {productDetails.map((data, index) => {
+            {productVendorDetails.map((data, index) => {
               let { productName, productDescription, price } = data;
               return (
                 <div>
@@ -408,9 +429,9 @@ function EditVendor(props) {
                           handleChange(e);
                           setShowError(false);
                           let val = { ...data, productName: e.target.value };
-                          let li = [...productDetails];
+                          let li = [...productVendorDetails];
                           li[index] = val;
-                          setProductDetails(li);
+                          setProductVendorDetails(li);
                         }}
                         onBlur={handleBlur}
                         placeholder="Product Name"
@@ -436,9 +457,9 @@ function EditVendor(props) {
                             ...data,
                             productDescription: e.target.value,
                           };
-                          let li = [...productDetails];
+                          let li = [...productVendorDetails];
                           li[index] = val;
-                          setProductDetails(li);
+                          setProductVendorDetails(li);
                         }}
                         onBlur={handleBlur}
                         placeholder="Product Description"
@@ -466,9 +487,9 @@ function EditVendor(props) {
                             ...data,
                             price: e.target.value,
                           };
-                          let li = [...productDetails];
+                          let li = [...productVendorDetails];
                           li[index] = val;
-                          setProductDetails(li);
+                          setProductVendorDetails(li);
                         }}
                         onBlur={handleBlur}
                         placeholder="Price"
@@ -481,7 +502,7 @@ function EditVendor(props) {
                       )}
                     </div>
                     <div>
-                      {productDetails.length !== 1 ? (
+                      {productVendorDetails.length !== 1 ? (
                         <button
                           className="removevendors"
                           id={index}
