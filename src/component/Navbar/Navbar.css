@@ -7,13 +7,18 @@
 	align-items: center;
 
 }
-
+.Username{
+	padding-left: 10px;
+	display: flex;
+	gap:20px;
+	color: white;
+}
 .menu-bars {
 	/* margin-left: 2rem; */
 	display: flex;
 	align-items: center;
 	margin-left: 4px;
-	font-size: 2rem;
+	font-size: 20px;
 	background: none;
 	place-content: center;
 }
@@ -23,6 +28,7 @@
 	height: 50px;
 	gap:10px;
 margin-right: 20px;
+color: white;
 }
 
 .nav-menu {
@@ -79,6 +85,7 @@ margin-right: 20px;
 
 .heading {
 	color: white;
+	letter-spacing: 1px;
 }
 
 .popup_content {
@@ -107,6 +114,7 @@ margin-right: 20px;
 
 .nav-menu-items {
 	width: 100%;
+	padding: 0;
 }
 
 .navbar-toggle {
