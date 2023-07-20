@@ -119,7 +119,14 @@ const ViewPurchaseTable = (props) => {
                   </button>
                 </div>
 
-                <div>
+                <div
+                  style={{
+                    height: "450px",
+                    overflowY: "scroll",
+                    backgroundColor: "white",
+                    padding: "40px",
+                  }}
+                >
                   <div>
                     <div>
                       <p>

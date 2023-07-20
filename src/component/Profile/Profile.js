@@ -68,61 +68,96 @@ function Profile() {
   };
 
   return (
-    <div style={{ width: "300px" }}>
-      <div
-        style={{
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        <h2>My Profile</h2>
-        <p>{role}</p>
-        <p>ID: {id}</p>
-        {!isEditing ? (
-          <>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Phone Number: {user.phoneNumber}</p>
-            <button className="add_button" onClick={() => setIsEditing(true)}>
-              Edit Details
-            </button>
-          </>
-        ) : (
+    <Popup
+      trigger={
+        <button className="profile_icon" onClick={() => {}}>
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </button>
+      }
+      modal
+      nested
+    >
+      {(close) => (
+        <div className="">
           <div>
-            <label>
-              Name:
-              <input
-                type="text"
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="text"
-                value={editedEmail}
-                onChange={(e) => setEditedEmail(e.target.value)}
-              />
-            </label>
-            <label>
-              Phone Number:
-              <input
-                type="text"
-                value={editedPhoneNumber}
-                onChange={(e) => setEditedPhoneNumber(e.target.value)}
-              />
-            </label>
-            <button className="add_button" onClick={handleUpdateUserDetails}>
-              Update Details
-            </button>
-            <button className="add_button" onClick={() => setIsEditing(false)}>
-              Cancel
+            <button className="close" onClick={() => close()}>
+              X
             </button>
           </div>
-        )}
-      </div>
-    </div>
+          <div>
+            <div
+              style={{
+                height: "400px",
+                overflowY: "scroll",
+                backgroundColor: "white",
+                padding: "40px",
+                placeContent: "center",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              <div>
+                <h2>My Profile</h2>
+                <p>{role}</p>
+                <p>ID: {id}</p>
+                {!isEditing ? (
+                  <>
+                    <p>Name: {user.name}</p>
+                    <p>Email: {user.email}</p>
+                    <p>Phone Number: {user.phoneNumber}</p>
+                    <button
+                      className="add_button"
+                      onClick={() => setIsEditing(true)}
+                    >
+                      Edit Details
+                    </button>
+                  </>
+                ) : (
+                  <div>
+                    <label>
+                      Name:
+                      <input
+                        type="text"
+                        value={editedName}
+                        onChange={(e) => setEditedName(e.target.value)}
+                      />
+                    </label>
+                    <label>
+                      Email:
+                      <input
+                        type="text"
+                        value={editedEmail}
+                        onChange={(e) => setEditedEmail(e.target.value)}
+                      />
+                    </label>
+                    <label>
+                      Phone Number:
+                      <input
+                        type="text"
+                        value={editedPhoneNumber}
+                        onChange={(e) => setEditedPhoneNumber(e.target.value)}
+                      />
+                    </label>
+                    <button
+                      className="add_button"
+                      onClick={handleUpdateUserDetails}
+                    >
+                      Update Details
+                    </button>
+                    <button
+                      className="add_button"
+                      onClick={() => setIsEditing(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </Popup>
   );
 }
 
