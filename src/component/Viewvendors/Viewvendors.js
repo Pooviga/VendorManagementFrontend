@@ -121,7 +121,6 @@ function Viewvendors() {
           <thead>
             <tr>
               <th scope="col">S.No</th>
-              <th scope="col">Vendor Id</th>
               <th scope="col">Vendor Name</th>
               <th scope="col">Type</th>
               <th scope="col">E-mail</th>
@@ -134,7 +133,6 @@ function Viewvendors() {
               return (
                 <tr>
                   <td scope="row">{index + 1}</td>
-                  <td>{x.id}</td>
                   <td>{x.vendorName}</td>
                   <td>{x.vendorType}</td>
                   <td>{x.vendorEmail}</td>
@@ -158,6 +156,7 @@ function Viewvendors() {
                             backgroundColor: "white",
                             padding: "40px",
                             width: "500px",
+                            border: "3px solid #091644",
                           }}
                         >
                           <div>
@@ -168,15 +167,11 @@ function Viewvendors() {
                             >
                               x
                             </button>
-                            <h4>Vendor Details</h4>
+                            <h2>Vendor Details</h2>
                           </div>
 
                           <div className="viewvendordetail">
                             <p>
-                              <p>
-                                <b>Vendor Id</b> : {x.id}
-                              </p>
-
                               <p>
                                 <b>Vendor Name</b>: {x.vendorName}{" "}
                               </p>
@@ -208,7 +203,7 @@ function Viewvendors() {
                                 <b>Vendor Website</b>: {x.vendorWebsite}{" "}
                               </p>
                             </p>
-                            productDetails
+                            <b>ProductDetails :</b>
                             <br />
                             <br />
                             <table>

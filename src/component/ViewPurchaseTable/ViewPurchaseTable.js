@@ -105,9 +105,9 @@ const ViewPurchaseTable = (props) => {
           <Popup
             className="popmodal"
             trigger={
-                <Button type="button" class="btn-btn" onClick={() => {}}>
-                  <i class="far fa-eye"></i>
-                </Button>
+              <Button type="button" class="btn-btn" onClick={() => {}}>
+                <i class="far fa-eye"></i>
+              </Button>
             }
             modal
             nested
@@ -126,6 +126,7 @@ const ViewPurchaseTable = (props) => {
                     overflowY: "scroll",
                     backgroundColor: "white",
                     padding: "40px",
+                    border: "3px solid #091644",
                   }}
                 >
                   <div>

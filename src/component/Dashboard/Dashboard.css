@@ -1,104 +1,81 @@
-.dashboard{
-    /* align-items: center; */
-    
-}
-
+/* Dashboard.css */
 .body-cont {
   padding: 24px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   gap: 16px;
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
 }
 
-.charts{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-  }
+.charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
 
-  .bar-chart {
-    /* width: 500px !important; */
-    height: 400px;
-    margin-right: 24px;
-  }
+.bar-chart,
+.pie-chart {
+  height: 400px;
+  min-width: 400px;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .pie-chart {
-    /* width: 500px !important; */
-    height: 400px !important;
-  }
-  
-  
-  .dashh2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .dashp {
-    font-size: 18px;
-    margin: 0;
-  }
-  .dashcard {
-    display:flexbox;
-    min-width: 250px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* .dashcard h2 {
-    margin-top: 0;
-  } */
-  
-  .chart {
+.dashcard {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashh2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.dashp {
+  font-size: 24px;
+  margin: 0;
+  color: #555;
+}
+
+/* Add some spacing between the cards */
+.column {
+  margin-bottom: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 768px) {
+  .column {
+    width: 100%;
+    display: block;
     margin-bottom: 20px;
   }
-  
-  .column {
-    float: left;
-    width: 25%;
-    padding: 0 10px;
-  }
 
-  canvas {
-    /* height: 400px !important; */
-    
-    margin-right: 0px !important;
+  .bar-chart,
+  .pie-chart {
+    min-width: 100%;
+    max-width: 100%;
   }
-  
-  /* Remove extra left and right margins, due to padding */
-  .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    padding-bottom: 16px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Responsive columns */
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-    }
-  }
-  
-  /* Style the counter dashcards */
-  .dashcard {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #f1f1f1;
-  }
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}

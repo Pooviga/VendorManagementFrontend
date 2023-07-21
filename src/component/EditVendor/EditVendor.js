@@ -7,13 +7,15 @@ import { addVendorSchema } from "../../schemas";
 
 function EditVendor(props) {
   const [vendors, setVendors] = useState({ ...props.vendorDetails });
-  const [productVendorDetails, setProductVendorDetails] = useState(props.productDetails);
+  const [productVendorDetails, setProductVendorDetails] = useState(
+    props.productDetails
+  );
   var vdata = [];
   var pdata = [];
 
   const { vendorDetails, productDetails, setVendorDetails, setProductDetails } =
-    useContext(DataContext); 
-    const [details, setDetails] = useState([]);
+    useContext(DataContext);
+  const [details, setDetails] = useState([]);
   useEffect(() => {
     // setDetails(detail);
     // console.log(details);
@@ -101,22 +103,22 @@ function EditVendor(props) {
             vendorDetail
           )
           .then((response) => {
-            axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
-              setDetails(response.data);
-              response.data.map((newdata) => {
-                vdata.push(newdata.vendorDetails);
-                setVendorDetails(vdata);
-                pdata.push(newdata.productDetails);
-                setProductDetails(pdata);
+            axios
+              .get("https://localhost:7017/api/VendorDetails")
+              .then((response) => {
+                setDetails(response.data);
+                response.data.map((newdata) => {
+                  vdata.push(newdata.vendorDetails);
+                  setVendorDetails(vdata);
+                  pdata.push(newdata.productDetails);
+                  setProductDetails(pdata);
+                });
+
+                console.log("asigned", vdata);
+                console.log("asigned", pdata);
               });
-        
-              console.log("asigned", vdata);
-              console.log("asigned", pdata);
-        
-             
-            });
             console.log(response);
-            alert("Vendor Details Update Successfully ✔")
+            alert("Vendor Details Update Successfully ✔");
             props.close();
           });
       } else {
@@ -175,6 +177,7 @@ function EditVendor(props) {
         overflowY: "scroll",
         backgroundColor: "white",
         padding: "40px",
+        border: "3px solid #091644",
       }}
     >
       <form>

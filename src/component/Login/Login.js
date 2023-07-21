@@ -130,6 +130,7 @@ function Login() {
       axios
         .post("https://localhost:7017/api/User", signUpRequest)
         .then((response) => {
+          alert("Successfully Signed Up, Plese login to continue !");
           console.log(response.data);
           setStat(!stat);
         })
@@ -162,6 +163,12 @@ function Login() {
   return (
     <div>
       <div className="main">
+        <div>
+          <img
+            className="topleft"
+            src="https://ck-content.imgix.net/pcm/content/e5ad29359cfd52ab4ac6-naf-logo-TM.png"
+          ></img>
+        </div>
         <div className="sub-main">
           {stat ? (
             <div>

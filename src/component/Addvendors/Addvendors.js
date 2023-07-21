@@ -123,6 +123,7 @@ function Addvendors(props) {
         overflowY: "scroll",
         backgroundColor: "white",
         padding: "40px",
+        border: "3px solid #091644",
       }}
     >
       <form>

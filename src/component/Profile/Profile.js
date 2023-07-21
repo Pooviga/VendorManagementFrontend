@@ -83,11 +83,11 @@ function Profile() {
   return (
     <Popup
       trigger={
-        <Tooltip title="View Profile">
-          <button className="profile_icon" onClick={() => {}}>
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </button>
-        </Tooltip>
+        // <Tooltip title="View Profile">
+        <button className="profile_icon" onClick={() => {}}>
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </button>
+        // </Tooltip>
       }
       modal
       nested
@@ -109,6 +109,7 @@ function Profile() {
                 placeContent: "center",
                 justifyContent: "center",
                 textAlign: "center",
+                border: "3px solid #091644",
               }}
             >
               <div>
@@ -162,18 +163,20 @@ function Profile() {
                         }
                       />
                     </label>
-                    <button
-                      className="add_button"
-                      onClick={handleUpdateUserDetails}
-                    >
-                      Update Details
-                    </button>
-                    <button
-                      className="add_button"
-                      onClick={() => setIsEditing(false)}
-                    >
-                      Cancel
-                    </button>
+                    <div className="profilebuttons">
+                      <button
+                        className="add_button"
+                        onClick={handleUpdateUserDetails}
+                      >
+                        Update Details
+                      </button>
+                      <button
+                        className="add_button"
+                        onClick={() => setIsEditing(false)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

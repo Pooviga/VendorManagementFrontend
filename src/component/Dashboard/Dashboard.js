@@ -1,24 +1,15 @@
 import React from "react";
-
 import { useState, useEffect } from "react";
-
 import BarChart from "./BarChart";
-
 import PieChart from "./PieChart";
-
 import axios from "axios";
-
 import "./Dashboard.css";
 
 function Dashboard() {
   const [totalVendors, setTotalVendors] = useState(1);
-
   const [monthlyexpense, setMonthlyexpense] = useState(5000);
-
   const [yearlyexpense, setYearlyexpense] = useState(2000);
-
   const [barData, setBarData] = useState([]);
-
   const [pieData, setPieData] = useState({});
 
   useEffect(() => {
@@ -76,15 +67,18 @@ function Dashboard() {
         backgroundColor: "rgba(255,99,132,0.2)",
 
         backgroundColor: [
-          "rgba(75,192,192,1)",
-
-          "#ecf0f1",
-
-          "#50AF95",
-
-          "#f3ba2f",
-
-          "#2a71d0",
+          "#1a1f58",
+          "#1d2270",
+          "#212891",
+          "#2530ab",
+          "#2933c5",
+          "#2c36de",
+          "#3039f8",
+          "#323dfe",
+          "#3d4eff",
+          "#465ef3",
+          "#516eea",
+          "#5c78e0",
         ],
 
         borderWidth: 1,
@@ -114,15 +108,18 @@ function Dashboard() {
         backgroundColor: "rgba(255,99,132,0.2)",
 
         backgroundColor: [
-          "rgba(75,192,192,1)",
-
-          "#ecf0f1",
-
-          "#50AF95",
-
-          "#f3ba2f",
-
-          "#2a71d0",
+          "#1a1f58",
+          "#1d2270",
+          "#212891",
+          "#2530ab",
+          "#2933c5",
+          "#2c36de",
+          "#3039f8",
+          "#323dfe",
+          "#3d4eff",
+          "#465ef3",
+          "#516eea",
+          "#5c78e0",
         ],
 
         borderWidth: 1,
@@ -140,8 +137,6 @@ function Dashboard() {
     ],
   };
 
-  // IF YOU SEE THIS COMMENT: I HAVE GOOD EYESIGHT
-
   return (
     <div className="body-cont">
       <div class="row">
@@ -157,7 +152,7 @@ function Dashboard() {
           <div class="dashcard">
             <h2 className="dashh2">Monthly Expense</h2>
 
-            <p className="dashp">{monthlyexpense}</p>
+            <p className="dashp">Rs. {monthlyexpense}</p>
           </div>
         </div>
 
@@ -165,7 +160,7 @@ function Dashboard() {
           <div class="dashcard">
             <h2 className="dashh2">Yearly Expense</h2>
 
-            <p className="dashp">{yearlyexpense}</p>
+            <p className="dashp">Rs. {yearlyexpense}</p>
           </div>
         </div>
       </div>
