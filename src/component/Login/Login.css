@@ -8,6 +8,10 @@
     background-color: #091644;
     align-items: center;
 }
+.vendorimage{
+    height: 400px;
+    width: 360px;
+}
 
 input::placeholder {
     font: 14px;
@@ -26,10 +30,22 @@ input::placeholder {
 .mobile-container {
     width: 100% !important;
 }
+.topleft {
+    background-color: white;
+    height: 38px;
+    width: 210px;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+    border: 1px solid white;
+  }
 
 .sub-main {
 
     display: flex;
+    flex-direction: column;
+
 
     justify-content: center;
 
@@ -43,9 +59,7 @@ input::placeholder {
     padding-right: 30px;
 
     border-radius: 10px;
-
     background-color: white;
-    /* overflow-y: scroll; */
 
 }
 

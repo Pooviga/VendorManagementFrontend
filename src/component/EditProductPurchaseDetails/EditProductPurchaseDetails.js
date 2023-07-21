@@ -1,15 +1,6 @@
 import { React, useContext, useEffect, useState } from "react";
-
 import "../EditProductPurchaseDetails/EditProductPurchaseDetails.css";
-
 import DataContext from "../../DataContext/DataContext";
-
-import AddProduct from "../AddProduct/AddProduct";
-
-import TextField from "@mui/material/TextField";
-
-import Popup from "reactjs-popup";
-
 import axios from "axios";
 import { useFormik } from "formik";
 import { purchaseOrderSchema } from "../../schemas";
@@ -23,59 +14,35 @@ function EditProductPurchaseDetails(props) {
     props.purchaseProducts
   );
   const { setData, data } = useContext(DataContext);
-
   const [vendor, setVendor] = useState({ ...props.vendorForPurchaseOrder });
-
   const [total, setTotal] = useState(0);
-
   const { navigate, postVendor, postPurchaseOrder, id } =
     useContext(DataContext);
-
   const { vendorDetails, setVendorDetails, productDetails, setProductDetails } =
     useContext(DataContext);
-
   const [showError, setShowError] = useState(false);
-
   const {
     values,
-
     errors,
-
     setErrors,
-
     touched,
-
     isSubmitting,
-
     handleBlur,
-
     handleChange,
-
     handleSubmit,
   } = useFormik({
     initialValues: {
       billingAddress: "",
-
       billingAddressCity: "",
-
       billingAddressState: "",
-
       billingAddressCountry: "",
-
       billingAddressZipcode: "",
-
       shippingAddress: "",
-
       shippingAddressCity: "",
-
       shippingAddressState: "",
-
       shippingAddressCountry: "",
-
       shippingAddressZipcode: "",
-
       termsAndConditions: "",
-
       description: "",
     },
 
@@ -83,60 +50,38 @@ function EditProductPurchaseDetails(props) {
   });
   const updatePurchaseOrder = () => {
     let values = purchaseProducts.filter((data) => Number(data.quantity) > 0);
-
     if (values.length == 0) {
       setShowError(true);
     }
-
     let updateValues = {
       createdBy: purchaseOrderWithUsersName.createdBy.id,
-
       billingAddress: purchaseOrderWithUsersName.billingAddress,
-
       billingAddressCity: purchaseOrderWithUsersName.billingAddressCity,
-
       billingAddressState: purchaseOrderWithUsersName.billingAddressState,
-
       billingAddressCountry: purchaseOrderWithUsersName.billingAddressCountry,
-
       billingAddressZipcode: purchaseOrderWithUsersName.billingAddressZipcode,
-
       shippingAddress: purchaseOrderWithUsersName.shippingAddress,
-
       shippingAddressCity: purchaseOrderWithUsersName.shippingAddressCity,
-
       shippingAddressState: purchaseOrderWithUsersName.shippingAddressState,
-
       shippingAddressCountry: purchaseOrderWithUsersName.shippingAddressCountry,
-
       shippingAddressZipcode: purchaseOrderWithUsersName.shippingAddressZipcode,
-
       termsAndConditions: purchaseOrderWithUsersName.termsAndConditions,
-
       description: purchaseOrderWithUsersName.description,
-
       productsPurchased: values.map((data) => {
         return {
           vendorId: vendor.id,
-
           purchaseOrderId: purchaseOrderWithUsersName.id,
-
           productId: data.productId,
-
           quantity: Number(data.quantity),
         };
       }),
     };
-
     if (values.length > 0) {
       axios
-
         .put(
           `https://localhost:7017/PurchaseOrder/${purchaseOrderWithUsersName.id}`,
-
           updateValues
         )
-
         .then((response) => {
           axios.get("https://localhost:7017/PurchaseOrder").then((response) => {
             console.log(response.data);
@@ -150,23 +95,15 @@ function EditProductPurchaseDetails(props) {
   };
 
   var count = 0;
-
   const user = JSON.parse(localStorage.getItem("User"));
 
   //to extract all vendor ids
-
   const vendorIds = vendorDetails.map((vendorDetails) => vendorDetails.id);
-
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const [orderedProducts, setOrderedProducts] = useState([]);
-
   const [vId, setVId] = useState();
-
   const [pd, setPd] = useState([]);
-
   var vData = [];
-
   var pData = [];
 
   //fetch vendor details
@@ -175,13 +112,9 @@ function EditProductPurchaseDetails(props) {
     axios.get("https://localhost:7017/api/VendorDetails").then((response) => {
       response.data.map((newData) => {
         vData.push(newData.vendorDetails);
-
         setVendorDetails(vData);
-
         pData.push(newData.productDetails);
-
         setProductDetails(pData);
-
         productFilter(vendor.id);
       });
     });
@@ -191,34 +124,23 @@ function EditProductPurchaseDetails(props) {
 
   function productFilter(id) {
     setVId(id);
-
     axios
-
       .get("https://localhost:7017/api/VendorDetails/" + id)
-
       .then((response) => {
         let values = response.data.productDetails;
-
         let finalProducts = [...purchaseProducts];
-
         values = values.map((data) => {
           return {
             productId: data.id,
-
             price: Number(data.price),
-
             productDescription: data.productDescription,
-
             productName: data.productName,
-
             quantity: 0,
           };
         });
 
         let prodIds = [];
-
         values.forEach((value) => prodIds.push(value.productId));
-
         finalProducts.forEach((prod) => {
           if (prodIds.includes(prod.productId)) {
             prodIds.splice(prodIds.indexOf(prod.productId), 1);
@@ -232,34 +154,20 @@ function EditProductPurchaseDetails(props) {
         });
 
         setPurchaseProducts(finalProducts);
-
         setFilteredProducts(response.data.productDetails);
       });
   }
 
   let status = false;
 
-  // { vendorId:(s.vendorId),
-
-  //  purchaseOrderId:"00000000-0000-0000-0000-000000000000",
-
-  //  productId:(s.id),
-
-  //  quantity:0}
-
   //code for adding ordered products with quantity
 
   const updateObjectAtIndex = (index, newObject) => {
     // Create a shallow copy of the original array
-
     const newArray = [...orderedProducts];
-
     // Update the desired object at the specified index
-
     newArray[index] = newObject;
-
     // Update the state with the modified array
-
     setOrderedProducts(newArray);
   };
 
@@ -267,37 +175,23 @@ function EditProductPurchaseDetails(props) {
     const filteredArray = orderedProducts.filter(
       (object) => object.quantity !== 0
     );
-
     setOrderedProducts(filteredArray);
   };
 
   const [newPurchaseOrder, setNewPurchaseOrder] = useState({
     createdBy: user.id,
-
     billingAddress: " ",
-
     billingAddressCity: " ",
-
     billingAddressState: " ",
-
     billingAddressCountry: " ",
-
     billingAddressZipcode: " ",
-
     shippingAddress: " ",
-
     shippingAddressCity: " ",
-
     shippingAddressState: " ",
-
     shippingAddressCountry: " ",
-
     shippingAddressZipcode: " ",
-
     termsAndConditions: " ",
-
     description: " ",
-
     productsPurchased: [],
   });
 
@@ -308,6 +202,7 @@ function EditProductPurchaseDetails(props) {
         overflowY: "scroll",
         backgroundColor: "white",
         padding: "40px",
+        border: "3px solid #091644",
       }}
     >
       <form className="purchaseForm">
@@ -391,7 +286,6 @@ function EditProductPurchaseDetails(props) {
           </div>
 
           <div class="sidefields">
-            {/* <label htmlFor="addressLine1">Address-Line 1:</label> */}
             <div className="side1">
               <input
                 placeholder="Billing Address State"
@@ -416,7 +310,6 @@ function EditProductPurchaseDetails(props) {
                 <p className="error">{errors.billingAddressState}</p>
               )}
             </div>
-            {/* <label htmlFor="addressLine2">Address-Line 2:</label> */}
             <div className="side2">
               <input
                 placeholder="Billing Address Country"
@@ -445,7 +338,6 @@ function EditProductPurchaseDetails(props) {
           </div>
 
           <div class="sidefields">
-            {/* <label htmlFor="city">City:</label> */}
             <div className="side1">
               <input
                 placeholder="Shipping Address"
@@ -470,7 +362,6 @@ function EditProductPurchaseDetails(props) {
                 <p className="error">{errors.shippingAddress}</p>
               )}
             </div>
-            {/* <label htmlFor="state">State:</label> */}
             <div className="side2">
               <input
                 placeholder="shippingAddressCity"
@@ -498,7 +389,6 @@ function EditProductPurchaseDetails(props) {
           </div>
 
           <div class="sidefields">
-            {/* <label htmlFor="pinCode">Pin Code:</label> */}
             <div className="side1">
               <input
                 placeholder="Shipping Address State"
@@ -523,7 +413,6 @@ function EditProductPurchaseDetails(props) {
                 <p className="error">{errors.shippingAddressState}</p>
               )}
             </div>
-            {/* <label htmlFor="country">Country:</label> */}
             <div className="side2">
               <input
                 placeholder="Shipping Address Country"
@@ -553,7 +442,6 @@ function EditProductPurchaseDetails(props) {
           </div>
 
           <div class="sidefields">
-            {/* <label htmlFor="telephone1">Telephone 1:</label> */}
             <div className="side1">
               <input
                 placeholder="Shipping Address Zipcode "
@@ -580,7 +468,6 @@ function EditProductPurchaseDetails(props) {
                   <p className="error">{errors.shippingAddressZipcode}</p>
                 )}
             </div>
-            {/* <label htmlFor="telephone2">Telephone 2:</label> */}
             <div className="side2">
               <input
                 placeholder="billing Address Zipcode "
@@ -609,7 +496,6 @@ function EditProductPurchaseDetails(props) {
           </div>
 
           <div class="sidefields">
-            {/* <label htmlFor="vendorEmail">Vendor Email:</label> */}
             <div style={{ width: "100%" }}>
               <input
                 placeholder="Terms and Conditions"
@@ -624,11 +510,7 @@ function EditProductPurchaseDetails(props) {
                 }}
               ></input>
             </div>
-            {/* <label htmlFor="vendorWebsite">Vendor Web Site:</label> */}
-
-            {/* <input placeholder="Website Link" type="text" id="vendorWebsite" name="vendorWebsite" onChange={(e) => { setNewPurchaseOrder({ ...newPurchaseOrder, vendorWebsite: e.target.value }) }}></input> */}
           </div>
-
           <div className="second-input">
             <div className="sidefield">
               <label

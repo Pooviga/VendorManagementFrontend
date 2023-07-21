@@ -76,7 +76,7 @@ function Navbar(props) {
             </li>
             <div></div>
             <h2 style={{ marginLeft: "15px" }}>
-              <span style={{ color: "white", marginRight: "2px" }}>&naf</span>
+              <span style={{ color: "white", marginRight: "2px" }}>naf</span>
               <span style={{ color: "#00B0F0", margin: "0" }}>vms</span>
             </h2>
             {role == "admin" ? (

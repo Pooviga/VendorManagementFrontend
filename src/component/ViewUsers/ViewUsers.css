@@ -1,4 +1,4 @@
-.body-content {
+/* .body-content {
     padding: 24px;
 }
 
@@ -24,4 +24,119 @@
     cursor: pointer;
     width: 100px;
     height: 40px;
+} */
+
+/* ViewUsers.css */
+.body-content {
+    padding: 24px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .searches {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .filter-container {
+    margin-right: 8px;
+  }
+  
+  .search-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .search-container input[type="text"]::placeholder {
+    color: #888;
+  }
+  
+  .search-container .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    cursor: pointer;
+  }
+  
+  .table_overflow {
+    overflow-x: scroll;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  
+  tbody td {
+    font-size: 14px;
+  }
+  
+  thead th {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  /* button {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease;
+  } */
+  .update_button{
+    font-family: 'Poppins', sans-serif;
+    background-color: #091644;
+    color: white;
+    padding: 8px 16px;
+    margin: 35px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    /* width: 100px;
+    height: 40px; */
+    border:none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+
+}
+.update_button:hover{
+background-color:#3B6CCF;
+color: white;
 }

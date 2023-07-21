@@ -26,6 +26,30 @@
     margin-bottom: 5px;
 }
  */
+ .yellow{
+    background-color:#FFF44F ;
+  width:60px;
+  height:12px;
+ }
+ .green{
+    background-color:#50c878 ;
+  width:60px;
+  height:12px;
+ }
+ .red{
+    background-color:#ED2939 ;
+  width:60px;
+  height:12px;
+ }
+ 
+ .usedcolors{
+    display: flex;
+    justify-content: space-between;
+ }
+ .colors{
+    display: flex;
+    gap: 20px;
+ }
 .addpurchase{
         font-family: 'Poppins', sans-serif;
         background-color: #091644;

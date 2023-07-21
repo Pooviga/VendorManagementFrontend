@@ -28,6 +28,18 @@ function ViewPurchaseOrder() {
       setData(data);
     });
   }, []);
+  function getStatusColor(status) {
+    switch (status.toLowerCase()) {
+      case "pending":
+        return "#FFFFCC"; // Yellow color for Pending status
+      case "approved":
+        return "#CCFFCC"; // Green color for Approved status
+      case "declined":
+        return "#FFCCCC"; // Red color for Declined status
+      default:
+        return "white"; // Default color for other statuses
+    }
+  }
 
   function deletePO(poid) {
     console.log(id);
@@ -99,7 +111,20 @@ function ViewPurchaseOrder() {
           {/* Add other status options if needed */}
         </select>
       </div>
-      <br></br>
+      <div className="usedcolors">
+        <div className="colors">
+          <p>Pending</p>
+          <h1 className="yellow"></h1>
+        </div>
+        <div className="colors">
+          <p>Approved</p>
+          <h1 className="green"></h1>
+        </div>
+        <div className="colors">
+          <p>Declined</p>
+          <h1 className="red"></h1>
+        </div>
+      </div>
       {/* div to view po details */}
       <div className="table_overflow">
         <table>
@@ -121,7 +146,16 @@ function ViewPurchaseOrder() {
                   <td>{d.purchaseOrderWithUsersName.description}</td>
                   <td>{d.purchaseOrderWithUsersName.createdBy.name}</td>
                   <td>{d.vendorForPurchaseOrder.vendorName}</td>
-                  <td>{d.purchaseOrderWithUsersName.status}</td>
+                  <td
+                    style={{
+                      color: "black",
+                      backgroundColor: getStatusColor(
+                        d.purchaseOrderWithUsersName.status
+                      ),
+                    }}
+                  >
+                    {d.purchaseOrderWithUsersName.status}
+                  </td>
 
                   <td>
                     <Popup
@@ -142,6 +176,7 @@ function ViewPurchaseOrder() {
                             overflowY: "scroll",
                             backgroundColor: "white",
                             padding: "40px",
+                            border: "3px solid #091644",
                           }}
                         >
                           <div>
