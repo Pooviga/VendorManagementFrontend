@@ -61,41 +61,6 @@ export const DataProvider = ({ children }) => {
 
   const [details, setDetails] = useState([]);
 
-  //   function refresh() {
-  //     axios
-  //       .get("https://localhost:7017/api/VendorDetails")
-  //       .then((response) => {
-  //         setDetails(response.data);
-  //         response.data.map((newdata) => {
-  //           console.log(newdata);
-
-  //           pdata.push(newdata.productDetails);
-  //           //   setProductDetails(newdata.productDetails);
-
-  //           console.log(pdata);
-  //         });
-  //         setVendorDetails(response.data.vendorDetails);
-  //         setProductDetails(pdata);
-  //         // setVendorDetails(vdata);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching vendor details:", error);
-  //       });
-  //   }
-
-  //   function postVendor(dataSet, close) {
-  //     axios
-  //       .post("https://localhost:7017/api/VendorDetails", dataSet)
-  //       .then((ress) => {
-  //         // alert("Vendor details are added successfully ✔");
-  //         refresh();
-  //         close.close();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-
   function postVendor(dataSet, close) {
     axios
       .post("https://localhost:7017/api/VendorDetails", dataSet)
@@ -116,8 +81,7 @@ export const DataProvider = ({ children }) => {
             console.log("asigned", vdata);
             console.log("asigned", pdata);
 
-            // console.log('here:',response.data.vendorDetails);
-            // setVendorDetails(response.data.vendorDetails)
+
           });
         alert("Vendor details are added successfully ✔");
         close.close();

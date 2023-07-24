@@ -17,6 +17,7 @@ import ViewUsers from "./component/ViewUsers/ViewUsers";
 import EditVendors from "./component/EditVendor/EditVendor";
 import Profile from "./component/Profile/Profile";
 import ViewPurchaseTable from "./component/ViewPurchaseTable/ViewPurchaseTable";
+import PdfGenerator from "./component/PdfGenerator/PdfGenerator";
 
 // import PurchaseOrder from './component/PurchaseOrder/PurchaseOrder';
 
@@ -54,6 +55,7 @@ function App() {
               <Route path="/viewapproval" element={<ViewApproval />} />
               <Route path="/editvendor" element={<EditVendors />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/pdf" element={<PdfGenerator />} />
               <Route
                 path="/viewpurchasetable"
                 element={<ViewPurchaseTable />}
