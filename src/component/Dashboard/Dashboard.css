@@ -60,6 +60,11 @@
   clear: both;
 }
 
+canvas{
+  height: 400px !important;
+  padding: 8px !important;
+}
+
 /* Responsive columns */
 @media screen and (max-width: 768px) {
   .column {
@@ -70,12 +75,20 @@
 
   .bar-chart,
   .pie-chart {
-    min-width: 100%;
-    max-width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 400px !important;
+    min-width: 400px !important;
+    /* max-width: 600px !important; */
+    border-radius: 10px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
   }
+
+
 }
 .row{
   display: flex;
   flex-direction: row;
-  gap: 80px;
+  gap: 100px;
 }

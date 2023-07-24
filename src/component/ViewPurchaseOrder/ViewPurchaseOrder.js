@@ -295,6 +295,27 @@ function ViewPurchaseOrder() {
                         </div>
                       )}
                     </Popup>
+                    {d.purchaseOrderWithUsersName.status === "Approved" ? (
+                      <Tooltip title="Download Pdf">
+                        <Button
+                          style={{ fontSize: "24px" }}
+                          type="button"
+                          class="btn-btn"
+                          onClick={(e) => {
+                            {
+                              navigate("/pdf", { state: d });
+                              console.log("det", d);
+                            }
+                          }}
+                        >
+                          {/* navigate("/pdf",{ state: d={d} */}
+
+                          <i class="fa-regular fa-file-lines"></i>
+                        </Button>
+                      </Tooltip>
+                    ) : (
+                      <></>
+                    )}
                     {d.purchaseOrderWithUsersName.createdBy.id === userid && (
                       <>
                         <Popup

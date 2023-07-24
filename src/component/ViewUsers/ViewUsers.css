@@ -48,16 +48,18 @@
   }
   
   .search-container input[type="text"] {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
     outline: none;
+    width: 355px !important;
   }
   
   .search-container input[type="text"]::placeholder {
     color: #888;
+    
   }
   
   .search-container .search-icon {
@@ -67,6 +69,7 @@
     transform: translateY(-50%);
     color: #555;
     cursor: pointer;
+    
   }
   
   .table_overflow {
